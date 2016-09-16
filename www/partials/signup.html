@@ -1,0 +1,82 @@
+<section  class="main2">	
+	<div class="navbar navbar-default " role="navigation">
+        <div class="container"> 
+            <div class="navbar-header">
+                <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> 
+                </button>-->
+                <a  href="#/login" class="navbar-brand"><img src="img/logomain.png" style="margin-bottom: 50px;"></a>
+            </div>        
+        </div>
+    </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-left">
+                    <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="panel-title">Registration</div>
+                    </div> 
+					<div style="padding-top:30px" class="panel-body">
+
+                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                            
+<form name="signupForm" role="form">					
+					
+<div class="row">
+   <div class="col-md-12">					   
+	  <div class="form-group">
+		<label for="name">Email</label>
+		<input type="email" class="form-control" id="email" name="email" placeholder="Email" ng-model="signup.email" focus>
+        <span ng-show="signupForm.email.$error.email" class="help-inline">Email is not valid</span>
+	  </div>
+	  <div class="form-group">
+		<label for="password">Password</label>
+		<input type="password" class="form-control" id="password"  name="password" placeholder="Password" ng-model="signup.password" required >
+        <small class="errorMessage" data-ng-show="signupForm.password.$dirty && signupForm.password.$invalid"> Enter Password.</small>
+	  </div>
+	  <div class="form-group">
+		<label for="confirmpassword">Confirm Password</label>
+		<input type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password"  ng-model="signup.confirmpassword" password-match="signup.password" required>
+        <small class="errorMessage" data-ng-show="signupForm.confirmpassword.$dirty && signupForm.confirmpassword.$error.required"> Enter password again.</small>
+        <small class="errorMessage" data-ng-show="signupForm.password2.$dirty && signupForm.password2.$error.passwordNoMatch && !signupForm.password2.$error.required"> Password do not match.</small>
+	  </div>
+	  <div class="form-group">
+		<label for="name">Name</label>
+		<input type="text" class="form-control" id="name" name="name" placeholder="Name"  ng-model="signup.name"  required>
+	  </div> 
+	  <div class="form-group">
+		<label for="mobile">Mobile</label>
+		<input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile Number"  ng-model="signup.mobile"  required>
+	  </div>           
+	  <div class="form-group">
+		<label for="bloodgrp">Blood Group</label>
+		<select class="form-control" id="bloodgroup" name="bloodgroup" ng-model="signup.bloodgroup" ng-options="bloodgroup as bloodgroup.label for bloodgroup in bloodgroups" required>
+		  
+		</select>        		
+	  </div>	
+	</div>
+</div>
+						
+						
+<input class="btn btn-lg btn-primary btn-block" type="submit" value="Register" ng-click="signUp(signup)" data-ng-disabled="signupForm.$invalid">						
+</form>    
+
+
+
+                        </div>
+					
+
+
+					
+                    </div>   
+					
+					
+					
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
