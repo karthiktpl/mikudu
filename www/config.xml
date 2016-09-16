@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.solminds.mikudu" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>MIKUDU</name>
+    <name>mikudu</name>
     <description>
-       Mikudu Blood Donation
+       mikudu Blood Donation
     </description>
     <author email="karthik@solminds.com" href="http://solminds.com/">
         Karthik T Narayanan
