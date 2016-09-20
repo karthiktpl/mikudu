@@ -111,10 +111,17 @@ app.config(['$routeProvider',
                 }                                 
             })                                                           
             .when('/', {
-                title: 'Login',
-                templateUrl: 'partials/login.html',
-                controller: 'authCtrl',
-                role: '0'
+                title: 'Dashboard',
+                templateUrl: 'partials/dashboard.html',
+                controller: 'dashboardCtrl',
+                role: '0',
+                resolve: {
+                  availability: function(Data, $route,$rootScope){
+                    var customerID = $rootScope.uid;
+                    return Data.get('getavailability?customer='+customerID);
+                  }                  
+                } 
+                
             })
             .otherwise({
                 redirectTo: '/login'
