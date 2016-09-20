@@ -1,0 +1,8 @@
+<div id="requestdiv{{RequestId}}"> 
+        <div class="media-body">
+      <h4 class="media-heading bldr"><span class="smallfont">Need </span> <span class="label label-danger">{{viewdata.Bloodgroup | uppercase}}</span> <span class="smallfont">on {{viewdata.Neededon | date : fullDate}}</span> <span class="smallfont">At</span></h4>
+      <h5>{{viewdata.Location_Address}}, {{viewdata.District}}</h5>
+      <h5>{{viewdata.Remarks}}</h5>      
+      <p><a href="#/viewrequest/{{RequestId}}" class="btn btn-primary btn-xs" >View</a> <button type="button" class="btn btn-default btn-xs" ng-click="cancelRequest(RequestId);" ng-confirm-click="You are about to cancel your Request!! Are you SURE you want to cancel?">Cancel</button></p>
+    </div>
+</div>

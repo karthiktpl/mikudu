@@ -42,7 +42,12 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                     $rootScope.name = results.name;
                     $rootScope.email = results.email;
                     $rootScope.district = results.district;
-                    $rootScope.notifications = results.notifications;                 
+                    $rootScope.notifications = results.notifications;
+                    var storage = window.localStorage;                    
+                    storage.setItem('uid', results.uid);
+                    storage.setItem('name', results.name);
+                    storage.setItem('email', results.email);
+                    storage.setItem('district', results.district);                                                         
                 $location.path('dashboard');
             }
         });
@@ -199,22 +204,8 @@ app.controller('requestCtrl', function ($scope, $rootScope, $location, $routePar
                 }
             });         
     };                     
-   /*$scope.AddEmail=function(){
-    
-   };
-    $scope.mobilecount=1;
-    $scope.AddMobile = function() {
-        if($scope.mobilecount<3)
-        {          
-            var newmobilecount=$scope.mobilecount+1       
-            var Mobilediv = angular.element( document.querySelector( '#mobilediv' ) );
-            Mobilediv.append('<div class="entry input-group col-xs-12 " style="margin-top:10px;" id="mobilediv'+newmobilecount+'"><input class="form-control " name="mobile'+newmobilecount+'" id="mobile'+newmobilecount+'" ng-model="request.Mobile'+newmobilecount+'" required type="text" placeholder="Mobile" /><span class="input-group-btn"><button class="btn btn-primary btn-add" ng-click="RemoveMobile('+newmobilecount+');" type="button"><span class="glyphicon glyphicon-minus"></span></button></span></div>');
-            $scope.mobilecount=newmobilecount;           
-        }    
-    };*/
                                            
 });
-
 app.controller('notificationsCtrl', function ($scope, $rootScope, $location, $routeParams, Data, customer,$http) {
     var customerID = ($routeParams.customerID) ? parseInt($routeParams.customerID) : 0;
     Data.get('notifications?customer='+customerID).then(function (results) {            
@@ -320,4 +311,53 @@ app.controller('notificationsCtrl', function ($scope, $rootScope, $location, $ro
                 }
             });         
     };               
+});
+app.controller('passwordCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data) {
+    var storage = window.localStorage; 
+    $scope.changepassword = {User_Id:storage.getItem('uid'),password:'',confirmpassword:''};  
+    $scope.PasswordChange = function (customer) {        
+        Data.post('changepassword', {
+            customer: customer
+        }).then(function (results) {
+            Data.toast(results);
+            if (results.status == "success") {
+                $location.path('dashboard');
+            }
+        });
+    };    
+});
+app.controller('requestsCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data) {
+    var storage = window.localStorage;
+    var customerID = storage.getItem('uid');
+    Data.get('myrequests?customer='+customerID).then(function (results) {            
+        var requestslist=results;
+        $scope.requestslists = angular.copy(requestslist);                  
+    });  
+    $scope.getIncludeReqFile = function(lists) {    
+        // Make this more dynamic, but you get the idea 
+        $scope.viewdata='';
+        $scope.RequestId='';       
+        if(lists)
+        {
+            $scope.viewdata=lists;
+            $scope.RequestId=lists.Id;                                       
+            return 'partials/_myrequests.html';
+        }else{
+             return 'partials/norequests.html';
+        }               
+    }
+    $scope.cancelRequest= function(datareq){        
+        Data.post('cancelrequest', {
+            request:datareq 
+        }).then(function (results) {
+            Data.toast(results);
+            if (results.status == "success") {
+                var myEl = angular.element( document.querySelector( '#requestdiv'+datareq ) );
+                myEl.remove(); 
+            }
+        });       
+    }
+});
+app.controller('viewRequestCtrl', function ($scope, $rootScope, $routeParams, $location,request, $http, Data) {
+    $scope.requestview = angular.copy(request);  
 });
