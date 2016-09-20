@@ -8,8 +8,9 @@
         Karthik T Narayanan
     </author>
     <content src="index.html" />
+    <preference name="android-minSdkVersion" value="14"/>            
     <preference name="DisallowOverscroll" value="true"/>
-    <preference name="android-minSdkVersion" value="14"/>                  
+    <preference name="webviewbounce" value="true" />    
     <preference name="android-installLocation" value="auto" />
     <gap:plugin name="org.apache.cordova.battery-status" />
     <gap:plugin name="org.apache.cordova.camera" />
