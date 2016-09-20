@@ -897,6 +897,7 @@ p {
     font-weight: 300;
     line-height: 1.4;
 }
+
 @media (min-width:768px) {
     .lead {
     font-size: 21px;
@@ -2895,6 +2896,7 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 .nav>li {
     position: relative;
     display: block;
+    float: left;
 }
 .nav>li>a {
     position: relative;
@@ -3202,11 +3204,11 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 }
 @media (max-width:767px) {
     .navbar-nav .open .dropdown-menu {
-    position: static;
+    
     float: none;
     width: auto;
     margin-top: 0;
-    background-color: transparent;
+    
     border: 0;
     -webkit-box-shadow: none;
     box-shadow: none;
