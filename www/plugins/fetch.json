@@ -1,0 +1,28 @@
+{   
+    "cordova-plugin-geolocation": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-geolocation@~2.1.0"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-whitelist": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-whitelist@~1.2.1"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "plugin.google.maps": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-googlemaps"
+        },
+        "is_top_level": true,
+        "variables": {
+            "API_KEY_FOR_ANDROID": "AIzaSyAE1K_juLxpRMTfQ5IWX93wskigXKAb52I"
+        }
+    }
+}
