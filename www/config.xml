@@ -4,8 +4,8 @@
     <description>
        mikudu Blood Donation
     </description>
-    <author email="karthik@solminds.com" href="http://solminds.com/">
-        Karthik T Narayanan
+    <author email="support@solminds.com" href="http://solminds.com/">
+        Solminds Team
     </author>
     <content src="index.html" />
     <preference name="android-minSdkVersion" value="14"/>
@@ -32,6 +32,9 @@
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
+	<plugin name="plugin.google.maps">
+		<param name="API_KEY_FOR_ANDROID" value="AIzaSyAE1K_juLxpRMTfQ5IWX93wskigXKAb52I" />		
+	</plugin>	
     <icon src="res/icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
     <icon gap:platform="android" gap:qualifier="mdpi" src="www/res/icon/android/icon-48-mdpi.png" />

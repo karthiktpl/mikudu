@@ -1,0 +1,28 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {        
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.solminds.mikudu"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.solminds.mikudu"
+        },
+        "plugin.google.maps": {
+            "PACKAGE_NAME": "com.solminds.mikudu"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.solminds.mikudu"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.solminds.mikudu"
+        }
+    }
+}
