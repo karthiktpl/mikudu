@@ -361,3 +361,6 @@ app.controller('requestsCtrl', function ($scope, $rootScope, $routeParams, $loca
 app.controller('viewRequestCtrl', function ($scope, $rootScope, $routeParams, $location,request, $http, Data) {
     $scope.requestview = angular.copy(request);  
 });
+app.controller('mapCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data) {
+    
+});

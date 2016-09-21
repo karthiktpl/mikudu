@@ -95,7 +95,12 @@ app.config(['$routeProvider',
                 title: 'My Requests',
                 templateUrl: 'partials/myrequests.html',
                 controller: 'requestsCtrl',                
-            })            
+            })
+            .when('/maps', {
+                title: 'Blood Banks',
+                templateUrl: 'partials/maps.html',
+                controller: 'mapCtrl',                
+            })               
             .when('/logout', {
                 title: 'Login',
                 templateUrl: 'partials/login.html',
