@@ -28,30 +28,10 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript">
-    var map;
-    document.addEventListener("deviceready", function() {
-      var div = document.getElementById("map_canvas");
-
-      // Initialize the map view
-      map = plugin.google.maps.Map.getMap(div);
-
-      // Wait until the map is ready status.
-      map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
-    }, false);
-
-    function onMapReady() {
-      var button = document.getElementById("button");
-      button.addEventListener("click", onBtnClicked, false);
-    }
-
-    function onBtnClicked() {
-      map.showDialog();
-    }
-    </script>
+    
 </head>
 
-<body>	
+<body >	
 		<section  class="main2" >
 				<div class="navbar navbar-default " role="navigation">
 					<div class="container"> 
@@ -122,8 +102,14 @@
 	<script src="app/data.js"></script>
 	<script src="app/directives.js"></script>
 	<script src="app/mapCtrl.js"></script>
-<script>
 
+<script type="text/javascript">
+$(document).on('click','#button',function(){
+	var div = document.getElementById("map_canvas");
+
+      // Initialize the map view
+     var map = plugin.google.maps.Map.getMap(div);
+});
 
 </script>  
 </html>
