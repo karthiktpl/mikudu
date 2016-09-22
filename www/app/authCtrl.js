@@ -363,6 +363,7 @@ app.controller('viewRequestCtrl', function ($scope, $rootScope, $routeParams, $l
 });
 app.controller('mapCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data) {
     $scope.map=function(){
+		alert('test');
 		var map;        
 		var mapdiv = document.getElementById("map_canvas");
 		var mapOptions = {
