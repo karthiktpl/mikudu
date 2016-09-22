@@ -362,7 +362,7 @@ app.controller('viewRequestCtrl', function ($scope, $rootScope, $routeParams, $l
     $scope.requestview = angular.copy(request);  
 });
 app.controller('mapCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data) {
-    $scope.map=function(){
+     var mapinit=function(){
 		alert('test');
 		var map;        
 		var mapdiv = document.getElementById("map_canvas");
@@ -372,4 +372,5 @@ app.controller('mapCtrl', function ($scope, $rootScope, $routeParams, $location,
       // Initialize the map view
 		map = plugin.google.maps.Map.getMap(mapdiv,mapOptions);
     }
+	mapinit();
 });
