@@ -67,8 +67,10 @@
 
 <script type="text/javascript">
 $(document).on('click','#button',function(){
-	var div = document.getElementById("map_canvas");	
-var map = new google.maps.Map(div);
+var map = new google.maps.Map(document.getElementById('map_canvas'), {
+  center: {lat: -34.397, lng: 150.644},
+  zoom: 10
+});
       // Initialize the map view     
 });
 
