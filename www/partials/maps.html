@@ -1,6 +1,7 @@
 	
     <script type="text/javascript">
     var map;
+    document.addEventListener("load", function() {
       var mapdiv = document.getElementById("map_canvas");
 	  var mapOptions = {
 		center: new google.maps.LatLng(51.5, -0.2), zoom: 10
@@ -9,7 +10,8 @@
       map = plugin.google.maps.Map.getMap(mapdiv,mapOptions);
 
       // Wait until the map is ready status.
-      //map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
+      map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
+    }, false);
 
     function onMapReady() {
       var button = document.getElementById("button");
