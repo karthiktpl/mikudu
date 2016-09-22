@@ -51,22 +51,61 @@
     </script>
 </head>
 
-<body>
-<div class="navbar navbar-default " role="navigation">
-	<div class="container"> 
-		<div class="navbar-header">
-			<!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span> 
-			</button>-->
-			<a href="index.html#/dashboard" class="navbar-brand"><img src="img/logomain.png" style="margin-bottom: 50px;"></a>
-		</div>		
-	</div>
-</div>
+<body>	
+		<section  class="main2" >
+				<div class="navbar navbar-default " role="navigation">
+					<div class="container"> 
+						<div class="navbar-header">
+							<!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span> 
+							</button>-->
+							<a href="#/dashboard" class="navbar-brand"><img src="img/logomain.png" style="margin-bottom: 50px;"></a>
+						</div>
+						<div class="navbar-collapse">         
+							<ul class="nav navbar-nav navbar-right">
+								<li class="dropdown">
+									<a class="dropdown-toggle" data-toggle="dropdown" href="#/notifications/{{uid}}" aria-expanded="false">
+										<i class="fa fa-bell fa-fw"></i> 
+										<span class="label label-primary">{{notifications}}</span>
+									</a>
+								</li>
+								<li class="dropdown">                    
+									<a  href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+										<i class="fa fa-cog fa-fw"></i> 
+										<span class="label label-primary"></span>
+									</a>
+									<ul class="dropdown-menu dropdown-alerts">
+										<li>
+											<a href="#/myrequests">                                
+													<i class="fa fa fa-history fa-fw"></i>My Requests                                                                    
+											</a>
+										</li> 
+										<li class="divider"></li>                    
+										<li>
+											<a href="#/changepassword">                                
+													<i class="fa fa-key fa-fw"></i>Change Password                                                                    
+											</a>
+										</li>                                             
+										<li class="divider"></li>
+										 <li>
+											<a href="#/logout">
+											   <i class="fa fa-sign-out fa-fw"></i> Sign Out
+											</a>
+										</li> 
+									</ul>
+									<!-- /.dropdown-alerts -->
+								</li>                
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div style="width:100%;height:400px" id="map_canvas"> </div>
+				<button id="button">Full Screen</button>				
+			</section> 
+			    
 
-<div style="width:100%;height:400px" id="map_canvas"> </div>
-<button id="button">Full Screen</button>
 </body>
   <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
     <script src="js/jquery.js"></script>
