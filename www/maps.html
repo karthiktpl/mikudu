@@ -28,7 +28,8 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <script type="text/javascript" src="cordova.js"></script>
-    
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAE1K_juLxpRMTfQ5IWX93wskigXKAb52I"> </script>
+
 </head>
 
 <body >			
@@ -68,9 +69,12 @@
 <script type="text/javascript">
 $(document).on('click','#button',function(){
 	var div = document.getElementById("map_canvas");
-
-      // Initialize the map view
-     var map = plugin.google.maps.Map.getMap(div);
+	var mapOptions = {
+		center: latLong,
+		zoom: 13		
+	};	
+var map = new google.maps.Map(div, mapOptions);
+      // Initialize the map view     
 });
 
 </script>  
