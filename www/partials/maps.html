@@ -1,15 +1,15 @@
-
+	
     <script type="text/javascript">
     var map;
-    document.addEventListener("deviceready", function() {
-      var div = document.getElementById("map_canvas");
-
+      var mapdiv = document.getElementById("map_canvas");
+	  var mapOptions = {
+		center: new google.maps.LatLng(51.5, -0.2), zoom: 10
+	  };
       // Initialize the map view
-      map = plugin.google.maps.Map.getMap(div);
+      map = plugin.google.maps.Map.getMap(mapdiv,mapOptions);
 
       // Wait until the map is ready status.
-      map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
-    }, false);
+      //map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
 
     function onMapReady() {
       var button = document.getElementById("button");
