@@ -1,27 +1,4 @@
-	
-    <script type="text/javascript">
-    var map;
-    document.addEventListener("load", function() {
-      var mapdiv = document.getElementById("map_canvas");
-	  var mapOptions = {
-		center: new google.maps.LatLng(51.5, -0.2), zoom: 10
-	  };
-      // Initialize the map view
-      map = plugin.google.maps.Map.getMap(mapdiv,mapOptions);
 
-      // Wait until the map is ready status.
-      map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
-    }, false);
-
-    function onMapReady() {
-      var button = document.getElementById("button");
-      button.addEventListener("click", onBtnClicked, false);
-    }
-
-    function onBtnClicked() {
-      map.showDialog();
-    }
-</script>
 <section  class="main2">
 		<div class="navbar navbar-default " role="navigation">
 			<div class="container"> 
@@ -71,7 +48,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="container"  >
+		<div class="container"  ng-init="map">
 		    <div style="width:100%;height:400px" id="map_canvas"></div>
 			<button id="button">Full Screen</button>		
 		</div>			
