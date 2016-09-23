@@ -52,7 +52,19 @@
 	<script src="app/directives.js"></script>
 	<script src="app/authCtrl.js"></script>
 <script>
+document.addEventListener('deviceready', onDeviceReady);
+function onDeviceReady()
+{
+    var success = function(status) {
+        alert('Message: ' + status);
+    }
 
+    var error = function(status) {
+        alert('Error: ' + status);
+    }
+
+    window.cache.clear( success, error );
+}
 
 </script>  
 </html>

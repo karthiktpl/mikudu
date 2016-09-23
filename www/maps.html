@@ -57,18 +57,15 @@
 
     <!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/angular.min.js"></script>
-	<script src="js/angular-route.min.js"></script>
-	<script src="js/angular-animate.min.js" ></script>
-	<script src="js/toaster.js"></script>
+	<script src="js/angular.min.js"></script>	
 	<script src="app/mapapp.js"></script>
-	<script src="app/data.js"></script>
-	<script src="app/directives.js"></script>
+	<script src="app/data.js"></script>	
 	<script src="app/mapCtrl.js"></script>
 
 <script type="text/javascript">
 $(function(){
 $('.indexlink').click(function(){
+window.cache.clear();
 document.location.href = 'index.html#/dashboard';
 })
 });
