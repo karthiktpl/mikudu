@@ -394,7 +394,8 @@ app.controller('mapCtrl', function ($scope, $rootScope, $routeParams, $location,
 		storage.setItem('bloodcountry', searchval.Country_Id);
 		storage.setItem('bloodstate', searchval.State_Id);
 		storage.setItem('blooddistrict', searchval.District_Id);
-		$window.location= 'maps.html';
+		window.location='maps.html'
+		//$window.location= 'maps.html';
     };	
  	
 });
