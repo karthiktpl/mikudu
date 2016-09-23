@@ -47,6 +47,7 @@
 		</div>
 	<div style="width:100%;height:400px" id="map_canvas"> </div>
 	<button id="button">Full Screen</button>			
+	<button id="buttonclose">Close</button>
 </body>
   <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
     <script src="js/jquery.js"></script>
@@ -68,7 +69,8 @@ $('.indexlink').click(function(){
 	div = document.getElementById("map_canvas");
     var tmpmap = plugin.google.maps.Map.getMap(div);
     tmpmap.remove();
-	return true;
+	window.location = 'index.html';
+	return false;
 })
 });
 var map;
@@ -80,13 +82,19 @@ document.addEventListener("deviceready", function() {
 
   // Wait until the map is ready status.
   map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
+  
 }, false);
 
 function onMapReady() {
   var button = document.getElementById("button");
+  var buttonclose = document.getElementById("buttonclose");
   button.addEventListener("click", onBtnClicked);
+  buttonclose.addEventListener("click", onBtnClose);
 }
-
+function onBtnClose()
+{
+	map.remove();
+}
 function onBtnClicked() {
 
   // Move to the position with animation
