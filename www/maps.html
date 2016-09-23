@@ -41,7 +41,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span> 
 					</button>-->
-					<a href="index.html#/dashboard"  class="navbar-brand"><img src="img/logomain.png" style="margin-bottom: 50px;"></a>
+					<a href="javascript:void();"  class="navbar-brand indexlink"><img src="img/logomain.png" style="margin-bottom: 50px;"></a>
 				</div>						
 			</div>
 		</div>
@@ -65,7 +65,10 @@
 <script type="text/javascript">
 $(function(){
 $('.indexlink').click(function(){
-document.location.href = 'index.html#/dashboard';
+	div = document.getElementById("map_canvas");
+    var tmpmap = plugin.google.maps.Map.getMap(div);
+    tmpmap.remove();
+	document.location.href = 'index.html';
 })
 });
 var map;
