@@ -99,7 +99,12 @@ app.config(['$routeProvider',
             .when('/maps', {
                 title: 'Blood Banks',
                 templateUrl: 'partials/maps.html',
-                controller: 'mapCtrl',                
+                controller: 'mapCtrl',
+                resolve: {
+                  country: function(Data, $route){                    
+                    return Data.getCountries();
+                  }                  
+                }                 
             })               
             .when('/logout', {
                 title: 'Login',

@@ -78,6 +78,7 @@
 
 <script type="text/javascript">
 $(function(){
+
 $('.indexlink').click(function(){
 	div = document.getElementById("map_canvas");
     var tmpmap = plugin.google.maps.Map.getMap(div);
@@ -88,13 +89,17 @@ $('.indexlink').click(function(){
 });
 var map;
 document.addEventListener("deviceready", function() {
-  var div = document.getElementById("map_canvas");
+	var div = document.getElementById("map_canvas");
 
   // Initialize the map view
-  map = plugin.google.maps.Map.getMap(div);
+	map = plugin.google.maps.Map.getMap(div);
 
   // Wait until the map is ready status.
-  map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
+	map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
+	var storage = window.localStorage; 
+	var district=storage.getItem('blooddistrict');
+	var value = Setmarkers(district);	
+	onBtnClicked(value)
   
 }, false);
 
@@ -109,11 +114,13 @@ function onBtnClose()
 	map.remove();
 	return true;
 }
-function onBtnClicked() {
+
+function onBtnClicked(value) {
 
   // Move to the position with animation
+  const district = new plugin.google.maps.LatLng(value.districtlat);
   map.animateCamera({
-    target: {lat: 37.422359, lng: -122.084344},
+    target: district,
     zoom: 17,
     tilt: 60,
     bearing: 140,
@@ -122,7 +129,7 @@ function onBtnClicked() {
 
     // Add a maker
     map.addMarker({
-      position: {lat: 37.422359, lng: -122.084344},
+      position: district,
       title: "Welecome to \n" +
              "Cordova GoogleMaps plugin for iOS and Android",
       snippet: "This plugin is awesome!",
@@ -141,6 +148,21 @@ function onBtnClicked() {
       });
     });
   });
+}
+function Setmarkers(district)
+{
+		var markers;
+		$.ajax({
+		  type: "GET",
+		  async: false,
+		  global: false,
+		  dataType: "json",
+		  url: "http://hg.solminds.com/mikuduapi/v1/bloodbanks?district="+district,
+		  success: function (result){
+			markers=result;
+		  }
+		});
+		return markers;
 }
 </script>  
 </html>

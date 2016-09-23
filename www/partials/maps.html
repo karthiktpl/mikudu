@@ -56,27 +56,27 @@
 						<form role="form" action="" method="post">
 						   <div class="row">
 							<div class="col-xs-12">
-								 <div class="form-group">
+								<div class="form-group">
 									<label for="name">Select Country</label>
-									<input type="text" class="form-control" id="name" ng-model="request.Name" placeholder="Name">
+									<select ng-model="mapsval.Country_Id" class="form-control" ng-change="getCountryStates()" ng-options="obj.Id as obj.Name for obj in countries" ng-required="true">                                  
+									</select>
 								</div>
-							</div>
-							<div class="col-xs-12">
-								 <div class="form-group">
-									<label for="name">Select State</label>
-									<input type="text" class="form-control" id="name" ng-model="request.Name" placeholder="Name">
+								<div class="form-group">
+									<label for="bloodgrp">Select State</label>
+									<select class="form-control" ng-model="mapsval.State_Id" ng-options="x.Id as x.Name for x in states" ng-change="getStatesCities()"  ></select>
 								</div>
+								<div class="form-group">
+									<label for="bloodgrp">Select District</label>
+									<select class="form-control" ng-model="mapsval.District_Id"  ng-options="y.Id as y.Name for y in districts"></select>
+								</div>
+							</div>						
 							</div>
-							<div class="col-xs-12">
-								 <div class="form-group">
-									<label for="name">Select District</label>
-									<input type="text" class="form-control" id="name" ng-model="request.Name" placeholder="Name">
+							<div class="row">
+								<div class="col-xs-12">
+									<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="setmap(mapsval);">Submit Request</button>
 								</div>
 							</div>							
-							</div>								
 						</form>
-						<div style="width:100%;height:400px" id="map_canvas"> </div>
-						<button id="button">Full Screen</button>
 					</div>
 				</div>
 			</div>

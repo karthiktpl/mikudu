@@ -162,7 +162,7 @@ app.controller('requestCtrl', function ($scope, $rootScope, $location, $routePar
       $scope.isClean = function() {
         return angular.equals(original, $scope.customer);
       }
- var originalcountry = country;       
+	var originalcountry = country;       
       $scope.countries = angular.copy(originalcountry);           
       $scope.isClean = function() {
         return angular.equals(originalcountry, $scope.countries);
@@ -361,5 +361,40 @@ app.controller('requestsCtrl', function ($scope, $rootScope, $routeParams, $loca
 app.controller('viewRequestCtrl', function ($scope, $rootScope, $routeParams, $location,request, $http, Data) {
     $scope.requestview = angular.copy(request);  
 });
-app.controller('mapCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data) {   
+app.controller('mapCtrl', function ($scope, $rootScope, $routeParams, $location,country, $http, Data,$window) {
+	$scope.mapsval = {Country_Id:'',State_Id:'',District_Id:''};	
+	var originalcountry = country;       
+	$scope.countries = angular.copy(originalcountry);           
+	$scope.isClean = function() {
+	return angular.equals(originalcountry, $scope.countries);
+	}
+	Data.getStates('states?country='+$scope.mapsval.Country_Id).then(function (results) {
+		var originalstates=results;
+		$scope.states = angular.copy(originalstates);                  
+	});       
+    $scope.getCountryStates=function(){ 
+        Data.getStates('states?country='+$scope.mapsval.Country_Id).then(function (results) {
+            var originalstates=results;
+            $scope.states = angular.copy(originalstates);                  
+        });        
+                               
+    };
+	Data.get('districts?state='+$scope.mapsval.State_Id).then(function (results) {            
+		var originaldistricts=results;
+		$scope.districts = angular.copy(originaldistricts);                  
+	});
+    $scope.getStatesCities=function(){ 
+        Data.get('districts?state='+$scope.mapsval.State_Id).then(function (results) {            
+            var originaldistricts=results;
+            $scope.districts = angular.copy(originaldistricts);                  
+        });                                      
+    };
+    $scope.setmap=function(searchval){ 
+		var storage = window.localStorage;                    
+		storage.setItem('bloodcountry', searchval.Country_Id);
+		storage.setItem('bloodstate', searchval.State_Id);
+		storage.setItem('blooddistrict', searchval.District_Id);
+		$window.location= 'maps.html';
+    };	
+ 	
 });
