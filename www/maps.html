@@ -74,15 +74,19 @@ document.addEventListener("deviceready", function() {
 	var div = document.getElementById("map_canvas");
 
   // Initialize the map view
-	map = plugin.google.maps.Map.getMap(div);
 
-  // Wait until the map is ready status.
-	map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
 	var storage = window.localStorage; 
 	var district=storage.getItem('blooddistrict');
 	var value = Setmarkers(district);	
-	onBtnClicked(value)
-  
+
+	map = plugin.google.maps.Map.getMap(div{
+      zoom: 10,
+      center: new google.maps.LatLng(value.districtlat.lat,value.districtlat.lng),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+  // Wait until the map is ready status.
+	map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
+	onBtnClicked(value)	
 }, false);
 
 function onMapReady() {
@@ -98,42 +102,18 @@ function onBtnClose()
 }
 
 function onBtnClicked(value) {
+   for (i = 0; i < value.markers.length; i++) {  
+		map.addMarker({
+		  position: new google.maps.LatLng(value.markers[i].latitude,value.markers[i].lat),
+		  title: value.markers[i].Name,
+		  snippet: value.markers[i].Address
+		}, function(marker) {
 
-  // Move to the position with animation
-  const district = new plugin.google.maps.LatLng(value.districtlat.lat, value.districtlat.lng);
-  //alert(value.districtlat.lat);
-  //alert(value.districtlat.lng);
-  map.animateCamera({
-    target: district,
-    zoom: 17,
-    tilt: 60,
-    bearing: 140,
-    duration: 5000
-  }, function() {
+		  // Show the info window
+		  marker.showInfoWindow();
+		});
+    }
 
-    // Add a maker
-    map.addMarker({
-      position: district,
-      title: "Welecome to \n" +
-             "Cordova GoogleMaps plugin for iOS and Android",
-      snippet: "This plugin is awesome!",
-      animation: plugin.google.maps.Animation.BOUNCE
-    }, function(marker) {
-
-      // Show the info window
-      marker.showInfoWindow();
-
-      // Catch the click event
-      marker.on(plugin.google.maps.event.INFO_CLICK, function() {
-
-        // To do something...
-        alert("Hello world!");
-
-      });
-    });
-  });
-  district.remove();  
-  district='';
 }
 function Setmarkers(district)
 {
