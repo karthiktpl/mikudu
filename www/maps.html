@@ -84,27 +84,22 @@ document.addEventListener("deviceready", function() {
 	  'zoom': 10
 	}
 	});
+	var locatonList=value.value.markers.length;
   // Wait until the map is ready status.
-	map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
-	onBtnClicked(value)	
+	map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
+
+		for(var locIndex = 0;locIndex<locatonList.length;locIndex++){				
+				map.addMarker({
+					   'position': plugin.google.maps.LatLng(locatonList[locIndex].lat,locatonList[locIndex].long),
+					   'title': locatonList[locIndex].title,
+					   'snippet': locatonList[locIndex].snippet
+				}, function(marker) {
+					  marker.showInfoWindow(); // Show infowindow
+				});
+		}
+	  });
 }, false);
 
-function onMapReady() {
-  var button = document.getElementById("button");
-  var buttonclose = document.getElementById("buttonclose");
-  //button.addEventListener("click", onBtnClicked);
-  buttonclose.addEventListener("click", onBtnClose);
-}
-function onBtnClose()
-{
-	map.remove();
-	return true;
-}
-
-function onBtnClicked(value) {
-
-
-}
 function Setmarkers(district)
 {
 		var markers;
