@@ -71,18 +71,21 @@ $('.indexlink').click(function(){
 });
 
 document.addEventListener("deviceready", function() {
-  var mapDiv = document.getElementById("map_canvas");
-  var map = plugin.google.maps.Map.getMap(mapDiv, {
-    'camera': {
-      'latLng': new plugin.google.maps.LatLng(37.422476,-122.08425),
-      'zoom': 17
-    }
-  });
+	var mapDiv = document.getElementById("map_canvas");
+	var storage = window.localStorage; 
+	var district=storage.getItem('blooddistrict');
+	var value = Setmarkers(district);  
+	var map = plugin.google.maps.Map.getMap(mapDiv, {
+	'camera': {
+	  'latLng': new plugin.google.maps.LatLng(value.districtlat.lat,value.districtlat.lng),
+	  'zoom': 17
+	}
+	});
 
   map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
     map.addMarker({
-      'position': new plugin.google.maps.LatLng(37.422476,-122.08425),
+      'position': new plugin.google.maps.LatLng(value.districtlat.lat,value.districtlat.lng),
       'title': "Hello GoogleMap for Cordova!"
     }, function(marker) {
 
