@@ -97,6 +97,7 @@ document.addEventListener("deviceready", function() {
 		}
 	  }
 	  data.forEach(function(markerOptions) {
+		alert(markerOptions.lat);
 		markerOptions.position=new plugin.google.maps.LatLng(markerOptions.lat, markerOptions.long)
 		map.addMarker(markerOptions, onMarkerAdded);
 	  });
