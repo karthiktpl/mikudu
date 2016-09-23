@@ -7,20 +7,7 @@ app.config(function ($httpProvider) {
   $httpProvider.defaults.headers.patch = {};
     
 });
-app.config(['$routeProvider',
-  function ($routeProvider) {
-        $routeProvider.                                                                      
-            .when('/', {
-                title: 'Blood Banks',
-                templateUrl: 'partials/maps.html',
-                controller: 'mapCtrl',                                
-                
-            })
-            .otherwise({
-                redirectTo: '/login'
-            });
-  }])
-    .run(function ($rootScope, $location, Data) {
+app.run(function ($rootScope, $location, Data) {
         $rootScope.$on("$routeChangeStart", function (event, next, current) {
             $rootScope.authenticated = true;
             var storage = window.localStorage; 
@@ -32,6 +19,32 @@ app.config(['$routeProvider',
                 $rootScope.email = storage.getItem('email');
                 $rootScope.district = storage.getItem('district');                 
             }
+            else
+            {
+                    var nextUrl = next.$$route.originalPath;
+                    if (nextUrl == '/signup' || nextUrl == '/login') {
+
+                    } else {
+                        $location.path("/login");
+                    }                
+            }          
+            /*Data.get('session').then(function (results) {
+                if (results.uid) {
+                    $rootScope.authenticated = true;
+                    $rootScope.uid = results.uid;
+                    $rootScope.name = results.name;
+                    $rootScope.email = results.email;
+                    $rootScope.district = results.district;
+                    $rootScope.notifications = results.notifications;                     
+                } else {
+                    var nextUrl = next.$$route.originalPath;
+                    if (nextUrl == '/signup' || nextUrl == '/login') {
+
+                    } else {
+                        $location.path("/login");
+                    }
+                }
+            });*/
         });
     });
         

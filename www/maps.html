@@ -31,9 +31,22 @@
     
 </head>
 
-<body class="header" data-ng-view="" id="ng-view" >
+<body >
 			
-			
+		<div class="navbar navbar-default " role="navigation">
+			<div class="container"> 
+				<div class="navbar-header">
+					<!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span> 
+					</button>-->
+					<a href="javascript:void();"  class="navbar-brand indexlink"><img src="img/logomain.png" style="margin-bottom: 50px;"></a>
+				</div>						
+			</div>
+		</div>
+	<div style="width:100%;height:400px" id="map_canvas"> </div>
+	<button id="button">Full Screen</button>			
 </body>
   <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
     <script src="js/jquery.js"></script>
@@ -54,7 +67,11 @@
 	<script src="app/mapCtrl.js"></script>
 
 <script type="text/javascript">
-
+$(function(){
+$('.indexlink').click(function(){
+document.location.href = 'index.html/#/dashboard';
+})
+});
 var map;
 document.addEventListener("deviceready", function() {
   var div = document.getElementById("map_canvas");
