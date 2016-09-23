@@ -69,46 +69,21 @@ $('.indexlink').click(function(){
 	return false;
 })
 });
-var map;
+
 document.addEventListener("deviceready", function() {
-	var div = document.getElementById("map_canvas");
-
-  // Initialize the map view
-	map = plugin.google.maps.Map.getMap(div);
-
-  // Wait until the map is ready status.
-	map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
+	var mapDiv = document.getElementById("map_canvas");
 	var storage = window.localStorage; 
 	var district=storage.getItem('blooddistrict');
-	var value = Setmarkers(district);	
-	onBtnClicked(value)
-  
-}, false);
+	var value = Setmarkers(district);  
+	var map = plugin.google.maps.Map.getMap(mapDiv, {
+	'camera': {
+	  'latLng': new plugin.google.maps.LatLng(value.districtlat.lat,value.districtlat.lng),
+	  'zoom': 10
+	}
+	});
 
-function onMapReady() {
-  var button = document.getElementById("button");
-  var buttonclose = document.getElementById("buttonclose");
-  //button.addEventListener("click", onBtnClicked);
-  buttonclose.addEventListener("click", onBtnClose);
-}
-function onBtnClose()
-{
-	map.remove();
-	return true;
-}
-
-function onBtnClicked(value) {
-
-  // Move to the position with animation
-  //const district = new plugin.google.maps.LatLng(8.885827, 76.595685);
-  map.animateCamera({
-    target: {lat: value.districtlat.lat, lng: value.districtlat.lng},
-    zoom: 10,
-    tilt: 60,
-    bearing: 140,
-    duration: 5000
-  }, function() {
-
+  map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
+	///var data = value.markers;
    	var data = [
 			{'title': 'marker1', 'position': {lat: 8.523241, lng: 76.927842}},
 			{'title': 'marker2', 'position': {lat: 8.523538, lng: 76.925815}}			
@@ -134,7 +109,8 @@ function onBtnClicked(value) {
 	}
 
   });
-}
+});
+
 function Setmarkers(district)
 {
 		var markers;
