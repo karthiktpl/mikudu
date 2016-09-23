@@ -78,13 +78,12 @@ document.addEventListener("deviceready", function() {
 	var storage = window.localStorage; 
 	var district=storage.getItem('blooddistrict');
 	var value = Setmarkers(district);	
-
-	map = plugin.google.maps.Map.getMap(div,{
-    'camera': {
-      'latLng': new google.maps.LatLng(value.districtlat.lat,value.districtlat.lng),
-      'zoom': 10
-    }
-  });
+	var map = plugin.google.maps.Map.getMap(div, {
+	'camera': {
+	  'latLng': new plugin.google.maps.LatLng(value.districtlat.lat,value.districtlat.lng),
+	  'zoom': 10
+	}
+	});
   // Wait until the map is ready status.
 	map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
 	onBtnClicked(value)	
@@ -103,15 +102,7 @@ function onBtnClose()
 }
 
 function onBtnClicked(value) {
-		map.addMarker({
-		  position: new google.maps.LatLng(value.markers[0].latitude,value.markers[0].lat),
-		  title: value.markers[0].Name,
-		  snippet: value.markers[0].Address
-		}, function(marker) {
 
-		  // Show the info window
-		  marker.showInfoWindow();
-		});
 
 }
 function Setmarkers(district)
