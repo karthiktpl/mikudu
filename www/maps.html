@@ -78,7 +78,7 @@ document.addEventListener("deviceready", function() {
 	var map = plugin.google.maps.Map.getMap(mapDiv, {
 	'camera': {
 	  'latLng': new plugin.google.maps.LatLng(value.districtlat.lat,value.districtlat.lng),
-	  'zoom': 17
+	  'zoom': 10
 	}
 	});
 
@@ -96,9 +96,8 @@ document.addEventListener("deviceready", function() {
 		  callback(markers);
 		}
 	  }
-	  data.forEach(function(markerOptions) {
-		alert(markerOptions.lat);
-		markerOptions.position=new plugin.google.maps.LatLng(markerOptions.lat, markerOptions.long)
+	  data.forEach(function(markerOptions) {		
+		//markerOptions.position=new plugin.google.maps.LatLng(markerOptions.lat, markerOptions.long)
 		map.addMarker(markerOptions, onMarkerAdded);
 	  });
 	}
