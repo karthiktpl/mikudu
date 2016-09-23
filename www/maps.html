@@ -100,11 +100,11 @@ function onBtnClose()
 function onBtnClicked(value) {
 
   // Move to the position with animation
-  //const district = new plugin.google.maps.LatLng(value.districtlat.lat, value.districtlat.lng);
+  const district = new plugin.google.maps.LatLng(value.districtlat.lat, value.districtlat.lng);
   //alert(value.districtlat.lat);
   //alert(value.districtlat.lng);
   map.animateCamera({
-    target: plugin.google.maps.LatLng(value.districtlat.lat, value.districtlat.lng),
+    target: district,
     zoom: 17,
     tilt: 60,
     bearing: 140,
@@ -113,7 +113,7 @@ function onBtnClicked(value) {
 
     // Add a maker
     map.addMarker({
-      position: plugin.google.maps.LatLng(value.districtlat.lat, value.districtlat.lng),
+      position: district,
       title: "Welecome to \n" +
              "Cordova GoogleMaps plugin for iOS and Android",
       snippet: "This plugin is awesome!",
@@ -131,7 +131,9 @@ function onBtnClicked(value) {
 
       });
     });
-  });  
+  });
+  district.remove();  
+  district='';
 }
 function Setmarkers(district)
 {
