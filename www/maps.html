@@ -81,8 +81,9 @@ document.addEventListener("deviceready", function() {
 	  'zoom': 10
 	}
 	});
-
-  map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
+	onBtnClicked(value)
+});
+function onBtnClicked(value) {
 	var data = value.markers;
 	var markers = [];
 	addMarkers(data, function(markers) {
@@ -97,13 +98,11 @@ document.addEventListener("deviceready", function() {
 		}
 	  }
 	  data.forEach(function(markerOptions) {		
-		//markerOptions.position=new plugin.google.maps.LatLng(markerOptions.lat, markerOptions.long)
+		markerOptions.position=new plugin.google.maps.LatLng(markerOptions.lat, markerOptions.long)
 		map.addMarker(markerOptions, onMarkerAdded);
 	  });
 	}
-
-  });
-});
+}
 function Setmarkers(district)
 {
 		var markers;
