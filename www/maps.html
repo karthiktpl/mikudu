@@ -102,7 +102,7 @@ function onBtnClicked(value) {
   // Move to the position with animation
   //const district = new plugin.google.maps.LatLng(8.885827, 76.595685);
   map.animateCamera({
-    target: {lat: 8.885827, lng: 76.595685},
+    target: {lat: value.districtlat.lat, lng: value.districtlat.lang},
     zoom: 17,
     tilt: 60,
     bearing: 140,
@@ -111,7 +111,7 @@ function onBtnClicked(value) {
 
     // Add a maker
     map.addMarker({
-      position: {lat: 8.885827, lng: 76.595685},
+      position: {lat: 8.523273, lng: 76.927852},
       title: "Welecome to \n" +
              "Cordova GoogleMaps plugin for iOS and Android",
       snippet: "This plugin is awesome!",
