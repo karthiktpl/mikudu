@@ -84,23 +84,36 @@ document.addEventListener("deviceready", function() {
 	  'zoom': 10
 	}
 	});
-	var locatonList = value.markers;
-	alert(locatonList.length);
-  // Wait until the map is ready status.
-	map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
+	var data = [
+		  {'title': 'marker1', 'position': new plugin.google.maps.LatLng(8.523241, 76.927842)},
+		  {'title': 'marker2', 'position': new plugin.google.maps.LatLng(8.523538, 76.925815)},
+		];
 
-		for(var locIndex = 0;locIndex < locatonList.length; locIndex++){				
-				map.addMarker({
-					   'position': plugin.google.maps.LatLng(locatonList[locIndex].lat,locatonList[locIndex].long),
-					   'title': locatonList[locIndex].title,
-					   'snippet': locatonList[locIndex].snippet
-				}, function(marker) {
-					  marker.showInfoWindow(); // Show infowindow
-				});
+	var markers = [];
+	addMarkers(data, function(markers) {
+	  markers[markers.length - 1].showInfoWindow();
+	});
+
+	function addMarkers(data, callback) {
+	  var markers = [];
+	  function onMarkerAdded(marker) {
+		markers.push(marker);
+		if (markers.length === data.length) {
+		  callback(markers);
 		}
+	  }
+	  data.forEach(function(markerOptions) {
+		map.addMarker(markerOptions, onMarkerAdded);
 	  });
+	}	
+  // Wait until the map is ready status.
+	map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
+	onBtnClicked(value)	
 }, false);
 
+function onBtnClicked(value) {
+	
+}
 function Setmarkers(district)
 {
 		var markers;
