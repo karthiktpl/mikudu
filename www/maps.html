@@ -77,7 +77,7 @@ document.addEventListener("deviceready", function() {
 	var value = Setmarkers(district);  
 	var map = plugin.google.maps.Map.getMap(mapDiv, {
 	'camera': {
-	  'latLng': new plugin.google.maps.LatLng(value.districtlat.lat,value.districtlat.lng),
+	  'latLng': {lat:value.districtlat.lat, lng: value.districtlat.lng},
 	  'zoom': 10
 	}
 	});
