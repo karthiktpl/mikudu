@@ -68,7 +68,8 @@ $('.indexlink').click(function(){
 	div = document.getElementById("map_canvas");
     var tmpmap = plugin.google.maps.Map.getMap(div);
     tmpmap.remove();
-	document.location.href = 'index.html';
+	window.location.href = 'index.html';
+	return false;
 })
 });
 var map;
