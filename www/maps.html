@@ -96,6 +96,7 @@ document.addEventListener("deviceready", function() {
 	function addMarkers(data, callback) {
 	  var markers = [];
 	  function onMarkerAdded(marker) {
+	  
 		markers.push(marker);
 		if (markers.length === data.length) {
 		  callback(markers);
