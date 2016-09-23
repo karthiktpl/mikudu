@@ -74,7 +74,7 @@ document.addEventListener("deviceready", function() {
   var mapDiv = document.getElementById("map_canvas");
   var map = plugin.google.maps.Map.getMap(mapDiv, {
     'camera': {
-      'latLng': plugin.google.maps.LatLng(37.422476,-122.08425),
+      'latLng': new plugin.google.maps.LatLng(37.422476,-122.08425),
       'zoom': 17
     }
   });
@@ -82,7 +82,7 @@ document.addEventListener("deviceready", function() {
   map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
     map.addMarker({
-      'position': plugin.google.maps.LatLng(37.422476,-122.08425),
+      'position': new plugin.google.maps.LatLng(37.422476,-122.08425),
       'title': "Hello GoogleMap for Cordova!"
     }, function(marker) {
 
