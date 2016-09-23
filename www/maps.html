@@ -80,10 +80,11 @@ document.addEventListener("deviceready", function() {
 	var value = Setmarkers(district);	
 
 	map = plugin.google.maps.Map.getMap(div,{
-      zoom: 10,
-      center: new google.maps.LatLng(value.districtlat.lat,value.districtlat.lng),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
+    'camera': {
+      'latLng': new google.maps.LatLng(value.districtlat.lat,value.districtlat.lng),
+      'zoom': 10
+    }
+  });
   // Wait until the map is ready status.
 	map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
 	onBtnClicked(value)	
