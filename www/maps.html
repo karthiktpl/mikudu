@@ -83,15 +83,26 @@ document.addEventListener("deviceready", function() {
 	});
 
   map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
-
-    map.addMarker({
-      'position': new plugin.google.maps.LatLng(value.districtlat.lat,value.districtlat.lng),
-      'title': "Hello GoogleMap for Cordova!"
-    }, function(marker) {
-
-      marker.showInfoWindow();
-
-    });
+	var data = [
+		  {'title': 'marker1', 'position': new plugin.google.maps.LatLng(8.523241, 76.927842)},
+		  {'title': 'marker2', 'position': new plugin.google.maps.LatLng(8.523538, 76.925815)},
+		];
+	var markers = [];
+	addMarkers(data, function(markers) {
+	  markers[markers.length - 1].showInfoWindow();
+	});		
+	function addMarkers(data, callback) {
+	  var markers = [];
+	  function onMarkerAdded(marker) {
+		markers.push(marker);
+		if (markers.length === data.length) {
+		  callback(markers);
+		}
+	  }
+	  data.forEach(function(markerOptions) {
+		map.addMarker(markerOptions, onMarkerAdded);
+	  });
+	}
 
   });
 });
