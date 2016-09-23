@@ -103,32 +103,36 @@ function onBtnClicked(value) {
   //const district = new plugin.google.maps.LatLng(8.885827, 76.595685);
   map.animateCamera({
     target: {lat: value.districtlat.lat, lng: value.districtlat.lng},
-    zoom: 17,
+    zoom: 10,
     tilt: 60,
     bearing: 140,
     duration: 5000
   }, function() {
 
-    // Add a maker
-    map.addMarker({	
-      position: {lat: 8.523241, lng: 76.927842},
-      title: "Welecome to \n" +
-             "Cordova GoogleMaps plugin for iOS and Android",
-      snippet: "This plugin is awesome!",
-      animation: plugin.google.maps.Animation.BOUNCE
-    }, function(marker) {
+   	var data = [
+			{'title': 'marker1', 'position': new plugin.google.maps.LatLng(8.523241, 76.927842)},
+			{'title': 'marker2', 'position': new plugin.google.maps.LatLng(8.523538, 76.925815)}
+		];
 
-      // Show the info window
-      marker.showInfoWindow();
+	var markers = [];
+	addMarkers(data, function(markers) {
+	  markers[markers.length - 1].showInfoWindow();
+	});		
+	function addMarkers(data, callback) {
+	  var markers = [];
+	  function onMarkerAdded(marker) {
+	  
+		markers.push(marker);
+		if (markers.length === data.length) {
+		  callback(markers);
+		}
+	  }
+	  data.forEach(function(markerOptions) {		
+		//markerOptions.position=new plugin.google.maps.LatLng(markerOptions.lat, markerOptions.long)
+		map.addMarker(markerOptions, onMarkerAdded);
+	  });
+	}
 
-      // Catch the click event
-      marker.on(plugin.google.maps.event.INFO_CLICK, function() {
-
-        // To do something...
-        alert("Hello world!");
-
-      });
-    });
   });
 }
 function Setmarkers(district)
