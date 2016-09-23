@@ -83,10 +83,7 @@ document.addEventListener("deviceready", function() {
 	});
 
   map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
-	var data = [
-		  {'title': 'marker1', 'position': new plugin.google.maps.LatLng(8.523241, 76.927842)},
-		  {'title': 'marker2', 'position': new plugin.google.maps.LatLng(8.523538, 76.925815)},
-		];
+	var data = value.markers;
 	var markers = [];
 	addMarkers(data, function(markers) {
 	  markers[markers.length - 1].showInfoWindow();
@@ -100,6 +97,7 @@ document.addEventListener("deviceready", function() {
 		}
 	  }
 	  data.forEach(function(markerOptions) {
+		markerOptions.position=new plugin.google.maps.LatLng(markerOptions.lat, markerOptions.long)
 		map.addMarker(markerOptions, onMarkerAdded);
 	  });
 	}
