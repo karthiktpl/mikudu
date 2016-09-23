@@ -107,10 +107,17 @@ document.addEventListener("deviceready", function() {
 		map.addMarker(markerOptions, onMarkerAdded);
 	  });
 	}
+	  var buttonclose = document.getElementById("buttonclose");
+	  buttonclose.addEventListener("click", onBtnClose);	
 
   });
-});
 
+});
+function onBtnClose()
+{
+	map.remove();
+	return true;
+}
 function Setmarkers(district)
 {
 		var markers;
