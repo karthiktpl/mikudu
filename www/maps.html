@@ -103,17 +103,15 @@ function onBtnClose()
 }
 
 function onBtnClicked(value) {
-   for (i = 0; i < value.markers.length; i++) {  
 		map.addMarker({
-		  position: new google.maps.LatLng(value.markers[i].latitude,value.markers[i].lat),
-		  title: value.markers[i].Name,
-		  snippet: value.markers[i].Address
+		  position: new google.maps.LatLng(value.markers[0].latitude,value.markers[0].lat),
+		  title: value.markers[0].Name,
+		  snippet: value.markers[0].Address
 		}, function(marker) {
 
 		  // Show the info window
 		  marker.showInfoWindow();
 		});
-    }
 
 }
 function Setmarkers(district)
