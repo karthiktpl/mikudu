@@ -88,7 +88,7 @@ document.addEventListener("deviceready", function() {
 function onMapReady() {
   var button = document.getElementById("button");
   var buttonclose = document.getElementById("buttonclose");
-  button.addEventListener("click", onBtnClicked);
+  //button.addEventListener("click", onBtnClicked);
   buttonclose.addEventListener("click", onBtnClose);
 }
 function onBtnClose()
@@ -100,7 +100,7 @@ function onBtnClose()
 function onBtnClicked(value) {
 
   // Move to the position with animation
-  const district = new plugin.google.maps.LatLng(value.districtlat);
+  const district = new plugin.google.maps.LatLng(8.885827, 76.595685);
   map.animateCamera({
     target: district,
     zoom: 17,
