@@ -102,7 +102,7 @@ function onBtnClicked(value) {
   // Move to the position with animation
   //const district = new plugin.google.maps.LatLng(8.885827, 76.595685);
   map.animateCamera({
-    target: {lat: value.districtlat, lng: value.districtlat.lng},
+    target: {lat: value.districtlat.lat, lng: value.districtlat.lng},
     zoom: 17,
     tilt: 60,
     bearing: 140,
