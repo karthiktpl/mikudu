@@ -1,20 +1,13 @@
-	
-<script type="text/javascript">
-    
-function initialize() {
-	var mapdiv = document.getElementById("map_canvas");
-	// Initialize the map view
-	var map = plugin.google.maps.Map.getMap(mapdiv);
-}
-
-$('#button').click(function(){
-  initialize();
-});	
-</script>
-<section  class="main2" >
-		
-
-		    <div style="width:200px;height:400px" id="map_canvas"></div>
-			<button id="button">Full Screen</button>		
-
-	</section>
+		<div class="navbar navbar-default " role="navigation">
+			<div class="container"> 
+				<div class="navbar-header">
+					<!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span> 
+					</button>-->
+					<a ng-click="redirect()" href="javascript:void();" class="navbar-brand"><img src="img/logomain.png" style="margin-bottom: 50px;"></a>
+				</div>						
+			</div>
+		</div>
+	<div style="width:100%;height:400px" id="map_canvas"> </div>
