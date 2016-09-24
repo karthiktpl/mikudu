@@ -59,16 +59,7 @@
 
 
 <script type="text/javascript">
-$(function(){
 
-$('.indexlink').click(function(){
-	div = document.getElementById("map_canvas");
-    var tmpmap = plugin.google.maps.Map.getMap(div);
-    tmpmap.remove();
-	window.location = 'index.html';
-	return false;
-})
-});
 
 document.addEventListener("deviceready", function() {
 	var mapDiv = document.getElementById("map_canvas");
@@ -109,7 +100,7 @@ document.addEventListener("deviceready", function() {
 	  });
 	}
 	
-	  buttonclose.addEventListener("click", onBtnClose(map));
+	  //buttonclose.addEventListener("click", onBtnClose(map));
   });
 
 });
@@ -133,5 +124,13 @@ function Setmarkers(district)
 		});
 		return markers;
 }
+$(function(){
+
+$('#buttonclose').click(function(map){
+    map.remove();
+	//window.location = 'index.html';
+	return false;
+})
+});
 </script>  
 </html>
