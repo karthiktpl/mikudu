@@ -76,11 +76,11 @@ document.addEventListener("deviceready", function() {
   map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 	  var buttonclose = document.getElementById("buttonclose");
 
-	///var data = value.markers;
-   	var data = [
+	var data = value.markers;
+   	/*var data = [
 			{'title': 'marker1', 'position': {lat: 8.523241, lng: 76.927842}},
 			{'title': 'marker2', 'position': {lat: 8.523538, lng: 76.925815}}			
-		];
+		];*/
 
 	var markers = [];
 	addMarkers(data, function(markers) {
