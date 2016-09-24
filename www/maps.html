@@ -84,7 +84,7 @@ document.addEventListener("deviceready", function() {
 
   map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 	  var buttonclose = document.getElementById("buttonclose");
-	  buttonclose.addEventListener("click", onBtnClose);
+
 	///var data = value.markers;
    	var data = [
 			{'title': 'marker1', 'position': {lat: 8.523241, lng: 76.927842}},
@@ -109,13 +109,12 @@ document.addEventListener("deviceready", function() {
 	  });
 	}
 	
-
+	  buttonclose.addEventListener("click", onBtnClose(map));
   });
 
 });
-function onBtnClose()
+function onBtnClose(map)
 {
-	alert('test');
 	map.remove();
 	return true;
 }
