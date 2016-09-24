@@ -100,7 +100,7 @@ document.addEventListener("deviceready", function() {
 	  });
 	}
 	
-	  //buttonclose.addEventListener("click", onBtnClose(map));
+	  buttonclose.addEventListener("click", onBtnClose(map));
   });
 
 });
@@ -126,8 +126,10 @@ function Setmarkers(district)
 }
 $(function(){
 
-$('#buttonclose').click(function(map){
-    map.remove();
+$('#buttonclose').click(function(){
+	div = document.getElementById("map_canvas");
+    var tmpmap = plugin.google.maps.Map.getMap(div);
+    tmpmap.remove();
 	//window.location = 'index.html';
 	return false;
 })
