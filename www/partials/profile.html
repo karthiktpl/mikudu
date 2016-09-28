@@ -91,6 +91,10 @@
 						  <div class="form-group">
 							<label for="name">Mobile Number</label>
 							<input type="text" class="form-control" ng-model="customer.Mobilenumber" id="name" placeholder="Mobile" ng-required="true">
+						  </div>                         
+						  <div class="form-group">
+							<label for="bloodgrp">Land line</label>
+							<textarea class="form-control" ng-model="customer.Landline" rows="3"></textarea>
 						  </div>
 						  <div class="form-group">
 							<label for="bloodgrp">Email Id</label>
@@ -112,7 +116,20 @@
 						  <div class="form-group">
 							<label for="bloodgrp">Address</label>
 							<textarea class="form-control" ng-model="customer.Address" rows="3"></textarea>
-						  </div>						
+						  </div>                           
+						  <div class="form-group">
+							<label for="bloodgrp">Pincode</label>
+                            <input type="text" class="form-control" ng-model="customer.Pincode" id="name" placeholder="Pincode" ng-required="true">							
+						  </div>                          
+						  <div class="form-group">
+							<label for="bloodgrp">How do you want to be contacted ?</label><br />
+                            <label ng-repeat="(key, text) in roles" style="padding: 5px;font-weight:normal;">
+                              <input type="checkbox" checklist-model="customer.Modeofcontact" checklist-value="key"> {{text}}
+                               
+                            </label>                            
+							
+						  </div>                          
+                          						
 						</div>
 					</div>
 

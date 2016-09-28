@@ -53,9 +53,10 @@
                 <div class="col-lg-12 text-left">
                     <div class="panel panel-primary" >
   <!-- Default panel contents -->
-  <div class="panel-heading"><img src="img/hed.png" class="bldbnk">Blood Request</div>
-  <div class="panel-body">
-			   <form role="form" action="" method="post">
+  <div class="panel-heading"><img src="img/hed.png" class="bldbnk">Blood Request <div class="pull-right" ng-show="resultarray.length > 0"><a ng-click="goback();" class="btn btn-success"><i class="fa fa-step-backward" aria-hidden="true"></i></a></div></div>
+  <form role="form" action="" method="post">
+  <div class="panel-body" ng-show="showsearch">
+			   
 			   <div class="row">
 				<div class="col-xs-12">
 				 <div class="form-group">
@@ -104,76 +105,33 @@
                 </div>
 			  </div>
 			
-			</div>
-			
+			</div>	
 			<div class="row">
 				<div class="col-xs-12">
-				   <div class="form-group">
-                    <label for="address">Location Address</label>
-                    <textarea class="form-control" id="address" ng-model="request.Location_Address" name="address" placeholder="Location Address" maxlength="140" rows="7"></textarea>
-                    </div>
-					<div class="form-group">
-                    <label for="remerks">Remarks</label>
-                    <textarea class="form-control" id="remerks" ng-model="request.Remarks" ng-maxlength="{{maxLength}}" name="remerks" placeholder="Remarks" maxlength="140" rows="7"></textarea>
-                        <span class="help-block"><p id="characterLeft" class="help-block ">{{maxLength - request.Remarks.length}} characters left</p></span>                    
-                    </div>
-					
-					<div class="form-group">
-						<div class="checkbox"> <label> <input ng-model="request.Cananygroup" type="checkbox" ng-true-value="1" ng-false-value="0"> Please tick if any blood group will be sufficient  </label> </div>
-						<div class="checkbox"> <label> <input ng-model="request.Directcontact" type="checkbox" ng-true-value="1" ng-false-value="0"> Please tick if donor can call you directly  </label> </div>
-                    </div>
-					</div>			
+					<button type="button" class="btn btn-primary " ng-click="CallSearch(request);"><i class="fa fa-phone fa-2x" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-primary " ng-click="saveRequest(request);"><i class="fa fa fa-comments fa-2x" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-primary " ng-click="saveRequest(request);"><i class="fa fa fa-envelope fa-2x" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-primary " ng-click="saveRequest(request);"><i class="fa fa fa-mobile fa-2x" aria-hidden="true"></i></button>
 				</div>
-				
-				
-				<div class="row">
-					<div class="col-xs-12">
-						<h3>Contact Details</h3>
-						<hr>
-						
-							<div class="control-group" id="fields">
-								<div class="controls" id="mobilediv">                 
-										<div class="entry input-group col-xs-12 " ng-model="mobilediv" id="mobilediv1">
-											<input class="form-control " name="mobile1" id="mobile1" ng-model="request.Mobile1" required type="text" placeholder="Mobile" />
-											<!--<span class="input-group-btn">
-												<button class="btn btn-primary btn-add" ng-click="AddMobile();" type="button">
-													<span class="glyphicon glyphicon-plus"></span>
-												</button>
-											</span>-->
-										</div>
-								</div>
-							</div>
-							
-							<div class="control-group" id="fields" style="margin-top:10px;">
-								<div class="controls" id="emaildiv">                 
-										<div class="entry input-group col-xs-12 " id="emaildiv1">
-											<input type="email" class="form-control" name="email1" id="email1"  ng-model="request.Email1" required  placeholder="Email" />
-											<!--<span class="input-group-btn">
-												<button class="btn btn-primary btn-add" type="button" ng-click="AddEmail();" >
-													<span class="glyphicon glyphicon-plus"></span>
-												</button>
-											</span>-->
-										</div>
-								</div>
-							</div>
-					
-					</div>
+               
+			</div>            		
+				<!--<br>
+			<div class="row">
+				<div class="col-xs-12">
+					<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="saveRequest(request);">Submit Request</button>
 				</div>
-				<br>
-				<div class="row">
-					<div class="col-xs-12">
-						<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="saveRequest(request);">Submit Request</button>
-					</div>
-				</div>
-
-			</div>
-  
-
-     
-
+			</div>-->
     
-					</form>
 				</div>
+        </form>
+    <div class="panel-body" ng-show="resultarray.length > 0">
+       <div ng-repeat="(key, val) in resultarray">         
+            <div class="media-body">
+              <div class="col-xs-8"><h4 class="media-heading bldr">{{val.Name}} <span class="label label-danger">{{val.Bloodgroup}}</span></h4></div>  
+              <div class="col-xs-3 pull-right"><a href="tel:{{val.Mobilenumber}}" class="btn btn-success"><i class="fa fa-phone fa-2x" aria-hidden="true"></i></a></div>                            
+            </div>                  
+       </div>
+    </div>  
 		    </div>
 	</div>
 					
@@ -181,7 +139,6 @@
 					
                 </div>
             </div>
-            <!-- /.row -->
-        </div>
+            <!-- /.row -->        
         <!-- /.container -->
     </section>

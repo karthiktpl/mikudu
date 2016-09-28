@@ -98,7 +98,13 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
           }];                 
         ///alert(JSON.stringify($scope.countries));              
       /*$scope.state=Data.get('countries');
-      $scope.district=Data.get('countries');*/      
+      $scope.district=Data.get('countries');*/   
+  $scope.roles = {
+    a: 'Call',
+    b: 'SMS',
+    c: 'Email',
+    d: 'App'
+  };           
       var original = customer;       
       $scope.customer = angular.copy(original);           
       $scope.isClean = function() {
@@ -130,7 +136,9 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
             $scope.districts = angular.copy(originaldistricts);                  
         });        
                                
-    };    
+    };  
+
+  
  /*   
       $scope.deleteCustomer = function(customer) {
         $location.path('/');
@@ -151,6 +159,7 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
     };
 });
 app.controller('requestCtrl', function ($scope, $rootScope, $location, $routeParams, Data, customer,country,$http) {
+    $scope.showsearch=true;
     var customerID = ($routeParams.customerID) ? parseInt($routeParams.customerID) : 0;
      $scope.maxLength = 140;
     Data.get('bloodgroups').then(function (results) {            
@@ -203,7 +212,27 @@ app.controller('requestCtrl', function ($scope, $rootScope, $location, $routePar
                     $location.path('dashboard');
                 }
             });         
-    };                     
+    };
+
+    $scope.CallSearch=function(request){
+            Data.post('callsearch', {
+                customer: request
+            }).then(function (results) {                
+                if (results.status == "success") {
+                    $scope.resultarray=results.users
+                    $scope.showsearch=false;  
+                }
+                else
+                {
+                    Data.toast(results);
+                }
+            });        
+    };
+    $scope.goback=function()
+    {
+        $scope.resultarray='';
+        $scope.showsearch=true;        
+    }                     
                                            
 });
 app.controller('notificationsCtrl', function ($scope, $rootScope, $location, $routeParams, Data, customer,$http) {
