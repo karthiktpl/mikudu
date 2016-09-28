@@ -267,20 +267,20 @@ footer {
     position: absolute;
     width: 103%;}
   
-  .fa-icon {
-  display: inline-block;
-  font-size: 0px;
-  cursor: pointer;
-  margin: 35px 35px;
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-  color: #000;
-  text-decoration: none;
-}
+.fa-icon {
+    display: inline-block;
+    font-size: 0px;
+    cursor: pointer;
+    margin: 23px 23px;
+    width: 70%;
+    /* height: 90px; */
+    /* border-radius: 50%; */
+    border-radius: 55px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    color: #000;
+    text-decoration: none;}
 
 .fa-icon:after {
   pointer-events: none;
