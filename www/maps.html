@@ -41,7 +41,7 @@
 					<span class="icon-bar"></span> 
 				</button>-->
 				<a href="index.html#/dashboard"  class="navbar-brand" id="buttonclose"><img src="img/logomain.png" style="margin-bottom: 50px;"></a>
-                <div class="pull-right"><a href="index.html#/maps" class="btn btn-success buttonclose"><i class="fa fa-step-backward" aria-hidden="true"></i></a></div>
+                <div class="pull-right"><a href="index.html#/maps" class="btn btn-success" id="buttonback"><i class="fa fa-step-backward" aria-hidden="true"></i></a></div>
 			</div>						
 		</div>
 	</div>
@@ -134,6 +134,15 @@ $('#buttonclose').click(function(){
 	//window.location = 'index.html';
 	return true;
 })
+
+$('#buttonback').click(function(){
+	div = document.getElementById("map_canvas");
+    var tmpmap = plugin.google.maps.Map.getMap(div);
+    tmpmap.remove();
+	//window.location = 'index.html';
+	return true;
+})
+
 });
 </script>  
 </html>
