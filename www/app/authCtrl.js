@@ -160,6 +160,7 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
 });
 app.controller('requestCtrl', function ($scope, $rootScope, $location, $routeParams, Data, customer,country,$http) {
     $scope.showsearch=true;
+    $scope.showdetails=false;
     var customerID = ($routeParams.customerID) ? parseInt($routeParams.customerID) : 0;
      $scope.maxLength = 140;
     Data.get('bloodgroups').then(function (results) {            
@@ -228,10 +229,30 @@ app.controller('requestCtrl', function ($scope, $rootScope, $location, $routePar
                 }
             });        
     };
+    $scope.SMSSearch=function(request){
+        $scope.showdetails=true;         
+    }; 
+    $scope.ListSMS=function(request){
+        Data.post('smssearch', {
+            customer: request
+        }).then(function (results) {                
+            if (results.status == "success") {
+                $scope.smsresultarray=results.users
+                $scope.showsearch=false;  
+            }
+            else
+            {
+                Data.toast(results);
+            }
+        });                        
+    };    
+    
     $scope.goback=function()
     {
         $scope.resultarray='';
-        $scope.showsearch=true;        
+        $scope.smsresultarray='';
+        $scope.showsearch=true;
+        $scope.showdetails=false;        
     }                     
                                            
 });
