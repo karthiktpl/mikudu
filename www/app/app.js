@@ -1,10 +1,11 @@
 'use strict';
 var app = angular.module('MikuduBloodApp', ['ngRoute', 'ngAnimate', 'toaster','checklist-model']);
-app.config(function ($httpProvider) {
+app.config(function ($httpProvider,$compileProvider) {
   $httpProvider.defaults.headers.common = {};
   $httpProvider.defaults.headers.post = {};
   $httpProvider.defaults.headers.put = {};
   $httpProvider.defaults.headers.patch = {};
+  $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel|sms):/);
     
 });
 app.config(['$routeProvider',

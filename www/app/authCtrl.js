@@ -237,7 +237,8 @@ app.controller('requestCtrl', function ($scope, $rootScope, $location, $routePar
             customer: request
         }).then(function (results) {                
             if (results.status == "success") {
-                $scope.smsresultarray=results.users
+                $scope.smsresultarray=results.users;
+                $scope.smscontent=results.smscontent
                 $scope.showsearch=false;  
             }
             else

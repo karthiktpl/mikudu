@@ -174,7 +174,7 @@
        <div ng-repeat="(key, val) in smsresultarray">         
             <div class="media-body">
               <div class="col-xs-8"><h4 class="media-heading bldr">{{val.Name}} <span class="label label-danger">{{val.Bloodgroup}}</span></h4></div>  
-              <div class="col-xs-3 pull-right"><a href="sms:{{val.Mobilenumber}};body=hello%20world" class="btn btn-success"><i class="fa fa-comments fa-2x" aria-hidden="true"></i></a></div>                            
+              <div class="col-xs-3 pull-right"><a href="sms:{{val.Mobilenumber}};body={{smscontent}}" class="btn btn-success"><i class="fa fa-comments fa-2x" aria-hidden="true"></i></a></div>                            
             </div>                  
        </div>
     </div>      
