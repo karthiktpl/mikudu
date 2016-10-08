@@ -384,7 +384,7 @@ app.controller('passwordCtrl', function ($scope, $rootScope, $routeParams, $loca
         }).then(function (results) {
             Data.toast(results);
             if (results.status == "success") {
-                $location.path('dashboard');
+                $location.path('login');
             }
         });        
     }       
