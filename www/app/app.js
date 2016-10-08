@@ -16,6 +16,11 @@ app.config(['$routeProvider',
             templateUrl: 'partials/login.html',
             controller: 'authCtrl'
         })
+            .when('/forgotpassword', {
+                title: 'Forgot Password',
+                templateUrl: 'partials/forgotpassword.html',
+                controller: 'passwordCtrl'
+            })
             .when('/logout', {
                 title: 'Logout',
                 templateUrl: 'partials/login.html',
@@ -153,7 +158,7 @@ app.config(['$routeProvider',
             else
             {
                     var nextUrl = next.$$route.originalPath;
-                    if (nextUrl == '/signup' || nextUrl == '/login') {
+                    if (nextUrl == '/signup' || nextUrl == '/login' || nextUrl == '/forgotpassword') {
 
                     } else {
                         $location.path("/login");

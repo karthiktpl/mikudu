@@ -163,6 +163,7 @@ app.controller('requestCtrl', function ($scope, $rootScope, $location, $routePar
     $scope.showdetails=false;
     var customerID = ($routeParams.customerID) ? parseInt($routeParams.customerID) : 0;
      $scope.maxLength = 140;
+     $scope.maxLengthLoc = 30;
     Data.get('bloodgroups').then(function (results) {            
         var originalbloods=results;
         $scope.bloodgroups = angular.copy(originalbloods);                  
@@ -375,7 +376,18 @@ app.controller('passwordCtrl', function ($scope, $rootScope, $routeParams, $loca
                 $location.path('dashboard');
             }
         });
-    };    
+    }; 
+    $scope.forgotpassword = {Email:''};
+    $scope.sendrequest=function(forgotpassword){
+        Data.post('forgotpassword', {
+            customer: forgotpassword
+        }).then(function (results) {
+            Data.toast(results);
+            if (results.status == "success") {
+                $location.path('dashboard');
+            }
+        });        
+    }       
 });
 app.controller('requestsCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data) {
     var storage = window.localStorage;
