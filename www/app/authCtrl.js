@@ -86,6 +86,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
 
     };    
     $scope.getDataProfile = function(){
+        var accessToken=storage.getItem('goosbumps')
         var term=null;
         //  alert("getting user data="+accessToken);
         $.ajax({
