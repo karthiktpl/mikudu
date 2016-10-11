@@ -25,6 +25,11 @@ module.exports = [
             "plugin.google.maps"
         ]
     }
+	{
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "id": "cordova-plugin-inappbrowser",
+		"runs": true
+    }	
 ];
 module.exports.metadata = 
 // TOP OF METADATA
