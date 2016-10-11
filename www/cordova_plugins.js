@@ -24,7 +24,7 @@ module.exports = [
         "clobbers": [
             "plugin.google.maps"
         ]
-    }
+    },
 	{
         "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
         "id": "cordova-plugin-inappbrowser",

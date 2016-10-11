@@ -75,7 +75,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                 client_id: '640582960337-bn7j1apasl53bmcf2iiho41np6e9vgea.apps.googleusercontent.com',
                 //client_secret: 'CLIENT_SECRET',
         
-                redirect_uri: 'http://localhost',
+                redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
                 scope: 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email'
             }).done(function(data) {
                 var storage = window.localStorage;                    
