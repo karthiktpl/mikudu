@@ -6,24 +6,20 @@
     "config_munge": {
         "files": {}
     },
-    "installed_plugins": {        
+    "installed_plugins": {
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.solminds.mikudu"
-        },        
+        },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.solminds.mikudu"
         },
         "plugin.google.maps": {
             "API_KEY_FOR_ANDROID": "AIzaSyDPzdd2OzioX27viFWOUVSl6SvddZHe92k",
             "PACKAGE_NAME": "com.solminds.mikudu"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.solminds.mikudu"
         }
     },
-    "dependent_plugins": {
-        "cordova-plugin-compat": {
-            "PACKAGE_NAME": "com.solminds.mikudu"
-        },
-        "cordova-plugin-file": {
-            "PACKAGE_NAME": "com.solminds.mikudu"
-        }
-    }
+    "dependent_plugins": {}
 }

@@ -1,4 +1,20 @@
-{   
+{
+    "cordova-plugin-file": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-file"
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
+    "cordova-plugin-compat": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-compat"
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
     "cordova-plugin-geolocation": {
         "source": {
             "type": "registry",
@@ -24,5 +40,13 @@
         "variables": {
             "API_KEY_FOR_ANDROID": "AIzaSyAE1K_juLxpRMTfQ5IWX93wskigXKAb52I"
         }
+    },
+    "cordova-plugin-inappbrowser": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-inappbrowser@1.5.0"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }
