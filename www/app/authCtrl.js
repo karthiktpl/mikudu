@@ -70,7 +70,58 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
             $location.path('login');
         });
     }
-    
+    $scope.call_google = function(){
+              googleapi.authorize({
+                client_id: '640582960337-bn7j1apasl53bmcf2iiho41np6e9vgea.apps.googleusercontent.com',
+                //client_secret: 'CLIENT_SECRET',
+        
+                redirect_uri: 'http://localhost',
+                scope: 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email'
+            }).done(function(data) {
+                var storage = window.localStorage;                    
+        		storage.setItem('goosbumps', data.access_token);                
+                accessToken=data.access_token;
+                $scope.getDataProfile();
+            });
+
+    };    
+    $scope.getDataProfile = function(){
+        var term=null;
+        //  alert("getting user data="+accessToken);
+        $.ajax({
+               url:'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token='+accessToken,
+               type:'GET',
+               data:term,
+               dataType:'json',
+               error:function(jqXHR,text_status,strError){
+               },
+               success:function(data)
+               {
+                $scope.socialLogin(data);
+               }
+            });
+            //$scope.disconnectUser(); //This call can be done later.
+    };
+    $scope.socialLogin = function (data)
+    {
+        Data.post('sociallogin', {
+            customer: {Email:data.email,Name:data.given_name}
+        }).then(function (results) {
+            Data.toast(results);
+            if (results.status == "success") {
+                    $rootScope.authenticated = true;
+                    $rootScope.uid = results.uid;
+                    $rootScope.name = results.name;
+                    $rootScope.email = results.email;                                        
+                    var storage = window.localStorage;                    
+                    storage.setItem('uid', results.uid);
+                    storage.setItem('name', results.name);
+                    storage.setItem('email', results.email);                                                                             
+                $location.path('profile/'+uid);
+            }
+        });        
+        
+}   
 });
 
 app.controller('dashboardCtrl', function ($scope, $rootScope, $location, $routeParams, Data,availability,$http) {      
