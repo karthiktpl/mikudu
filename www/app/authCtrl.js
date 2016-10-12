@@ -99,20 +99,19 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                },
                success:function(data)
                {
-                $scope.socialLogin(data);
-                alert(data.email);
+                $scope.values = {Email:data.email,Name:data.given_name};
+                $scope.socialLogin();
                }
             });
             //$scope.disconnectUser(); //This call can be done later.
     };
-    $scope.socialLogin = function (data)
-    {
+    $scope.socialLogin = function ()
+    {       
         Data.post('sociallogin', {
-            customer: {Email:data.email,Name:data.given_name}
+            customer: {Email:$scope.values.Email,Name:$scope.values.Name}
         }).then(function (results) {
             Data.toast(results);
             if (results.status == "success") {
-                    alert(results.uid)
                     $rootScope.authenticated = true;
                     $rootScope.uid = results.uid;
                     $rootScope.name = results.name;
@@ -125,7 +124,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
             }
         });        
         
-}   
+    }   
 });
 
 app.controller('dashboardCtrl', function ($scope, $rootScope, $location, $routeParams, Data,availability,$http) {      
