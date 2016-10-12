@@ -99,7 +99,8 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                },
                success:function(data)
                {
-                $scope.socialLogin(data);                
+                $scope.socialLogin(data);
+                alert(data.email);
                }
             });
             //$scope.disconnectUser(); //This call can be done later.
@@ -111,7 +112,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
         }).then(function (results) {
             Data.toast(results);
             if (results.status == "success") {
-                    alert(results.uid);
+                    alert(results.uid)
                     $rootScope.authenticated = true;
                     $rootScope.uid = results.uid;
                     $rootScope.name = results.name;
