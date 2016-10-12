@@ -4168,6 +4168,7 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:focus, a.list-g
 }
 .panel-body {
     padding: 15px;
+    border: solid 1px #cccccc;
 }
 .panel-heading {
     padding: 10px 15px;

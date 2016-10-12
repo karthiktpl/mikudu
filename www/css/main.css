@@ -155,7 +155,7 @@ hr.small {
     position: relative;
     width: 100%;
     height: 100%;
-    background: url(../img/bg.jpg) no-repeat center center scroll;
+    /*background: url(../img/bg.jpg) no-repeat center center scroll;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -166,7 +166,7 @@ hr.small {
 
 .main2 {
    padding: 0px 0;
-    background-color: #d0cfcb;
+    background-color:rgba(255, 255, 255, 0.46);
 }
 
 /* Services */
@@ -263,7 +263,7 @@ footer {
     margin-top: 13px;
     text-align: center;
     font-family: sans-serif;
-    color: aliceblue;
+    color: #000000;
     position: absolute;
     width: 103%;}
   
@@ -271,7 +271,7 @@ footer {
     display: inline-block;
     font-size: 0px;
     cursor: pointer;
-    margin: 23px 23px;
+    margin: 20px;
     width: 70%;
     /* height: 90px; */
     /* border-radius: 50%; */
@@ -308,11 +308,11 @@ footer {
 }
 
 .fa-icon-effect-8 .fa-icon {
-   background: rgba(255, 255, 255, 0.28);
+   background:#337ab7;
     -webkit-transition: -webkit-transform ease-out 0.1s, background 0.2s;
     -moz-transition: -moz-transform ease-out 0.1s, background 0.2s;
     transition: transform ease-out 0.1s, background 0.2s;
-    border: 1px solid #fff;
+    /*border: 1px solid #fff;*/
 }
 
 .fa-icon-effect-8 .fa-icon:after {
@@ -674,7 +674,7 @@ input.cmn-toggle-round-flat + label
   padding: 2px;
   width: 75px;
   height: 30px;
-  background-color: #dddddd;
+  /*background-color: #dddddd;*/
   -webkit-border-radius: 60px;
   -moz-border-radius: 60px;
   -ms-border-radius: 60px;
@@ -699,7 +699,8 @@ input.cmn-toggle-round-flat + label:before
   left: 2px;
   bottom: 2px;
   right: 2px;
-  background-color: #333a63;
+  /*background-color: #333a63;*/
+  background-color: #337ab7;
   -webkit-border-radius: 60px;
   -moz-border-radius: 60px;
   -ms-border-radius: 60px;
@@ -731,13 +732,13 @@ input.cmn-toggle-round-flat + label:after
 
 input.cmn-toggle-round-flat:checked + label 
 {
-  background-color: #8597fd;
+/*  background-color: #8597fd;*/
 }
 
 input.cmn-toggle-round-flat:checked + label:after 
 {
   margin-left: 45px;
-  background-color: #009688;
+  background-color: #0cd1ea;
 }
  .switch{display: inline-block;}   
 div.switch5 { clear: both; margin: 0px 0px; }
@@ -787,7 +788,7 @@ div.switch5 > input.switch:focus ~ label:before { box-shadow: 0px 0px 0px 3px rg
 .mytext{color: #5d5d5d;
     text-align: left;}
 
-.wit{    color: white;}
+/*.wit{    color: white;}*/
 .bldbnk{width: 30px;
     margin-right: 11px;}
 	.mymarg{    display: block; margin-bottom: 20px !important;
