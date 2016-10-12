@@ -78,8 +78,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                 redirect_uri: 'http://localhost',
                 scope: 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email'
             }).done(function(data) {
-                var storage = window.localStorage; 
-                alert(data.access_token);                   
+                var storage = window.localStorage;                                   
         		storage.setItem('goosbumps', data.access_token);                
                 accessToken=data.access_token;
                 $scope.getDataProfile();
@@ -88,8 +87,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
     };    
     $scope.getDataProfile = function(){
         var storage = window.localStorage;
-        var accessToken=storage.getItem('goosbumps');
-        alert(accessToken);
+        var accessToken=storage.getItem('goosbumps');        
         var term=null;
         //  alert("getting user data="+accessToken);
         $.ajax({
@@ -102,12 +100,14 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                success:function(data)
                {
                 $scope.socialLogin(data);
+                alert(data.email);
                }
             });
             //$scope.disconnectUser(); //This call can be done later.
     };
     $scope.socialLogin = function (data)
     {
+        alert(data.given_name);
         Data.post('sociallogin', {
             customer: {Email:data.email,Name:data.given_name}
         }).then(function (results) {
