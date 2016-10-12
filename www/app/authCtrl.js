@@ -78,7 +78,8 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                 redirect_uri: 'http://localhost',
                 scope: 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email'
             }).done(function(data) {
-                var storage = window.localStorage;                    
+                var storage = window.localStorage; 
+                alert(data.access_token);                   
         		storage.setItem('goosbumps', data.access_token);                
                 accessToken=data.access_token;
                 $scope.getDataProfile();
@@ -86,7 +87,9 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
 
     };    
     $scope.getDataProfile = function(){
-        var accessToken=storage.getItem('goosbumps')
+        var storage = window.localStorage;
+        var accessToken=storage.getItem('goosbumps');
+        alert(accessToken);
         var term=null;
         //  alert("getting user data="+accessToken);
         $.ajax({
