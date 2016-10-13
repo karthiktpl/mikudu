@@ -321,8 +321,8 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
     {
         var foundItem = $filter('filter')($scope.bloodgroups, { Id: request.Bloodgroup_Id  }, true)[0];
         var index = $scope.bloodgroups.indexOf(foundItem);
-        $scope.socialmessage= 'Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Note:'+request.Remarks ;
-        window.plugins.socialsharing.share(socialmessage)
+//        $scope.socialmessage= 'Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Note:'+request.Remarks ;
+        window.plugins.socialsharing.share('Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Note:'+request.Remarks)
         /*$scope.showsocialshare=true;
         $scope.showsocialproceed=false;*/
                
