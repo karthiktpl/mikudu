@@ -226,7 +226,7 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
             //services.updateCustomer(customerID, customer);       
     };
 });
-app.controller('requestCtrl', function ($scope, $rootScope, $location, $routeParams, Data, customer,country,$http) {
+app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $routeParams, Data, customer,country,$http) {
     $scope.showsearch=true;
     $scope.showdetails=false;
     var customerID = ($routeParams.customerID) ? parseInt($routeParams.customerID) : 0;
@@ -301,6 +301,8 @@ app.controller('requestCtrl', function ($scope, $rootScope, $location, $routePar
     };
     $scope.showsmsproceed=false;
     $scope.showemailproceed=false;
+    $scope.showsocialproceed=false;
+    $scope.showsocialshare=false;
     $scope.SMSSearch=function(request){
         $scope.showdetails=true;
         $scope.showsmsproceed=true;         
@@ -309,10 +311,31 @@ app.controller('requestCtrl', function ($scope, $rootScope, $location, $routePar
         $scope.showdetails=true;
         $scope.showemailproceed=true;         
     };
+
+    $scope.Socialproceed=function(request){
+        $scope.showdetails=true;
+        $scope.showsocialproceed=true;
+                         
+    }; 
+    $scope.SocialShare=function(request)
+    {
+        var foundItem = $filter('filter')($scope.bloodgroups, { Id: request.Bloodgroup_Id  }, true)[0];
+        var index = $scope.bloodgroups.indexOf(foundItem);
+        $scope.socialmessage= 'Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+'%0D%0AName - '+request.Name+' %0D%0APhone - '+request.Mobile1+'%0D%0ANote:'+request.Remarks ;
+        $scope.showsocialshare=true;
+        $scope.showsocialproceed=false;
+               
+    } 
+    $scope.ShareIt=function(socialmessage){
+        window.plugins.socialsharing.share(socialmessage)
+    }
+      
     $scope.Cancelrequest=function(){
         $scope.showdetails=false;
         $scope.showsmsproceed=false;
-        $scope.showemailproceed=false;        
+        $scope.showemailproceed=false;  
+        $scope.showsocialproceed=false;
+        $scope.showsocialshare=false;
     };
      
     $scope.ListSMS=function(request){
@@ -356,7 +379,9 @@ app.controller('requestCtrl', function ($scope, $rootScope, $location, $routePar
         $scope.showsearch=true;
         $scope.showdetails=false;
         $scope.showsmsproceed=false;
-        $scope.showemailproceed=false;        
+        $scope.showemailproceed=false;
+        $scope.showsocialproceed=false;
+        $scope.showsocialshare=false;                
     }                     
                                            
 });
