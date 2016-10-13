@@ -63,7 +63,18 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                 $location.path('login');
             }
         });
-    };                           
+    };
+    $scope.showterms=false; 
+    $scope.showTerms=function(){
+        if($scope.showterms)
+        {
+            $scope.showterms=false;            
+        }
+        else
+        {
+            $scope.showterms=true;            
+        }    
+    }                          
     $scope.logout = function () {
         Data.get('logout').then(function (results) {
             Data.toast(results);
@@ -78,7 +89,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                 redirect_uri: 'http://localhost',
                 scope: 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email'
             }).done(function(data) {
-                var storage = window.localStorage;                                   
+                var storage = window.localStorage;                    
         		storage.setItem('goosbumps', data.access_token);                
                 accessToken=data.access_token;
                 $scope.getDataProfile();
@@ -86,8 +97,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
 
     };    
     $scope.getDataProfile = function(){
-        var storage = window.localStorage;
-        var accessToken=storage.getItem('goosbumps');        
+        var accessToken=storage.getItem('goosbumps')
         var term=null;
         //  alert("getting user data="+accessToken);
         $.ajax({
@@ -105,6 +115,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
             });
             //$scope.disconnectUser(); //This call can be done later.
     };
+    
     $scope.socialLogin = function ()
     {       
         Data.post('sociallogin', {
@@ -164,8 +175,11 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
       $scope.isClean = function() {
         return angular.equals(original, $scope.customer);
       }
+
       var originalcountry = country;       
-      $scope.countries = angular.copy(originalcountry);           
+      $scope.countries = angular.copy(originalcountry);
+      
+      $scope.customer.Country_Id=$scope.countries[0].Id;                 
       $scope.isClean = function() {
         return angular.equals(originalcountry, $scope.countries);
       }
@@ -228,7 +242,8 @@ app.controller('requestCtrl', function ($scope, $rootScope, $location, $routePar
         return angular.equals(original, $scope.customer);
       }
 	var originalcountry = country;       
-      $scope.countries = angular.copy(originalcountry);           
+      $scope.countries = angular.copy(originalcountry); 
+          
       $scope.isClean = function() {
         return angular.equals(originalcountry, $scope.countries);
       }
@@ -256,9 +271,9 @@ app.controller('requestCtrl', function ($scope, $rootScope, $location, $routePar
     };
         
     $scope.emaildiv='';
-    $scope.request = {Name:$scope.customer.Name,User_Id:customerID,Neededon:'',Bloodgroup_Id:'',Country_Id:'',State_Id:'',District_Id:'',
+    $scope.request = {Name:$scope.customer.Name,User_Id:customerID,Neededon:'',Bloodgroup_Id:'',Country_Id:$scope.countries[0].Id,State_Id:'',District_Id:'',
                     Location_Address:'',Remarks:'',Cananygroup:'',Directcontact:'1',Mobile1:'',Mobile2:'',Mobile3:'',
-                    Email1:'',Email2:'',Email3:''};
+                    Email1:$scope.customer.Email,Email2:'',Email3:''};                        
     $scope.saveRequest=function(request){
             Data.post('addrequest', {
                 customer: request
@@ -284,9 +299,22 @@ app.controller('requestCtrl', function ($scope, $rootScope, $location, $routePar
                 }
             });        
     };
+    $scope.showsmsproceed=false;
+    $scope.showemailproceed=false;
     $scope.SMSSearch=function(request){
-        $scope.showdetails=true;         
-    }; 
+        $scope.showdetails=true;
+        $scope.showsmsproceed=true;         
+    };
+    $scope.EmailSearch=function(request){
+        $scope.showdetails=true;
+        $scope.showemailproceed=true;         
+    };
+    $scope.Cancelrequest=function(){
+        $scope.showdetails=false;
+        $scope.showsmsproceed=false;
+        $scope.showemailproceed=false;        
+    };
+     
     $scope.ListSMS=function(request){
         Data.post('smssearch', {
             customer: request
@@ -301,14 +329,34 @@ app.controller('requestCtrl', function ($scope, $rootScope, $location, $routePar
                 Data.toast(results);
             }
         });                        
+    };
+     
+    $scope.ListEmail=function(request){
+        Data.post('emailsearch', {
+            customer: request
+        }).then(function (results) {                
+            if (results.status == "success") {
+                $scope.emailresultarray=results.users;
+                $scope.emailcontent=results.emailcontent
+                $scope.emailsubject=results.emailsubject
+                $scope.showsearch=false;  
+            }
+            else
+            {
+                Data.toast(results);
+            }
+        });                        
     };    
     
     $scope.goback=function()
     {
         $scope.resultarray='';
         $scope.smsresultarray='';
+        $scope.emailresultarray='';
         $scope.showsearch=true;
-        $scope.showdetails=false;        
+        $scope.showdetails=false;
+        $scope.showsmsproceed=false;
+        $scope.showemailproceed=false;        
     }                     
                                            
 });

@@ -48,14 +48,42 @@
 	  </div> 
 	  <div class="form-group">
 		<label for="mobile">Mobile</label>
-		<input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile Number"  ng-model="signup.mobile"  required>
+        <div class='input-group date' id='datetimepicker8'>
+			<span class="input-group-addon">
+				+91
+			</span>                                
+            <input type="text" class="form-control" ng-minlength="10" ng-maxlength="10"  id="mobile" name="mobile" placeholder="Mobile Number"  ng-model="signup.mobile"  required>                    			
+		</div>                                                        
+        <small class="errorMessage" data-ng-show="((signupForm.mobile.$error.minlength || signupForm.mobile.$error.maxlength) && signupForm.mobile.$dirty) "> phone number should be 10 digits.</small>        
+		
 	  </div>           
 	  <div class="form-group">
 		<label for="bloodgrp">Blood Group</label>
 		<select class="form-control" id="bloodgroup" name="bloodgroup" ng-model="signup.bloodgroup" ng-options="bloodgroup as bloodgroup.label for bloodgroup in bloodgroups" required>
 		  
 		</select>        		
-	  </div>	
+	  </div>
+        <div class="form-group">
+        	<div class="checkbox"> <label> <input ng-model="termscheck" name="termscheck" type="checkbox"  required>I Agree to Mikudu <a href="javascript:void(0);" ng-click="showTerms()">Terms and Conditions</a> </label> </div>       		
+        </div>        
+        <div class="form-group" ng-show="showterms">
+        	<textarea class="form-control" id="address" readonly="readonly" rows="7" >
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
+            </textarea>
+        </div>
+              	
 	</div>
 </div>
 						

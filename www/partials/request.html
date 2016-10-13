@@ -54,7 +54,7 @@
                     <div class="panel panel-primary" >
   <!-- Default panel contents -->
   <div class="panel-heading"><img src="img/hed.png" class="bldbnk">Blood Request <div class="pull-right" ng-show="showsearch==false"><a ng-click="goback();" class="btn btn-success"><i class="fa fa-step-backward" aria-hidden="true"></i></a></div></div>
-  <form role="form" action="" method="post">
+  <form role="form" action="" method="post" name="signupForm">
   <div class="panel-body" ng-show="showsearch">
 			   
 			
@@ -129,7 +129,13 @@
 					<div class="col-xs-12">
                         <div class="form-group">
                             <label for="address">Mobile</label>
-                            <input class="form-control " name="mobile1" id="mobile1" ng-model="request.Mobile1" required type="text" placeholder="Mobile" />
+                    		<div class='input-group date' id='datetimepicker8'>
+                    			<span class="input-group-addon">
+                    				+91
+                    			</span>                                
+                                <input class="form-control " name="mobile1" ng-minlength="10" ng-maxlength="10" id="mobile1" ng-model="request.Mobile1" required type="text" placeholder="Mobile" />                    			
+                    		</div>                                                        
+                            <small class="errorMessage" data-ng-show="((signupForm.mobile1.$error.minlength || signupForm.mobile1.$error.maxlength) && signupForm.mobile1.$dirty) "> phone number should be 10 digits.</small>                            
                         </div>
                         <div class="form-group">
                             <label for="address">Email</label>
@@ -139,7 +145,9 @@
 			</div>             
 			<div class="row"  ng-show="showdetails" >
 				<div class="col-xs-12">
-					<button type="button" class="btn btn-primary " ng-click="ListSMS(request);" >Proceed</button>                    
+					<button type="button" class="btn btn-primary " ng-click="ListSMS(request);" ng-show="showsmsproceed" >Proceed</button>
+                    <button type="button" class="btn btn-primary " ng-click="ListEmail(request);" ng-show="showemailproceed" >Proceed</button>
+                    <button type="button" class="btn btn-primary " ng-click="Cancelrequest();" ng-show="showdetails" >Cancel</button>                    
 				</div>
                
 			</div>                                
@@ -147,7 +155,7 @@
 				<div class="col-xs-12">
 					<button type="button" class="btn btn-primary " ng-click="CallSearch(request);"><i class="fa fa-phone fa-2x" aria-hidden="true"></i></button>
                     <button type="button" class="btn btn-primary " ng-click="SMSSearch();"><i class="fa fa fa-comments fa-2x" aria-hidden="true"></i></button>
-                    <button type="button" class="btn btn-primary " ><i class="fa fa fa-envelope fa-2x" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-primary " ng-click="EmailSearch();"><i class="fa fa fa-envelope fa-2x" aria-hidden="true"></i></button>
                     <button type="button" class="btn btn-primary " ><i class="fa fa fa-whatsapp fa-2x" aria-hidden="true"></i></button>
                     <button type="button" class="btn btn-primary " ><i class="fa fa fa-facebook-square fa-2x" aria-hidden="true"></i></button>
                     
@@ -176,6 +184,14 @@
             <div class="media-body">
               <div class="col-xs-8"><h4 class="media-heading bldr">{{val.Name}} <span class="label label-danger">{{val.Bloodgroup}}</span></h4></div>  
               <div class="col-xs-3 pull-right"><a href="sms:{{val.Mobilenumber}}?body={{smscontent}}" class="btn btn-success"><i class="fa fa-comments fa-2x" aria-hidden="true"></i></a></div>                            
+            </div>                  
+       </div>
+    </div>
+    <div class="panel-body" ng-show="emailresultarray.length > 0">
+       <div ng-repeat="(key, val) in emailresultarray">         
+            <div class="media-body">
+              <div class="col-xs-8"><h4 class="media-heading bldr">{{val.Name}} <span class="label label-danger">{{val.Bloodgroup}}</span></h4></div>  
+              <div class="col-xs-3 pull-right"><a href="mailto:{{val.Email}}?subject={{emailsubject}}&body={{emailcontent}}" class="btn btn-success"><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></a></div>                            
             </div>                  
        </div>
     </div>      
