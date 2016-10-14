@@ -132,7 +132,8 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                     storage.setItem('uid', results.uid);
                     storage.setItem('name', results.name);
                     storage.setItem('email', results.email);                                                                             
-                $location.path('profile/'+results.uid);
+                //$location.path('profile/'+results.uid);
+                $location.path('dashboard');
             }
         });        
         
