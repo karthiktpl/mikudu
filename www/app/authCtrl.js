@@ -118,6 +118,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
     
     $scope.socialLogin = function ()
     {       
+        alert($scope.values.Email);
         Data.post('sociallogin', {
             customer: {Email:$scope.values.Email,Name:$scope.values.Name}
         }).then(function (results) {
