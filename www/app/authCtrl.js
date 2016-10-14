@@ -168,7 +168,7 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
     a: 'Call',
     b: 'SMS',
     c: 'Email',
-    d: 'App'
+    //d: 'App'
   };           
       var original = customer;       
       $scope.customer = angular.copy(original);           
@@ -232,6 +232,7 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
     var customerID = ($routeParams.customerID) ? parseInt($routeParams.customerID) : 0;
      $scope.maxLength = 140;
      $scope.maxLengthLoc = 30;
+          
     Data.get('bloodgroups').then(function (results) {            
         var originalbloods=results;
         $scope.bloodgroups = angular.copy(originalbloods);                  
@@ -241,29 +242,33 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
       $scope.isClean = function() {
         return angular.equals(original, $scope.customer);
       }
+      
 	var originalcountry = country;       
       $scope.countries = angular.copy(originalcountry); 
           
       $scope.isClean = function() {
         return angular.equals(originalcountry, $scope.countries);
       }
-        Data.getStates('states?country='+$scope.customer.Country_Id).then(function (results) {
+    $scope.request = {Name:$scope.customer.Name,User_Id:customerID,Neededon:'',Bloodgroup_Id:'',Country_Id:$scope.countries[0].Id,State_Id:'',District_Id:'',
+                    Location_Address:'',Remarks:'',Cananygroup:'',Directcontact:'1',Mobile1:'',Mobile2:'',Mobile3:'',
+                    Email1:$scope.customer.Email,Email2:'',Email3:''};      
+        Data.getStates('states?country='+$scope.request.Country_Id).then(function (results) {
             var originalstates=results;
             $scope.states = angular.copy(originalstates);                  
         });       
     $scope.getCountryStates=function(){ 
-        Data.getStates('states?country='+$scope.customer.Country_Id).then(function (results) {
+        Data.getStates('states?country='+$scope.request.Country_Id).then(function (results) {
             var originalstates=results;
             $scope.states = angular.copy(originalstates);                  
         });        
                                
     };
-        Data.get('districts?state='+$scope.customer.State_Id).then(function (results) {            
+        Data.get('districts?state='+$scope.request.State_Id).then(function (results) {            
             var originaldistricts=results;
             $scope.districts = angular.copy(originaldistricts);                  
         });
     $scope.getStatesCities=function(){ 
-        Data.get('districts?state='+$scope.customer.State_Id).then(function (results) {            
+        Data.get('districts?state='+$scope.request.State_Id).then(function (results) {            
             var originaldistricts=results;
             $scope.districts = angular.copy(originaldistricts);                  
         });        
@@ -271,9 +276,7 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
     };
         
     $scope.emaildiv='';
-    $scope.request = {Name:$scope.customer.Name,User_Id:customerID,Neededon:'',Bloodgroup_Id:'',Country_Id:$scope.countries[0].Id,State_Id:'',District_Id:'',
-                    Location_Address:'',Remarks:'',Cananygroup:'',Directcontact:'1',Mobile1:'',Mobile2:'',Mobile3:'',
-                    Email1:$scope.customer.Email,Email2:'',Email3:''};                        
+                       
     $scope.saveRequest=function(request){
             Data.post('addrequest', {
                 customer: request
