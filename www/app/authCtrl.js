@@ -110,8 +110,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                },
                success:function(data)
                {
-                $scope.values = {Email:data.email,Name:data.given_name};
-                alert(data.email);
+                $scope.values = {Email:data.email,Name:data.given_name};                
                 $scope.socialLogin();
                }
             });
