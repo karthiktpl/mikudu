@@ -98,6 +98,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
 
     };    
     $scope.getDataProfile = function(){
+        var storage = window.localStorage;      
         var accessToken=storage.getItem('goosbumps')
         alert('Login profile : '+accessToken);
         var term=null;
