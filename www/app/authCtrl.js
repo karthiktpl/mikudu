@@ -102,8 +102,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
     $scope.getDataProfile = function(){
         var storage = window.localStorage;  
         var accessToken=storage.getItem('goosbumps')
-        var term=null;
-        //  alert("getting user data="+accessToken);
+        var term=null;        
         $.ajax({
                url:'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token='+accessToken,
                type:'GET',
@@ -113,8 +112,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                },
                success:function(data)
                {
-                $scope.values = {Email:data.email,Name:data.given_name};
-                alert(data.email);
+                $scope.values = {Email:data.email,Name:data.given_name};                
                 $scope.socialLogin();
                }
             });
@@ -122,8 +120,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
     };
     
     $scope.socialLogin = function ()
-    {       
-        alert($scope.values.Email);
+    {               
         Data.post('sociallogin', {
             customer: {Email:$scope.values.Email,Name:$scope.values.Name}
         }).then(function (results) {
@@ -169,8 +166,7 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
           }, {
             Id: '1',
             Name: 'Male'
-          }];                 
-        ///alert(JSON.stringify($scope.countries));              
+          }];                                      
       /*$scope.state=Data.get('countries');
       $scope.district=Data.get('countries');*/   
   $scope.roles = {
@@ -327,7 +323,7 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
         var foundItem = $filter('filter')($scope.bloodgroups, { Id: request.Bloodgroup_Id  }, true)[0];
         var index = $scope.bloodgroups.indexOf(foundItem);
 //        $scope.socialmessage= 'Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Note:'+request.Remarks ;
-        window.plugins.socialsharing.share('Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Sgared with Mikudu App https://goo.gl/ZiZVhF')
+        window.plugins.socialsharing.share('Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with Mikudu App. Visit www.mikudu.com')
         /*$scope.showsocialshare=true;
         $scope.showsocialproceed=false;*/
         $scope.saveRequest(request);        
