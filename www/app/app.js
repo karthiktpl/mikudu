@@ -153,7 +153,9 @@ app.config(['$routeProvider',
                 $rootScope.uid = storage.getItem('uid');
                 $rootScope.name = storage.getItem('name');
                 $rootScope.email = storage.getItem('email');
-                $rootScope.district = storage.getItem('district');                 
+                $rootScope.district = storage.getItem('district');
+                $rootScope.notifications = storage.getItem('notifications');
+                $rootScope.updatestatus = storage.getItem('updatestatus');                                 
             }
             else
             {

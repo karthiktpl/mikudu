@@ -272,15 +272,17 @@ footer {
     font-size: 0px;
     cursor: pointer;
     margin: 20px;
-    width: 70%;
+    width: 32%;
     /* height: 90px; */
     /* border-radius: 50%; */
-    border-radius: 55px;
+    border-radius: 10px;
     text-align: center;
     position: relative;
     z-index: 1;
     color: #000;
-    text-decoration: none;}
+    text-decoration: none;
+    font-size: 13px !important;
+    }
 
 .fa-icon:after {
   pointer-events: none;

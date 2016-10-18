@@ -43,11 +43,14 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                     $rootScope.email = results.email;
                     $rootScope.district = results.district;
                     $rootScope.notifications = results.notifications;
+                    $rootScope.updatestatus = results.updatestatus;
                     var storage = window.localStorage;                    
                     storage.setItem('uid', results.uid);
                     storage.setItem('name', results.name);
                     storage.setItem('email', results.email);
-                    storage.setItem('district', results.district);                                                         
+                    storage.setItem('district', results.district);
+                    storage.setItem('notifications', results.notifications);
+                    storage.setItem('updatestatus', results.updatestatus);                                                                           
                 $location.path('dashboard');
             }
         });
@@ -88,7 +91,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
         
                 redirect_uri: 'http://localhost',
                 scope: 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email'
-            }).done(function(data) {                
+            }).done(function(data) {
                 var storage = window.localStorage;                    
         		storage.setItem('goosbumps', data.access_token);                
                 accessToken=data.access_token;
@@ -97,8 +100,8 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
 
     };    
     $scope.getDataProfile = function(){
-        var storage = window.localStorage;      
-        var accessToken=storage.getItem('goosbumps');        
+        var storage = window.localStorage;  
+        var accessToken=storage.getItem('goosbumps')
         var term=null;
         //  alert("getting user data="+accessToken);
         $.ajax({
@@ -110,7 +113,8 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                },
                success:function(data)
                {
-                $scope.values = {Email:data.email,Name:data.given_name};                
+                $scope.values = {Email:data.email,Name:data.given_name};
+                alert(data.email);
                 $scope.socialLogin();
                }
             });
@@ -118,7 +122,8 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
     };
     
     $scope.socialLogin = function ()
-    {               
+    {       
+        alert($scope.values.Email);
         Data.post('sociallogin', {
             customer: {Email:$scope.values.Email,Name:$scope.values.Name}
         }).then(function (results) {
@@ -132,8 +137,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                     storage.setItem('uid', results.uid);
                     storage.setItem('name', results.name);
                     storage.setItem('email', results.email);                                                                             
-                //$location.path('profile/'+results.uid);
-                $location.path('dashboard');
+                $location.path('profile/'+results.uid);
             }
         });        
         
@@ -148,7 +152,10 @@ app.controller('dashboardCtrl', function ($scope, $rootScope, $location, $routeP
             }).then(function (results) {
                 Data.toast(results);                
             });         
-      } ;                              
+      };
+      $scope.ShareApp=function(){
+        window.plugins.socialsharing.share('Download and be a part of the huge Mikudu blood donor community. Blood Donor details at the touch of a button. Visit www.mikudu.com')                         
+      };                                    
 });
 app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams, Data, customer,country,$http) {
     var customerID = ($routeParams.customerID) ? parseInt($routeParams.customerID) : 0; 
@@ -171,7 +178,7 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
     b: 'SMS',
     c: 'Email',
     //d: 'App'
-  };           
+  };          
       var original = customer;       
       $scope.customer = angular.copy(original);           
       $scope.isClean = function() {
@@ -216,12 +223,14 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
         services.deleteCustomer(customer.customerNumber);
       };
 */
-      $scope.saveCustomer = function(donor) { 
+      $scope.saveCustomer = function(donor) {              
             Data.post('updateprofile', {
                 customer: donor
             }).then(function (results) {
                 Data.toast(results);
                 if (results.status == "success") {
+                    var storage = window.localStorage;                    
+                    storage.setItem('updatestatus', '1');                                        
                     $location.path('dashboard');
                 }
             });        
@@ -252,7 +261,7 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
         return angular.equals(originalcountry, $scope.countries);
       }
     $scope.request = {Name:$scope.customer.Name,User_Id:customerID,Neededon:'',Bloodgroup_Id:'',Country_Id:$scope.countries[0].Id,State_Id:'',District_Id:'',
-                    Location_Address:'',Remarks:'',Cananygroup:'',Directcontact:'1',Mobile1:'',Mobile2:'',Mobile3:'',
+                    Location_Address:'',Remarks:'',Cananygroup:'',Directcontact:'1',Mobile1:$scope.customer.Mobilenumber,Mobile2:'',Mobile3:'',
                     Email1:$scope.customer.Email,Email2:'',Email3:''};      
         Data.getStates('states?country='+$scope.request.Country_Id).then(function (results) {
             var originalstates=results;
@@ -279,16 +288,7 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
         
     $scope.emaildiv='';
                        
-    $scope.saveRequest=function(request){
-            Data.post('addrequest', {
-                customer: request
-            }).then(function (results) {
-                Data.toast(results);
-                if (results.status == "success") {
-                    $location.path('dashboard');
-                }
-            });         
-    };
+
 
     $scope.CallSearch=function(request){
             Data.post('callsearch', {
@@ -327,9 +327,10 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
         var foundItem = $filter('filter')($scope.bloodgroups, { Id: request.Bloodgroup_Id  }, true)[0];
         var index = $scope.bloodgroups.indexOf(foundItem);
 //        $scope.socialmessage= 'Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Note:'+request.Remarks ;
-        window.plugins.socialsharing.share('Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Note:'+request.Remarks)
+        window.plugins.socialsharing.share('Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Sgared with Mikudu App https://goo.gl/ZiZVhF')
         /*$scope.showsocialshare=true;
         $scope.showsocialproceed=false;*/
+        $scope.saveRequest(request);        
                
     } 
     $scope.ShareIt=function(socialmessage){
@@ -356,8 +357,11 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
             else
             {
                 Data.toast(results);
+                             
             }
-        });                        
+            $scope.saveRequest(request);   
+        }); 
+                               
     };
      
     $scope.ListEmail=function(request){
@@ -372,11 +376,22 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
             }
             else
             {
-                Data.toast(results);
+                Data.toast(results);                                                
             }
-        });                        
+            $scope.saveRequest(request); 
+        });
+                                       
     };    
-    
+    $scope.saveRequest=function(request){
+            Data.post('addrequest', {
+                customer: request
+            }).then(function (results) {
+                //Data.toast(results);
+                if (results.status == "success") {
+                    //$location.path('dashboard');
+                }
+            });         
+    };    
     $scope.goback=function()
     {
         $scope.resultarray='';

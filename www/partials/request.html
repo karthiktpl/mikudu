@@ -12,18 +12,30 @@
         </div>
         <div class="navbar-collapse">         
             <ul class="nav navbar-nav navbar-right">
-                <!--<li class="dropdown">                    
+                <li class="dropdown">                    
                     <a  href="#/notifications/{{uid}}" aria-expanded="false">
                         <i class="fa fa-bell fa-fw"></i> 
                 		<span class="label label-primary">{{notifications}}</span>
                     </a>                   
-                </li>-->
+                </li>
                 <li class="dropdown">                    
                     <a  href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-cog fa-fw"></i> 
 						<span class="label label-primary"></span>
                     </a>
-                    <ul class="dropdown-menu dropdown-alerts">                                                                   
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li ng-show="updatestatus==1">
+                            <a href="#/profile/{{uid}}">                                
+                                    <i class="fa fa-user fa-fw"></i>User Profile                                                                   
+                            </a>
+                        </li>                                             
+                        <li  ng-show="updatestatus==1" class="divider"></li>                    
+                        <li>
+                            <a href="#/myrequests">                                
+                                    <i class="fa fa-question fa-fw"></i>My Requests                                                                    
+                            </a>
+                        </li>                                             
+                        <li class="divider"></li>                                                                                        
                         <li>
                             <a href="#/changepassword">                                
                                     <i class="fa fa-key fa-fw"></i>Change Password                                                                    
@@ -59,23 +71,27 @@
 				<div class="col-xs-12 ">
 					  <div class="form-group">
 					  <label for="bloodgroup">Blood Group</label>
-    				<select id="bloodgroup"  name="bloodgroup" class="form-control" ng-model="request.Bloodgroup_Id">
+    				<select id="bloodgroup"  name="bloodgroup" class="form-control" ng-model="request.Bloodgroup_Id" ng-required="true">
     					<span class="btn-select-arrow glyphicon glyphicon-chevron-down"></span>
                         <option ng-repeat="x in bloodgroups" value="{{x.Id}}">{{x.Name}}</option>                        					 
-    				</select>					  					  
+    				</select>
+                    <small class="errorMessage" data-ng-show="signupForm.bloodgroup.$dirty && signupForm.bloodgroup.$error.required"> Select Blood Group.</small>					  					  
 				  </div>
                 <div class="form-group">
                     <label for="name">Country</label>
-                    <select ng-model="request.Country_Id" class="form-control" ng-change="getCountryStates()" ng-options="obj.Id as obj.Name for obj in countries" ng-required="true">                                  
+                    <select ng-model="request.Country_Id" name="country" class="form-control" ng-change="getCountryStates()" ng-options="obj.Id as obj.Name for obj in countries" ng-required="true">                                  
                     </select>
+                    <small class="errorMessage" data-ng-show="signupForm.country.$dirty && signupForm.country.$error.required"> Select Country.</small>
                 </div>
                 <div class="form-group">
                     <label for="bloodgrp">State</label>
-                    <select class="form-control" ng-model="request.State_Id" ng-options="x.Id as x.Name for x in states" ng-change="getStatesCities()"  ></select>
+                    <select class="form-control" name="state" ng-model="request.State_Id" ng-options="x.Id as x.Name for x in states" ng-change="getStatesCities()"  ng-required="true"></select>
+                    <small class="errorMessage" data-ng-show="signupForm.state.$dirty && signupForm.state.$error.required"> Select State.</small>
                 </div>
                 <div class="form-group">
                     <label for="bloodgrp">District</label>
-                    <select class="form-control" ng-model="request.District_Id"  ng-options="y.Id as y.Name for y in districts"></select>
+                    <select class="form-control" name="district" ng-model="request.District_Id"  ng-options="y.Id as y.Name for y in districts" ng-required="true"></select>
+                    <small class="errorMessage" data-ng-show="signupForm.district.$dirty && signupForm.district.$error.required"> Select District.</small>
                 </div>
 			  </div>
 			
@@ -84,7 +100,8 @@
             	<div class="col-xs-12">
             	 <div class="form-group">
             		<label for="name">Your Name</label>
-            		<input type="text" class="form-control" id="name" ng-model="request.Name" placeholder="Name" focus>
+            		<input type="text" class="form-control" id="name" ng-model="request.Name" name="name" placeholder="Name" ng-required="true" focus>
+                    <small class="errorMessage" data-ng-show="signupForm.name.$dirty && signupForm.name.$error.required"> Enter Name.</small>
             		</div>
             	</div>
             </div>
@@ -93,26 +110,28 @@
             	  <div class="form-group">
                     <label for="dateneeded">Date Needed</label>
             		<div class='input-group date' id='datetimepicker8'>
-            			<input type='date' class="form-control" name="neededon" ng-model="request.Neededon"  placeholder="Date Needed" />
+            			<input type='date' class="form-control" name="neededon" ng-model="request.Neededon" ng-required="true"  placeholder="Date Needed" />
             			<span class="input-group-addon">
             				<i class="glyphicon glyphicon-calendar form-control-feedback"></i>
             			</span>
             		</div>
+                    <small class="errorMessage" data-ng-show="signupForm.neededon.$dirty && signupForm.neededon.$error.required"> Enter Date Needed.</small>
             	  </div>
               </div>
             </div>
 			<div class="row" ng-show="showdetails">
 				<div class="col-xs-12">
 				   <div class="form-group">
-                    <label for="address">Where is blood requiered?</label>
-                    <textarea class="form-control" id="address" ng-model="request.Location_Address" ng-maxlength="{{maxLengthLoc}}" name="address" placeholder="Location Address" maxlength="30" rows="7"></textarea>
+                    <label for="address">Where is blood required?</label>
+                    <textarea class="form-control" id="address" name="address" ng-model="request.Location_Address" ng-maxlength="{{maxLengthLoc}}" name="address" placeholder="Location Address" maxlength="30" rows="7" ng-required="true"></textarea>
                     <span class="help-block"><p id="characterLeftLoc" class="help-block ">{{maxLengthLoc - request.Location_Address.length}} characters left</p></span>
+                    <small class="errorMessage" data-ng-show="signupForm.address.$dirty && signupForm.address.$error.required"> Enter Adress.</small>
                     </div>
-					<div class="form-group">
+					<!--<div class="form-group">
                     <label for="remerks">Remarks</label>
                     <textarea class="form-control" id="remerks" ng-model="request.Remarks" ng-maxlength="{{maxLength}}" name="remerks" placeholder="Remarks" maxlength="140" rows="7"></textarea>
                         <span class="help-block"><p id="characterLeft" class="help-block ">{{maxLength - request.Remarks.length}} characters left</p></span>                    
-                    </div>
+                    </div>-->
 					
 					<div class="form-group">
 						<div class="checkbox"> <label> <input ng-model="request.Cananygroup" type="checkbox" ng-true-value="1" ng-false-value="0"> Please tick if any blood group will be sufficient  </label> </div>					
@@ -122,7 +141,7 @@
             <div class="row" ng-show="showdetails">
 					<div class="col-xs-12">
                         <div class="form-group">
-                            <label for="address">Mobile</label>
+                            <label for="address">Contact number (Please change if contact number is different)</label>
                     		<div class='input-group date' id='datetimepicker8'>
                     			<span class="input-group-addon">
                     				+91
@@ -131,17 +150,17 @@
                     		</div>                                                        
                             <small class="errorMessage" data-ng-show="((signupForm.mobile1.$error.minlength || signupForm.mobile1.$error.maxlength) && signupForm.mobile1.$dirty) "> phone number should be 10 digits.</small>                            
                         </div>
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <label for="address">Email</label>
                             <input type="email" class="form-control" name="email1" id="email1"  ng-model="request.Email1" required  placeholder="Email" />
-                        </div> 					
+                        </div>--> 					
 					</div>
 			</div>             
 			<div class="row"  ng-show="showdetails" >
 				<div class="col-xs-12">
-					<button type="button" class="btn btn-primary " ng-click="ListSMS(request);" ng-show="showsmsproceed" >Proceed</button>
-                    <button type="button" class="btn btn-primary " ng-click="ListEmail(request);" ng-show="showemailproceed" >Proceed</button>
-                    <button type="button" class="btn btn-primary " ng-click="SocialShare(request);" ng-show="showsocialproceed" >Share</button>
+					<button type="button" class="btn btn-primary " ng-click="ListSMS(request);" ng-show="showsmsproceed" data-ng-disabled="signupForm.$invalid">Proceed</button>
+                    <button type="button" class="btn btn-primary " ng-click="ListEmail(request);" ng-show="showemailproceed" data-ng-disabled="signupForm.$invalid">Proceed</button>
+                    <button type="button" class="btn btn-primary " ng-click="SocialShare(request);" ng-show="showsocialproceed" data-ng-disabled="signupForm.$invalid">Share</button>
                     <!--<button type="button" class="btn btn-primary " ng-click="ShareIt(socialmessage);" ng-show="showsocialshare"  >Share</button>-->
                     <button type="button" class="btn btn-primary " ng-click="Cancelrequest();" ng-show="showdetails" >Cancel</button>                                        
 				</div>
@@ -172,6 +191,7 @@
               <div class="col-xs-3 pull-right"><a href="tel:{{val.Mobilenumber}}" class="btn btn-success"><i class="fa fa-phone fa-2x" aria-hidden="true"></i></a></div>                            
             </div>                  
        </div>
+       <span class="help-block"><p id="characterLeftLoc" class="help-block ">Standard rates will be applied</p></span>
     </div>
     <div class="panel-body" ng-show="smsresultarray.length > 0">
        <div ng-repeat="(key, val) in smsresultarray">         
@@ -180,6 +200,7 @@
               <div class="col-xs-3 pull-right"><a href="sms:{{val.Mobilenumber}}?body={{smscontent}}" class="btn btn-success"><i class="fa fa-comments fa-2x" aria-hidden="true"></i></a></div>                            
             </div>                  
        </div>
+       <span class="help-block"><p id="characterLeftLoc" class="help-block ">Standard rates will be applied</p></span>
     </div>
     <div class="panel-body" ng-show="emailresultarray.length > 0">
        <div ng-repeat="(key, val) in emailresultarray">         
