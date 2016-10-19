@@ -26,6 +26,11 @@ module.exports = [
         ]
     },
 	{
+        "file": "plugins/cordova-plugin-fcm/www/FCMPlugin.js",
+        "id": "cordova-plugin-fcm",
+		"runs": true
+    },    
+	{
         "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
         "id": "cordova-plugin-inappbrowser",
 		"runs": true
