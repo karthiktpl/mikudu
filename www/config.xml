@@ -12,7 +12,11 @@
     <preference name="DisallowOverscroll" value="true"/>                
     <!--<preference name="orientation" value="default" />    
     <preference name="fullscreen" value="true" />
-    <preference name="webviewbounce" value="true" />-->    
+    <preference name="webviewbounce" value="true" />--> 
+    <preference name="android-build-tool" value="gradle" />
+    <plugin name="phonegap-plugin-push" source="npm">
+        <param name="SENDER_ID" value="640582960337" />
+    </plugin>       
     <preference name="android-installLocation" value="auto" />
     <gap:plugin name="org.apache.cordova.battery-status" />
     <gap:plugin name="org.apache.cordova.camera" />
@@ -35,7 +39,8 @@
     <gap:plugin name="org.apache.cordova.vibration" />
 	<plugin name="plugin.google.maps">
 		<param name="API_KEY_FOR_ANDROID" value="AIzaSyAE1K_juLxpRMTfQ5IWX93wskigXKAb52I" />		
-	</plugin>	
+	</plugin>
+    	
     <icon src="res/icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
     <icon gap:platform="android" gap:qualifier="mdpi" src="www/res/icon/android/icon-48-mdpi.png" />

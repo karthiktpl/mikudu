@@ -36,7 +36,7 @@
     </header>        
     <!-- jQuery -->
 
-
+<div id="gcm_id"></div>
 </body>
   <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
     <script src="js/jquery.js"></script>
@@ -57,7 +57,22 @@
     <script src="js/googlelogin.js"></script>
     
 
-<script>
+<script type="text/javascript">
+document.addEventListener("deviceready",onDeviceReady,false);
+function onDeviceReady(){
+ var push = PushNotification.init({ "android": {"senderID": "640582960337"}});
+ push.on('registration', function(data) {
+ console.log(data.registrationId);
+ document.getElementById("gcm_id").innerHTML = data.registrationId;
+ });
 
-</script>  
+ push.on('notification', function(data) {
+ alert(data.title+" Message: " +data.message);
+ });
+
+ push.on('error', function(e) {
+ alert(e);
+ });
+}
+</script> 
 </html>
