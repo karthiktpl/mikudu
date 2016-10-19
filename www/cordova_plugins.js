@@ -24,11 +24,6 @@ module.exports = [
         "clobbers": [
             "plugin.google.maps"
         ]
-    },
-	{
-        "file": "plugins/cordova-plugin-fcm/www/FCMPlugin.js",
-        "id": "cordova-plugin-fcm",
-		"runs": true
     },    
 	{
         "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
