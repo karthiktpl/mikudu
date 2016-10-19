@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "640582960337",
+    "firebase_url": "https://mikudu-143911.firebaseio.com",
+    "project_id": "mikudu-143911",
+    "storage_bucket": "mikudu-143911.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640582960337:android:77e609a08b049eed",
+        "android_client_info": {
+          "package_name": "com.solminds.mikudu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "640582960337-bn7j1apasl53bmcf2iiho41np6e9vgea.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.solminds.mikudu",
+            "certificate_hash": "A448500D481766EA879A32369B8C194E1912A326"
+          }
+        },
+        {
+          "client_id": "640582960337-r85gbca2kjl5436hnrgqdb97lve3ggj5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDO0pzO9eC1pB21WdUCQT7NYHhzyqxqPLw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "640582960337-r85gbca2kjl5436hnrgqdb97lve3ggj5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -58,21 +58,14 @@
     
 
 <script type="text/javascript">
-document.addEventListener("deviceready",onDeviceReady,false);
-function onDeviceReady(){
- var push = PushNotification.init({ "android": {"senderID": "640582960337"}});
- push.on('registration', function(data) {
- alert(data.registrationId);
- document.getElementById("gcm_id").innerHTML = data.registrationId;
- });
 
- push.on('notification', function(data) {
- alert(data.title+" Message: " +data.message);
- });
-
- push.on('error', function(e) {
- alert(e);
- });
-}
+window.FirebasePlugin.getInstanceId(function(token) {
+    // save this server-side and use it to push notifications to this device
+    console.log(token);
+ alert(token);
+ document.getElementById("gcm_id").innerHTML = token;	
+}, function(error) {
+    console.error(error);
+});
 </script> 
 </html>
