@@ -14,7 +14,7 @@
     <preference name="fullscreen" value="true" />
     <preference name="webviewbounce" value="true" />--> 
     <preference name="android-build-tool" value="gradle" />
-    <plugin name="cordova-plugin-firebase" />      
+    <plugin name="cordova-plugin-fcm" />      
     <preference name="android-installLocation" value="auto" />
     <gap:plugin name="org.apache.cordova.battery-status" />
     <gap:plugin name="org.apache.cordova.camera" />
