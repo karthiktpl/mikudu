@@ -62,7 +62,7 @@ document.addEventListener("deviceready",onDeviceReady,false);
 function onDeviceReady(){
  var push = PushNotification.init({ "android": {"senderID": "640582960337"}});
  push.on('registration', function(data) {
- console.log(data.registrationId);
+ alert(data.registrationId);
  document.getElementById("gcm_id").innerHTML = data.registrationId;
  });
 
