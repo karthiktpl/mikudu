@@ -118,7 +118,17 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
             });
             //$scope.disconnectUser(); //This call can be done later.
     };
-    
+    $scope.call_FB=function(){
+		facebookConnectPlugin.login(["public_profile"],$scope.fbLoginSuccess,function (error) { alert("" + error) }); 
+	}
+	$scope.fbLoginSuccess = function (userData) {
+		alert("UserInfo: " + JSON.stringify(userData));
+		facebookConnectPlugin.getAccessToken(function(token) {
+			alert("Token: " + token);
+		}, function(err) {
+			alert("Could not get access token: " + err);
+		});
+	}	
     $scope.socialLogin = function ()
     {               
         Data.post('sociallogin', {

@@ -14,11 +14,11 @@
 	<preference name="android-build-tool" value="gradle" />	
     <!--<preference name="orientation" value="default" />    
     <preference name="fullscreen" value="true" />
-    <preference name="webviewbounce" value="true" />-->   
-
-	<plugin spec="https://github.com/jeduan/cordova-plugin-facebook4">
-		<param name="APP_ID" value="356255951432478" /> <param name="APP_NAME" value="Mikudu" />
-	</plugin>
+    <preference name="webviewbounce" value="true" />-->  
+	<gap:plugin name="com.phonegap.plugins.facebookconnect" version="0.9.0">
+        <param name="APP_ID" value="356255951432478" />
+        <param name="APP_NAME" value="Mikudu" />
+    </gap:plugin>
     <preference name="android-installLocation" value="auto" />
     
     <gap:plugin name="org.apache.cordova.geolocation" />
