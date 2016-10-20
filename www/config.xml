@@ -33,7 +33,6 @@
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
-    
 	<plugin name="plugin.google.maps">
 		<param name="API_KEY_FOR_ANDROID" value="AIzaSyAE1K_juLxpRMTfQ5IWX93wskigXKAb52I" />		
 	</plugin>	
