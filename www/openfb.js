@@ -22,7 +22,7 @@ var openFB = (function () {
         context = window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/")),
 
         baseURL = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + context,
-		alert(baseURL);
+
     // Default OAuth redirect URL. Can be overriden in init()
         oauthRedirectURL = baseURL + '/oauthcallback.html',
 
