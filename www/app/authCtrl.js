@@ -124,6 +124,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
 	$scope.fbLoginSuccess = function (userData) {
 			facebookConnectPlugin.api('/me', null,
 			 function(response) {
+				 alert("UserInfo: " + JSON.stringify(response));
 				 alert('Good to see you, ' +
 					 response.email + response.name + '.');
 			 });
