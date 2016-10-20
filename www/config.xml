@@ -36,6 +36,10 @@
 	<plugin name="plugin.google.maps">
 		<param name="API_KEY_FOR_ANDROID" value="AIzaSyAE1K_juLxpRMTfQ5IWX93wskigXKAb52I" />		
 	</plugin>	
+    <gap:plugin name="com.phonegap.plugins.facebookconnect" version="0.8.0">
+        <param name="APP_ID" value="356255951432478" />
+        <param name="APP_NAME" value="Mikudu" />
+    </gap:plugin>	
     <icon src="res/icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
     <icon gap:platform="android" gap:qualifier="mdpi" src="www/res/icon/android/icon-48-mdpi.png" />

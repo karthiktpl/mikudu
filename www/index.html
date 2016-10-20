@@ -55,22 +55,23 @@
 	<script src="app/authCtrl.js"></script>
     <script src="app/checklist-model.js"></script>
     <script src="js/googlelogin.js"></script>
-	<script src="openfb.js"></script>
-    
+<script type="text/javascript">
+document.addEventListener("deviceready", function() {
+		
+var fbLoginSuccess = function (userData) {
+    alert("UserInfo: " + JSON.stringify(userData));
+    facebookConnectPlugin.getAccessToken(function(token) {
+        alert("Token: " + token);
+    }, function(err) {
+        alert("Could not get access token: " + err);
+    });
+}
 
-<script>
+facebookConnectPlugin.login(["public_profile"],
+    fbLoginSuccess,
+    function (error) { alert("" + error) }
+); 
 
-     // Defaults to sessionStorage for storing the Facebook token
-     openFB.init({appId: '134472343686892'});
-    function login() {
-        openFB.login(
-                function(response) {
-                    if(response.status === 'connected') {
-                        alert('Facebook login succeeded, got access token: ' + response.authResponse.accessToken);
-                    } else {
-                        alert('Facebook login failed: ' + response.error);
-                    }
-                }, {scope: 'email,read_stream,publish_actions'});
-    }	 
-</script>   
+});
+</script>
 </html>
