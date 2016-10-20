@@ -119,7 +119,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
             //$scope.disconnectUser(); //This call can be done later.
     };
     $scope.call_FB=function(){
-		facebookConnectPlugin.login(["public_profile"],$scope.fbLoginSuccess,function (error) { alert("" + error) }); 
+		facebookConnectPlugin.login(["email"],$scope.fbLoginSuccess,function (error) { alert("" + error) }); 
 	}
 	$scope.fbLoginSuccess = function (userData) {
 			facebookConnectPlugin.api('/me', null,
