@@ -14,6 +14,9 @@
     <preference name="fullscreen" value="true" />
     <preference name="webviewbounce" value="true" />-->   
 
+	<plugin spec="https://github.com/jeduan/cordova-plugin-facebook4">
+		<param name="APP_ID" value="356255951432478" /> <param name="APP_NAME" value="Mikudu" />
+	</plugin>
     <preference name="android-installLocation" value="auto" />
     
     <gap:plugin name="org.apache.cordova.geolocation" />
@@ -23,7 +26,8 @@
     <gap:plugin name="org.apache.cordova.network-information" />
 	<plugin name="plugin.google.maps">
 		<param name="API_KEY_FOR_ANDROID" value="AIzaSyAE1K_juLxpRMTfQ5IWX93wskigXKAb52I" />		
-	</plugin>		
+	</plugin>	
+	
     <icon src="res/icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
     <icon gap:platform="android" gap:qualifier="mdpi" src="www/res/icon/android/icon-48-mdpi.png" />
