@@ -122,6 +122,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
 		facebookConnectPlugin.login(["email"],$scope.fbLoginSuccess,function (error) { alert("" + error) }); 
 	}
 	$scope.fbLoginSuccess = function (userData) {
+			alert("UserInfo: " + JSON.stringify(userData));
 			facebookConnectPlugin.api('/me', null,
 			 function(response) {
 				 alert("UserInfo: " + JSON.stringify(response));
