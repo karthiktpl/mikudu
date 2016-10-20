@@ -55,23 +55,4 @@
 	<script src="app/authCtrl.js"></script>
     <script src="app/checklist-model.js"></script>
     <script src="js/googlelogin.js"></script>
-<script type="text/javascript">
-document.addEventListener("deviceready", function() {
-		
-var fbLoginSuccess = function (userData) {
-    alert("UserInfo: " + JSON.stringify(userData));
-    facebookConnectPlugin.getAccessToken(function(token) {
-        alert("Token: " + token);
-    }, function(err) {
-        alert("Could not get access token: " + err);
-    });
-}
-
-facebookConnectPlugin.login(["public_profile"],
-    fbLoginSuccess,
-    function (error) { alert("" + error) }
-); 
-
-});
-</script>
 </html>

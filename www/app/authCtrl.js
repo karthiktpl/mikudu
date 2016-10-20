@@ -122,12 +122,11 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
 		facebookConnectPlugin.login(["public_profile"],$scope.fbLoginSuccess,function (error) { alert("" + error) }); 
 	}
 	$scope.fbLoginSuccess = function (userData) {
-		alert("UserInfo: " + JSON.stringify(userData));
-		facebookConnectPlugin.getAccessToken(function(token) {
-			alert("Token: " + token);
-		}, function(err) {
-			alert("Could not get access token: " + err);
-		});
+			facebookConnectPlugin.api('/me', null,
+			 function(response) {
+				 alert('Good to see you, ' +
+					 response.email + response.name + '.');
+			 });
 	}	
     $scope.socialLogin = function ()
     {               
