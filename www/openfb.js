@@ -116,7 +116,8 @@ var openFB = (function () {
         var loginWindow,
             startTime,
             scope = '',
-            redirectURL = oauthRedirectURL;
+            //redirectURL = runningInCordova ? cordovaOAuthRedirectURL : oauthRedirectURL;
+			redirectURL= 'http://localhost/oauthcallback.html';
 
         if (!fbAppId) {
             return callback({status: 'unknown', error: 'Facebook App Id not set.'});
