@@ -128,8 +128,10 @@ document.addEventListener("deviceready", function() {
     function SetNavigation(item, index)
     {
           item.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {            
-                                   
-            alert(item.get("position").lat);
+                plugin.google.maps.external.launchNavigation({
+                  "from": mylocatrion,
+                  "to": item.get("position")
+                });                                               
           });       
     }
 	/*
