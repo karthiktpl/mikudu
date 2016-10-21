@@ -69,17 +69,45 @@ document.addEventListener("deviceready", function() {
 	var storage = window.localStorage; 
 	var district=storage.getItem('blooddistrict');
 	var value = Setmarkers(district);      
-    mylocatrion=navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    document.getElementById('geolocation').innerHTML=JSON.stringify(mylocatrion);
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    function Setmarkers(district)
+    {
+    		var markers;
+    		$.ajax({
+    		  type: "GET",
+    		  async: false,
+    		  global: false,
+    		  dataType: "json",
+    		  url: "http://hg.solminds.com/mikuduapi/v1/bloodbanks?district="+district,
+    		  success: function (result){
+    			markers=result;
+    		  }
+    		});
+    		return markers;
+    }
+    function onSuccess(position) {
+        var element = document.getElementById('geolocation');
+        /*element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
+                            'Longitude: '          + position.coords.longitude             + '<br />' +
+                            'Altitude: '           + position.coords.altitude              + '<br />' +
+                            'Accuracy: '           + position.coords.accuracy              + '<br />' +
+                            'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
+                            'Heading: '            + position.coords.heading               + '<br />' +
+                            'Speed: '              + position.coords.speed                 + '<br />' +
+                            'Timestamp: '          + position.timestamp                    + '<br />';*/
+        mylocatrion=position.coords.latitude;
+        element.innerHTML=mylocatrion;                        
+    }
+    function onError(error) {
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    }        
 	var map = plugin.google.maps.Map.getMap(mapDiv, {
 	'camera': {
 	  'latLng': {lat:value.districtlat.lat, lng: value.districtlat.lng},
 	  'zoom': 10
 	}
 	});
-    
-    alert(mylocatrion.lat);
-    alert(mylocatrion.lng);
   map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 	  var buttonclose = document.getElementById("buttonclose");
 
@@ -128,40 +156,11 @@ document.addEventListener("deviceready", function() {
 	map.remove();
 	return true;
 }*/
-function Setmarkers(district)
-{
-		var markers;
-		$.ajax({
-		  type: "GET",
-		  async: false,
-		  global: false,
-		  dataType: "json",
-		  url: "http://hg.solminds.com/mikuduapi/v1/bloodbanks?district="+district,
-		  success: function (result){
-			markers=result;
-		  }
-		});
-		return markers;
-}
-function onSuccess(position) {
-    var element = document.getElementById('test');
-    element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
-                        'Longitude: '          + position.coords.longitude             + '<br />' +
-                        'Altitude: '           + position.coords.altitude              + '<br />' +
-                        'Accuracy: '           + position.coords.accuracy              + '<br />' +
-                        'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
-                        'Heading: '            + position.coords.heading               + '<br />' +
-                        'Speed: '              + position.coords.speed                 + '<br />' +
-                        'Timestamp: '          + position.timestamp                    + '<br />';
-    mylocatrion=position.coords.latitude;                        
-}
+
 
 // onError Callback receives a PositionError object
 //
-function onError(error) {
-    alert('code: '    + error.code    + '\n' +
-          'message: ' + error.message + '\n');
-}
+
 $(function(){
 
 $('#buttonclose').click(function(){
