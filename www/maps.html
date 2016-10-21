@@ -45,7 +45,8 @@
 			</div>						
 		</div>
 	</div>
-	<div style="width:100%;height:400px" id="map_canvas"> </div>	
+	<div style="width:100%;height:400px" id="map_canvas"> </div>
+    <div class="alert alert-info">Zoom and click on the pin to see details</div>	
 					
 </body>
   <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
@@ -73,10 +74,10 @@ document.addEventListener("deviceready", function() {
 	  'zoom': 10
 	}
 	});
-plugin.google.maps.external.launchNavigation({
+/*plugin.google.maps.external.launchNavigation({
   "from": "Tokyo, Japan",
   "to": "Kyoto, Japan"
-});
+});*/
   map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 	  var buttonclose = document.getElementById("buttonclose");
 
@@ -89,6 +90,7 @@ plugin.google.maps.external.launchNavigation({
 	var markers = [];
 	addMarkers(data, function(markers) {
 	  markers[markers.length - 1].showInfoWindow();
+      markers.forEach(SetNavigation)
 	});		
 	function addMarkers(data, callback) {
 	  var markers = [];
@@ -103,7 +105,17 @@ plugin.google.maps.external.launchNavigation({
 		map.addMarker(markerOptions, onMarkerAdded);
 	  });
 	}
-	
+    function SetNavigation(item, index)
+    {
+          item.addEventListener(plugin.google.maps.event.MARKER_CLICK, function() {
+            alert("Marker is clicked"+item.get("position"));
+          });       
+    }
+	/*
+  marker.addEventListener(plugin.google.maps.event.MARKER_CLICK, function() {
+    alert("Marker is clicked");
+  });    
+    */
 	  //buttonclose.addEventListener("click", onBtnClose(map));
   });
 
