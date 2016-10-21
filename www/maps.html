@@ -86,17 +86,7 @@ document.addEventListener("deviceready", function() {
     		return markers;
     }
     function onSuccess(position) {
-        var element = document.getElementById('geolocation');
-        /*element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
-                            'Longitude: '          + position.coords.longitude             + '<br />' +
-                            'Altitude: '           + position.coords.altitude              + '<br />' +
-                            'Accuracy: '           + position.coords.accuracy              + '<br />' +
-                            'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
-                            'Heading: '            + position.coords.heading               + '<br />' +
-                            'Speed: '              + position.coords.speed                 + '<br />' +
-                            'Timestamp: '          + position.timestamp                    + '<br />';*/
-        mylocatrion=position.coords.latitude;
-        element.innerHTML=mylocatrion;                        
+        mylocatrion={lat: position.coords.latitude, lng: position.coords.longitude};                               
     }
     function onError(error) {
         alert('code: '    + error.code    + '\n' +
@@ -137,9 +127,9 @@ document.addEventListener("deviceready", function() {
 	}
     function SetNavigation(item, index)
     {
-          item.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {
-            alert("Marker is clicked"+item.get("title"));
-            alert(mylocatrion);
+          item.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {            
+                                   
+            alert(item.get("position").lat);
           });       
     }
 	/*
