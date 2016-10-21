@@ -86,7 +86,7 @@ document.addEventListener("deviceready", function() {
     		return markers;
     }
     function onSuccess(position) {
-        mylocatrion={lat: position.coords.latitude, lng: position.coords.longitude};                               
+        mylocatrion=new plugin.google.maps.LatLng(position.coords.latitude,position.coords.longitude);                               
     }
     function onError(error) {
         alert('code: '    + error.code    + '\n' +
@@ -127,10 +127,11 @@ document.addEventListener("deviceready", function() {
 	}
     function SetNavigation(item, index)
     {
-          item.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {            
+          item.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {
+                var loclat=new plugin.google.maps.LatLng(item.get("position").Lat,item.get("position").Lng);
                 plugin.google.maps.external.launchNavigation({
                   "from": mylocatrion,
-                  "to": item.get("position")
+                  "to":loclat 
                 });                                               
           });       
     }
@@ -141,6 +142,7 @@ document.addEventListener("deviceready", function() {
     */
 	  //buttonclose.addEventListener("click", onBtnClose(map));
   });
+
 });
 /*function onBtnClose(map)
 {
