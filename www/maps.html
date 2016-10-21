@@ -68,7 +68,8 @@ document.addEventListener("deviceready", function() {
 	var mapDiv = document.getElementById("map_canvas");
 	var storage = window.localStorage; 
 	var district=storage.getItem('blooddistrict');
-	var value = Setmarkers(district);  
+	var value = Setmarkers(district);
+    var mylocatrion='';  
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
 	var map = plugin.google.maps.Map.getMap(mapDiv, {
 	'camera': {
@@ -76,7 +77,9 @@ document.addEventListener("deviceready", function() {
 	  'zoom': 10
 	}
 	});
-
+    
+    alert(mylocatrion.lat);
+    alert(mylocatrion.lng);
   map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 	  var buttonclose = document.getElementById("buttonclose");
 
@@ -141,7 +144,6 @@ function Setmarkers(district)
 		return markers;
 }
 function onSuccess(position) {
-    alert('test');
     var element = document.getElementById('geolocation');
     element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
                         'Longitude: '          + position.coords.longitude             + '<br />' +
@@ -151,6 +153,7 @@ function onSuccess(position) {
                         'Heading: '            + position.coords.heading               + '<br />' +
                         'Speed: '              + position.coords.speed                 + '<br />' +
                         'Timestamp: '          + position.timestamp                    + '<br />';
+    mylocatrion={lat: position.coords.latitude , lng: position.coords.longitude}                        
 }
 
 // onError Callback receives a PositionError object
