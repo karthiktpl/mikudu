@@ -127,8 +127,8 @@ document.addEventListener("deviceready", function() {
 	}
     function SetNavigation(item, index)
     {
-          item.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {
-                var loclat=new plugin.google.maps.LatLng(item.get("position").Lat,item.get("position").Lng);
+          item.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {            
+                var loclat=new plugin.google.maps.LatLng(item.get("position").lat,item.get("position").lng);
                 plugin.google.maps.external.launchNavigation({
                   "from": mylocatrion,
                   "to":loclat 
