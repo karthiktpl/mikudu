@@ -76,17 +76,7 @@ document.addEventListener("deviceready", function() {
 	  'zoom': 10
 	}
 	});
-    var mylocatrion='';
-    map.getMyLocation(function(location) {
-      mylocatrion = ["Current your location:\n",
-        "latitude:" + location.latLng.lat,
-        "longitude:" + location.latLng.lng,
-        "speed:" + location.speed,
-        "time:" + location.time,
-        "bearing:" + location.bearing].join("\n");
-        alert(mylocatrion);
-    });
-    alert(mylocatrion)
+
   map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 	  var buttonclose = document.getElementById("buttonclose");
 
@@ -151,6 +141,7 @@ function Setmarkers(district)
 		return markers;
 }
 function onSuccess(position) {
+    alert('test');
     var element = document.getElementById('geolocation');
     element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
                         'Longitude: '          + position.coords.longitude             + '<br />' +
