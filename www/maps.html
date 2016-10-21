@@ -82,7 +82,9 @@ document.addEventListener("deviceready", function() {
         "speed:" + location.speed,
         "time:" + location.time,
         "bearing:" + location.bearing].join("\n");
+        alert(mylocatrion);
     });
+    alert(mylocatrion)
   map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 	  var buttonclose = document.getElementById("buttonclose");
 
