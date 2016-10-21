@@ -107,8 +107,8 @@ document.addEventListener("deviceready", function() {
 	}
     function SetNavigation(item, index)
     {
-          item.addEventListener(plugin.google.maps.event.MARKER_CLICK, function() {
-            alert("Marker is clicked"+item.get("position"));
+          item.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {
+            alert("Marker is clicked"+item.get("title"));
           });       
     }
 	/*
