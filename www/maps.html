@@ -74,10 +74,7 @@ document.addEventListener("deviceready", function() {
 	  'zoom': 10
 	}
 	});
-    var MyLocation = null;
-    map.getMyLocation(function(location) {
-      MyLocation = location.latLng;
-    });
+
   map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 	  var buttonclose = document.getElementById("buttonclose");
 
@@ -99,16 +96,14 @@ document.addEventListener("deviceready", function() {
 		if (markers.length === data.length) {
 		  callback(markers);
 		}
-        alert(MyLocation);
-        /* marker.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {
-             if (confirm("Do you want to go?")) {
+        marker.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {
+              if (confirm("Do you want to go?")) {
                 plugin.google.maps.external.launchNavigation({
-                  "from": yourLocation,
-                  "to": latLng
+                  "from": '8.523241,76.927842',
+                  "to": '8.523538,76.925815'
                 });
-              }
-              alert(marker)            
-          });*/                
+              }            
+          });                
 	  }
 	  data.forEach(function(markerOptions) {		
 		map.addMarker(markerOptions, onMarkerAdded);

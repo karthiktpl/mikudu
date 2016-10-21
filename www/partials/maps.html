@@ -59,27 +59,34 @@
 				<div class="panel panel-primary" >
 					<div class="panel-heading"><img src="img/hed.png" class="bldbnk">Blood Request</div>
 					<div class="panel-body">
-						<form role="form" action="" method="post">
+						<form role="form" action="" method="post" id="signupForm" name="signupForm">
 						   <div class="row">
 							<div class="col-xs-12">
 								<div class="form-group">
 									<label for="name">Select Country</label>
 									<select ng-model="mapsval.Country_Id" class="form-control" ng-change="getCountryStates()" ng-options="obj.Id as obj.Name for obj in countries" ng-required="true">                                  
-									</select>
+									<option value="">Select Country</option>
+                                    </select>
 								</div>
 								<div class="form-group">
 									<label for="bloodgrp">Select State</label>
-									<select class="form-control" ng-model="mapsval.State_Id" ng-options="x.Id as x.Name for x in states" ng-change="getStatesCities()"  ></select>
-								</div>
+									<select class="form-control" ng-model="mapsval.State_Id" name="State_Id" ng-options="x.Id as x.Name for x in states" ng-change="getStatesCities()" ng-required="true" >
+                                        <option value="">Select State</option>
+                                    </select>
+                                    <span data-ng-show="signupForm.State_Id.$dirty && signupForm.State_Id.$error.required">Select service</span>
+								</div>                                
 								<div class="form-group">
 									<label for="bloodgrp">Select District</label>
-									<select class="form-control" ng-model="mapsval.District_Id"  ng-options="y.Id as y.Name for y in districts"></select>
+									<select class="form-control" ng-model="mapsval.District_Id" name="District_Id" ng-options="y.Id as y.Name for y in districts" ng-required="true">
+                                        <option value="">Select District</option>
+                                    </select>
+                                    <span data-ng-show="signupForm.District_Id.$dirty && signupForm.District_Id.$error.required">Select service</span>
 								</div>
 							</div>						
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="setmap(mapsval);">Submit Request</button>
+									<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="setmap(mapsval);" data-ng-disabled="signupForm.$invalid">Submit Request</button>
 								</div>
 							</div>							
 						</form>
