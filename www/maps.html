@@ -45,7 +45,8 @@
 			</div>						
 		</div>
 	</div>
-	<div style="width:100%;height:400px" id="map_canvas"> </div>	
+	<div style="width:100%;height:400px" id="map_canvas"> </div>
+    <div class="alert alert-info" role="alert" >Zoom and click on the pin to see details</div>	
 					
 </body>
   <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
@@ -73,7 +74,10 @@ document.addEventListener("deviceready", function() {
 	  'zoom': 10
 	}
 	});
-
+    var MyLocation = null;
+    map.getMyLocation(function(location) {
+      MyLocation = location.latLng;
+    });
   map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 	  var buttonclose = document.getElementById("buttonclose");
 
@@ -84,9 +88,9 @@ document.addEventListener("deviceready", function() {
 		];*/
 
 	var markers = [];
-	addMarkers(data, function(markers) {
+	/*addMarkers(data, function(markers) {
 	  markers[markers.length - 1].showInfoWindow();
-	});		
+	});*/		
 	function addMarkers(data, callback) {
 	  var markers = [];
 	  function onMarkerAdded(marker) {
@@ -95,6 +99,15 @@ document.addEventListener("deviceready", function() {
 		if (markers.length === data.length) {
 		  callback(markers);
 		}
+        marker.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {
+             /* if (confirm("Do you want to go?")) {
+                plugin.google.maps.external.launchNavigation({
+                  "from": yourLocation,
+                  "to": latLng
+                });
+              }*/
+              alert(marker)            
+          });        
 	  }
 	  data.forEach(function(markerOptions) {		
 		map.addMarker(markerOptions, onMarkerAdded);
