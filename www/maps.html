@@ -74,10 +74,15 @@ document.addEventListener("deviceready", function() {
 	  'zoom': 10
 	}
 	});
-/*plugin.google.maps.external.launchNavigation({
-  "from": "Tokyo, Japan",
-  "to": "Kyoto, Japan"
-});*/
+    var mylocatrion='';
+    map.getMyLocation(function(location) {
+      mylocatrion = ["Current your location:\n",
+        "latitude:" + location.latLng.lat,
+        "longitude:" + location.latLng.lng,
+        "speed:" + location.speed,
+        "time:" + location.time,
+        "bearing:" + location.bearing].join("\n");
+    });
   map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 	  var buttonclose = document.getElementById("buttonclose");
 
@@ -109,6 +114,7 @@ document.addEventListener("deviceready", function() {
     {
           item.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {
             alert("Marker is clicked"+item.get("title"));
+            alert(mylocatrion);
           });       
     }
 	/*
