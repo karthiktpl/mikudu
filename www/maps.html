@@ -99,15 +99,16 @@ document.addEventListener("deviceready", function() {
 		if (markers.length === data.length) {
 		  callback(markers);
 		}
-        marker.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {
-             /* if (confirm("Do you want to go?")) {
+        alert(MyLocation);
+        /* marker.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {
+             if (confirm("Do you want to go?")) {
                 plugin.google.maps.external.launchNavigation({
                   "from": yourLocation,
                   "to": latLng
                 });
-              }*/
+              }
               alert(marker)            
-          });        
+          });*/                
 	  }
 	  data.forEach(function(markerOptions) {		
 		map.addMarker(markerOptions, onMarkerAdded);
