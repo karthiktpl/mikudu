@@ -46,7 +46,8 @@
 		</div>
 	</div>
 	<div style="width:100%;height:400px" id="map_canvas"> </div>
-    <div class="alert alert-info">Zoom and click on the pin to see details</div>	
+    <div class="alert alert-info">Zoom and click on the pin to see details</div>
+    <div id="geolocation"></div>	
 					
 </body>
   <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
@@ -68,6 +69,7 @@ document.addEventListener("deviceready", function() {
 	var storage = window.localStorage; 
 	var district=storage.getItem('blooddistrict');
 	var value = Setmarkers(district);  
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
 	var map = plugin.google.maps.Map.getMap(mapDiv, {
 	'camera': {
 	  'latLng': {lat:value.districtlat.lat, lng: value.districtlat.lng},
@@ -147,6 +149,24 @@ function Setmarkers(district)
 		  }
 		});
 		return markers;
+}
+function onSuccess(position) {
+    var element = document.getElementById('geolocation');
+    element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
+                        'Longitude: '          + position.coords.longitude             + '<br />' +
+                        'Altitude: '           + position.coords.altitude              + '<br />' +
+                        'Accuracy: '           + position.coords.accuracy              + '<br />' +
+                        'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
+                        'Heading: '            + position.coords.heading               + '<br />' +
+                        'Speed: '              + position.coords.speed                 + '<br />' +
+                        'Timestamp: '          + position.timestamp                    + '<br />';
+}
+
+// onError Callback receives a PositionError object
+//
+function onError(error) {
+    alert('code: '    + error.code    + '\n' +
+          'message: ' + error.message + '\n');
 }
 $(function(){
 
