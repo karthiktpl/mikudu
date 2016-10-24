@@ -68,7 +68,8 @@ document.addEventListener("deviceready", function() {
 	var mapDiv = document.getElementById("map_canvas");
 	var storage = window.localStorage; 
 	var district=storage.getItem('blooddistrict');
-	var value = Setmarkers(district);      
+	var value = Setmarkers(district);    
+	var mylocatrion='';	
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
     function Setmarkers(district)
     {
@@ -128,11 +129,19 @@ document.addEventListener("deviceready", function() {
     function SetNavigation(item, index)
     {
           item.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {            
-                var loclat=new plugin.google.maps.LatLng(item.get("position").lat,item.get("position").lng);
-                plugin.google.maps.external.launchNavigation({
-                  "from": mylocatrion,
-                  "to":loclat 
-                });                                               
+                if(mylocatrion!='')
+				{
+					var loclat=new plugin.google.maps.LatLng(item.get("position").lat,item.get("position").lng);
+					plugin.google.maps.external.launchNavigation({
+					  "from": mylocatrion,
+					  "to":loclat 
+					});                                               				
+				}
+				else
+				{
+					alert('Unable to navigate. Please check your GPS Settings');
+				}
+				
           });       
     }
 	/*
