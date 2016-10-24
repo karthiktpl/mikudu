@@ -56,10 +56,27 @@
     <script src="app/checklist-model.js"></script>
     <script src="js/googlelogin.js"></script>
 	<script>
-	$(function(){
-		if (!navigator.onLine) {   
-			 alert('offline');     
-		}
-	});
+var internet;
+document.addEventListener('online',online,false);
+document.addEventListener('offline',offline,false);
+
+
+function online(){
+
+  internet=true;
+}
+
+function offline(){
+ internet=false;
+}
+
+if(internet){
+
+// internet is connected
+
+}else{
+
+// internet is not connected
+}
 	</script>
 </html>
