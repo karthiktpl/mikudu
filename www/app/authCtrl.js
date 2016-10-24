@@ -122,14 +122,14 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
 		facebookConnectPlugin.login(["email"],$scope.fbLoginSuccess,function (error) { alert("" + error) }); 
 	}
 	$scope.fbLoginSuccess = function (userData) {
-			alert("UserInfo: " + JSON.stringify(userData));
+			/*alert("UserInfo: " + JSON.stringify(userData));*/
 			facebookConnectPlugin.api('/me?fields=id,email,name', null,
 			 function(response) {
-                /*$scope.values = {Email:data.email,Name:data.given_name};                
-                $scope.socialLogin();*/				 
-				 alert("UserInfo: " + JSON.stringify(response));
+                $scope.values = {Email:data.email,Name:data.given_name};                
+                $scope.socialLogin();				 
+				 /*alert("UserInfo: " + JSON.stringify(response));
 				 alert('Good to see you, ' +
-					 response.email + response.name + '.');
+					 response.email + response.name + '.');*/
 			 });
 	}	
     $scope.socialLogin = function ()
