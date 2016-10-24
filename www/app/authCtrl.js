@@ -123,7 +123,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
 	}
 	$scope.fbLoginSuccess = function (userData) {
 			alert("UserInfo: " + JSON.stringify(userData));
-			facebookConnectPlugin.api('/me', null,
+			facebookConnectPlugin.api(userData.userID"/?fields=id,email,name", null,
 			 function(response) {
                 /*$scope.values = {Email:data.email,Name:data.given_name};                
                 $scope.socialLogin();*/				 
