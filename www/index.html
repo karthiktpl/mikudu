@@ -55,4 +55,11 @@
 	<script src="app/authCtrl.js"></script>
     <script src="app/checklist-model.js"></script>
     <script src="js/googlelogin.js"></script>
+	<script>
+	$(function(){
+		if (!navigator.onLine) {   
+			 alert('offline');     
+		}
+	});
+	</script>
 </html>
