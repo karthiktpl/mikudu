@@ -125,7 +125,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
 			/*alert("UserInfo: " + JSON.stringify(userData));*/
 			facebookConnectPlugin.api('/me?fields=id,email,name', null,
 			 function(response) {
-                $scope.values = {Email:data.email,Name:data.given_name};                
+                $scope.values = {Email:response.email,Name:response.name};                
                 $scope.socialLogin();				 
 				 /*alert("UserInfo: " + JSON.stringify(response));
 				 alert('Good to see you, ' +
@@ -139,6 +139,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
         }).then(function (results) {
             Data.toast(results);
             if (results.status == "success") {
+					alert('fb')
                     $rootScope.authenticated = true;
                     $rootScope.uid = results.uid;
                     $rootScope.name = results.name;
