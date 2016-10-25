@@ -117,9 +117,9 @@
 						  <div class="form-group">
 							<label for="landline">Land line</label>
                             <div class="input-group"> 
-                            <input type="number" class="form-control input-md" maxlength="2" ng-minlength="2" ng-maxlength="2"  ng-model="customer.landline1" name="Land1" id="Land1" placeholder="ISD" ng-required="true" style="width: 25%;">
-                            <input type="number" class="form-control input-md" maxlength="3" ng-minlength="3" ng-maxlength="3"  ng-model="customer.landline2" name="Land2" id="Land2" placeholder="STD" ng-required="true"  style="width: 25%;">
-                            <input type="number" class="form-control input-md" maxlength="7" ng-minlength="7" ng-maxlength="7"  ng-model="customer.landline3" name="Land3" id="Land3" placeholder="Land Line" ng-required="true"  style="width: 50%;">
+                            <input type="number" class="form-control input-md" maxlength="2" ng-minlength="2" ng-maxlength="2"  ng-model="customer.landline1" name="Land1" id="Land1" placeholder="ISD" style="width: 25%;">
+                            <input type="number" class="form-control input-md" maxlength="3" ng-minlength="3" ng-maxlength="3"  ng-model="customer.landline2" name="Land2" id="Land2" placeholder="STD" style="width: 25%;">
+                            <input type="number" class="form-control input-md" maxlength="7" ng-minlength="7" ng-maxlength="7"  ng-model="customer.landline3" name="Land3" id="Land3" placeholder="Land Line" style="width: 50%;">
                             <small class="errorMessage" data-ng-show="((signupForm.Land1.$error.minlength || signupForm.Land1.$error.maxlength) && signupForm.Land1.$dirty) " style="width: 25%;"> ISD code should be 2 digits.</small>
                             <small class="errorMessage" data-ng-show="((signupForm.Land2.$error.minlength || signupForm.Land2.$error.maxlength) && signupForm.Land2.$dirty) " style="width: 25%;"> STD code should be 3 digits.</small>
                             <small class="errorMessage" data-ng-show="((signupForm.Land3.$error.minlength || signupForm.Land3.$error.maxlength) && signupForm.Land3.$dirty) " style="width: 50%;"> Land Line number should be 7 digits.</small>

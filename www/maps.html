@@ -46,9 +46,10 @@
 		</div>
 	</div>
 	<div style="width:100%;height:400px" id="map_canvas"> </div>
-    <div class="alert alert-info"><b>Please zoom and touch on the red pin to see the details.</b><br><b>Click on the white box to see the directions. ( Please make sure your gps location is on before you login to the app to see google navigation from your location )</b> </div>
-    <div id="geolocation"></div>	
-					
+    <div class="alert alert-info"><b>Please zoom and touch on the red pin to see the details.</b>
+		<!--<br><b>Click on the white box to see the directions. ( Please make sure your gps location is on before you login to the app to see google navigation from your location )</b>-->
+	</div>
+			
 </body>
   <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
     <script src="js/jquery.js"></script>
@@ -70,7 +71,10 @@ document.addEventListener("deviceready", function() {
 	var district=storage.getItem('blooddistrict');
 	var value = Setmarkers(district);    
 	var mylocatrion='';	
-    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    /*
+		function to get GPS current position
+	navigator.geolocation.getCurrentPosition(onSuccess, onError);
+	*/
     function Setmarkers(district)
     {
     		var markers;
@@ -86,13 +90,13 @@ document.addEventListener("deviceready", function() {
     		});
     		return markers;
     }
-    function onSuccess(position) {
+    /*function onSuccess(position) {
         mylocatrion=new plugin.google.maps.LatLng(position.coords.latitude,position.coords.longitude);                               
     }
     function onError(error) {
         alert('code: '    + error.code    + '\n' +
               'message: ' + error.message + '\n');
-    }        
+    } */       
 	var map = plugin.google.maps.Map.getMap(mapDiv, {
 	'camera': {
 	  'latLng': {lat:value.districtlat.lat, lng: value.districtlat.lng},
@@ -111,7 +115,9 @@ document.addEventListener("deviceready", function() {
 	var markers = [];
 	addMarkers(data, function(markers) {
 	  markers[markers.length - 1].showInfoWindow();
-      markers.forEach(SetNavigation)
+      /*
+	  call to function to set navigation on pin box click
+	  markers.forEach(SetNavigation)*/
 	});		
 	function addMarkers(data, callback) {
 	  var markers = [];
@@ -126,7 +132,9 @@ document.addEventListener("deviceready", function() {
 		map.addMarker(markerOptions, onMarkerAdded);
 	  });
 	}
-    function SetNavigation(item, index)
+    /*
+	function to set navigation on pin box click
+	function SetNavigation(item, index)
     {
           item.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {            
                 if(mylocatrion!='')
@@ -143,7 +151,7 @@ document.addEventListener("deviceready", function() {
 				}
 				
           });       
-    }
+    }*/
 	/*
   marker.addEventListener(plugin.google.maps.event.MARKER_CLICK, function() {
     alert("Marker is clicked");
