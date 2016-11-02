@@ -72,9 +72,38 @@
             <div class="row">
                 <div class="col-md-12">              
                    <div class="comments-list">
-                       <div class="media" ng-repeat="notificationlist in notificationlists" ng-include="getIncludeFile(notificationlist.items)" >
-
-                        </div>
+                        <div class="media" ng-repeat="notificationlist in notificationlists" >
+                            <div id="requestdiv{{notificationlist.items.data.Notification_Id}}" ng-show="notificationlist.items.type==0">
+                             <p class="pull-right"><small><small><time am-time-ago="notificationlist.items.data.Requestedon" title="{{ notificationlist.items.data.Requestedon | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}"></time></small></small></p>
+                                    <div class="media-body">
+                                  <h4 class="media-heading bldr">{{notificationlist.items.data.Name | uppercase}} <span class="smallfont">would like to get </span><span class="label label-danger">{{notificationlist.items.data.Bloodgroup | uppercase}}</span> <span class="smallfont">on {{notificationlist.items.data.Neededon | date : fullDate}}</span> <span class="smallfont">At</span></h4>
+                                  <h5>{{notificationlist.items.data.Location_Address}}, {{notificationlist.items.data.District}}</h5>
+                                  <h5>{{notificationlist.items.data.Remarks}}</h5>      
+                                  <p><button type="button" class="btn btn-primary btn-xs" ng-click="AcceptRequest(notificationlist.items.data);">Accept</button> <button type="button" class="btn btn-default btn-xs" ng-click="IgnoreRequest(notificationlist.items.data);">Ignore</button></p>
+                                </div>
+                            </div>  
+                        
+                            <div id="acceptview{{notificationlist.items.data.Notification_Id}}" ng-show="notificationlist.items.type==1">
+                             <p class="pull-right"><small><time am-time-ago="notificationlist.items.data.Requestedon" title="{{ notificationlist.items.data.Requestedon | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}"></time></small></p>
+                                    <div class="media-body">
+                                  <h4 class="media-heading bldr">{{notificationlist.items.data.sender | uppercase}} <span class="smallfont">has accepted your request for </span><span class="label label-danger">{{notificationlist.items.data.Bloodgroup | uppercase}}</span> <span class="smallfont">blood on {{notificationlist.items.data.Neededon | date : fullDate}}</span></h4>
+                                  <h5>Please contact {{notificationlist.items.data.sender | uppercase}} on Phone: {{notificationlist.items.data.Mobile}} Email: {{notificationlist.items.data.Email}}</h5>          
+                                  <p><button type="button" class="btn btn-primary btn-xs" ng-click="RequestContact(notificationlist.items.data);">Thanks will contact</button> <button type="button" class="btn btn-default btn-xs" ng-click="RequestEnough(notificationlist.items.data);">Thanks we got enough</button></p>
+                                </div>
+                            </div>
+                            <div class="alert alert-info" id="thankyouview{{notificationlist.items.data.Notification_Id}}" ng-show="notificationlist.items.type==2">
+                            	<button type="button" class="close" ng-click="RemoveThanks(notificationlist.items.data);">x</button>
+                            	<span class="glyphicon glyphicon-info-sign"></span> <strong>Thank you</strong>
+                            	<hr class="message-inner-separator">
+                            	<p>{{notificationlist.items.data.sender | uppercase}}  will contact you to plan the next steps</p>	
+                            </div>
+                            <div class="alert alert-info" id="enoughview{{notificationlist.items.data.Notification_Id}}" ng-show="notificationlist.items.type==3">
+                            	<button type="button" class="close" ng-click="RemoveEnough(notificationlist.items.data);">x</button>
+                            	<span class="glyphicon glyphicon-info-sign"></span> <strong>Thank you</strong>
+                            	<hr class="message-inner-separator">
+                            	<p>{{notificationlist.items.data.sender | uppercase}} has got enough blood now, will contact you if more is required.</p>	
+                            </div>                                                           
+                        </div>                                                   
                         
                    </div>
                     

@@ -83,7 +83,7 @@
 						  <div class="form-group">
                                 <label for="dateneeded">Date of Birth</label>
                                 <div class='input-group date' id='datetimepicker8'>
-                                	<input type='date' class="form-control" name="dob" ng-model="customer.Dob"  placeholder="Date of Birth" />
+                                	<input type='date' class="form-control" name="dob" ng-model="customer.Dob" max="{{customer.dateformat | date:'yyyy-MM-dd'}}"  placeholder="Date of Birth" />
                                 	<span class="input-group-addon">
                                 		<i class="glyphicon glyphicon-calendar form-control-feedback"></i>
                                 	</span>
@@ -158,7 +158,7 @@
 						  <div class="form-group">
                                 <label for="dateneeded">Last Donated</label>
                                 <div class='input-group date' id='datetimepicker8'>
-                                	<input type='date' class="form-control" name="donated" ng-model="customer.Lastdonated"  placeholder="Last Donated" />
+                                	<input type='date' class="form-control" name="donated" ng-model="customer.Lastdonated" max="{{customer.dateformat | date:'yyyy-MM-dd'}}"  placeholder="Last Donated" />
                                 	<span class="input-group-addon">
                                 		<i class="glyphicon glyphicon-calendar form-control-feedback"></i>
                                 	</span>

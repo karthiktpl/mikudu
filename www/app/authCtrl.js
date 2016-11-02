@@ -50,8 +50,16 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                     storage.setItem('email', results.email);
                     storage.setItem('district', results.district);
                     storage.setItem('notifications', results.notifications);
-                    storage.setItem('updatestatus', results.updatestatus);                                                                           
-                $location.path('dashboard');
+                    storage.setItem('updatestatus', results.updatestatus); 
+                    if(results.forgotpassword=='1')
+                    {
+                       $location.path('changepassword');         
+                    }   
+                    else
+                    {
+                        $location.path('dashboard');
+                    }                                                                       
+                
             }
         });
     };
@@ -146,8 +154,14 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                     var storage = window.localStorage;                    
                     storage.setItem('uid', results.uid);
                     storage.setItem('name', results.name);
-                    storage.setItem('email', results.email);                                                                             
-                $location.path('profile/'+results.uid);
+                    storage.setItem('email', results.email);
+                    if(results.updatestatus=='1')
+                    {
+                        $location.path('dashboard');       
+                    }else{
+                        $location.path('profile/'+results.uid);
+                    }                                                                             
+                
             }
         });        
         
@@ -193,7 +207,7 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
       $scope.isClean = function() {
         return angular.equals(original, $scope.customer);
       }
-
+    $scope.customer.dateformat= new Date();
       var originalcountry = country;       
       $scope.countries = angular.copy(originalcountry);
       
@@ -271,7 +285,8 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
       }
     $scope.request = {Name:$scope.customer.Name,User_Id:customerID,Neededon:'',Bloodgroup_Id:'',Country_Id:$scope.countries[0].Id,State_Id:'',District_Id:'',
                     Location_Address:'',Remarks:'',Cananygroup:'',Directcontact:'1',Mobile1:$scope.customer.Mobilenumber,Mobile2:'',Mobile3:'',
-                    Email1:$scope.customer.Email,Email2:'',Email3:''};      
+                    Email1:$scope.customer.Email,Email2:'',Email3:''};
+    $scope.request.Neededon= new Date();                          
         Data.getStates('states?country='+$scope.request.Country_Id).then(function (results) {
             var originalstates=results;
             $scope.states = angular.copy(originalstates);                  
@@ -450,7 +465,8 @@ app.controller('notificationsCtrl', function ($scope, $rootScope, $location, $ro
              return 'partials/nonotifications.html';
         }               
     }
- $scope.AcceptRequest=function(requestdata){  
+ $scope.AcceptRequest=function(requestdata){
+        requestdata.Loggeduser=$routeParams.customerID; 
             Data.post('acceptrequest', {
                 request: requestdata
             }).then(function (results) {
@@ -463,6 +479,7 @@ app.controller('notificationsCtrl', function ($scope, $rootScope, $location, $ro
     };
 
     $scope.IgnoreRequest=function(requestdata){
+            requestdata.Loggeduser=$routeParams.customerID;
             Data.post('ignorerequest', {
                 request: requestdata
             }).then(function (results) {
@@ -475,6 +492,7 @@ app.controller('notificationsCtrl', function ($scope, $rootScope, $location, $ro
     };
 
     $scope.RequestContact=function(requestdata){
+            requestdata.Loggeduser=$routeParams.customerID;
             Data.post('requestcontact', {
                 request: requestdata
             }).then(function (results) {
@@ -487,6 +505,7 @@ app.controller('notificationsCtrl', function ($scope, $rootScope, $location, $ro
     };
 
     $scope.RequestEnough=function(requestdata){
+            requestdata.Loggeduser=$routeParams.customerID;
             Data.post('requestenough', {
                 request: requestdata
             }).then(function (results) {
@@ -530,12 +549,14 @@ app.controller('passwordCtrl', function ($scope, $rootScope, $routeParams, $loca
         }).then(function (results) {
             Data.toast(results);
             if (results.status == "success") {
-                $location.path('dashboard');
+                $location.path('logout');
             }
         });
     }; 
     $scope.forgotpassword = {Email:''};
+    $scope.showbutton=true;
     $scope.sendrequest=function(forgotpassword){
+        $scope.showbutton=false;
         Data.post('forgotpassword', {
             customer: forgotpassword
         }).then(function (results) {
@@ -550,8 +571,12 @@ app.controller('requestsCtrl', function ($scope, $rootScope, $routeParams, $loca
     var storage = window.localStorage;
     var customerID = storage.getItem('uid');
     Data.get('myrequests?customer='+customerID).then(function (results) {            
-        var requestslist=results;
-        $scope.requestslists = angular.copy(requestslist);                  
+        if(results.status=='Succcess')
+        {
+            var requestslist=results.data;
+            $scope.requestslists = angular.copy(requestslist);            
+        }
+                          
     });  
     $scope.getIncludeReqFile = function(lists) {    
         // Make this more dynamic, but you get the idea 

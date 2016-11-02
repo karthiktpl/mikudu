@@ -109,7 +109,7 @@
             	  <div class="form-group">
                     <label for="dateneeded">Date Needed</label>
             		<div class='input-group date' id='datetimepicker8'>
-            			<input type='date' class="form-control" name="neededon" ng-model="request.Neededon" ng-required="true"  placeholder="Date Needed" />
+            			<input type='date' class="form-control" name="neededon" ng-model="request.Neededon" ng-required="true" min="{{request.Neededon | date:'yyyy-MM-dd'}}"  placeholder="Date Needed" />
             			<span class="input-group-addon">
             				<i class="glyphicon glyphicon-calendar form-control-feedback"></i>
             			</span>

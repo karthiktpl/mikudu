@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('MikuduBloodApp', ['ngRoute', 'ngAnimate', 'toaster','checklist-model']);
+var app = angular.module('MikuduBloodApp', ['ngRoute', 'ngAnimate', 'toaster','checklist-model','angularMoment']);
 app.config(function ($httpProvider,$compileProvider) {
   $httpProvider.defaults.headers.common = {};
   $httpProvider.defaults.headers.post = {};
@@ -87,7 +87,7 @@ app.config(['$routeProvider',
                 controller: 'passwordCtrl',                
             })
             .when('/viewrequest/:requestID', {
-                title: 'changepassword',
+                title: 'viewrequest',
                 templateUrl: 'partials/viewrequest.html',
                 controller: 'viewRequestCtrl',
                 resolve: {
@@ -154,8 +154,11 @@ app.config(['$routeProvider',
                 $rootScope.name = storage.getItem('name');
                 $rootScope.email = storage.getItem('email');
                 $rootScope.district = storage.getItem('district');
-                $rootScope.notifications = storage.getItem('notifications');
-                $rootScope.updatestatus = storage.getItem('updatestatus');                                 
+                $rootScope.updatestatus = storage.getItem('updatestatus');
+                Data.get('notificationcount?customer='+$rootScope.uid).then(function (results) {
+                        //$rootScope.notifications = storage.getItem('notifications');
+                        $rootScope.notifications = results.notifications;                     
+                });                                                 
             }
             else
             {
@@ -166,23 +169,7 @@ app.config(['$routeProvider',
                         $location.path("/login");
                     }                
             }          
-            /*Data.get('session').then(function (results) {
-                if (results.uid) {
-                    $rootScope.authenticated = true;
-                    $rootScope.uid = results.uid;
-                    $rootScope.name = results.name;
-                    $rootScope.email = results.email;
-                    $rootScope.district = results.district;
-                    $rootScope.notifications = results.notifications;                     
-                } else {
-                    var nextUrl = next.$$route.originalPath;
-                    if (nextUrl == '/signup' || nextUrl == '/login') {
 
-                    } else {
-                        $location.path("/login");
-                    }
-                }
-            });*/
         });
     });
         
