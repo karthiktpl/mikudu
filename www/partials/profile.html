@@ -152,8 +152,8 @@
 						  </div>-->                           
 						  <div class="form-group">
 							<label for="bloodgrp">Pincode</label>
-                            <input type="text" class="form-control" ng-model="customer.Pincode" id="pincode" name="pincode" placeholder="Pincode" ng-required="true">
-                            <small class="errorMessage" data-ng-show="signupForm.pincode.$dirty && signupForm.pincode.$error.required"> Enter Pincode.</small>							
+                            <input type="number" class="form-control" ng-model="customer.Pincode" id="pincode" name="pincode" placeholder="Pincode"  maxlength="2" ng-minlength="6" ng-maxlength="6">
+                            <small class="errorMessage" data-ng-show="((signupForm.pincode.$error.minlength || signupForm.pincode.$error.maxlength) && signupForm.pincode.$dirty) " style="width: 25%;"> Pincode should be 6 digits.</small>                            						
 						  </div>
 						  <div class="form-group">
                                 <label for="dateneeded">Last Donated</label>

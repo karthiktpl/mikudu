@@ -570,11 +570,14 @@ app.controller('passwordCtrl', function ($scope, $rootScope, $routeParams, $loca
 app.controller('requestsCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data) {
     var storage = window.localStorage;
     var customerID = storage.getItem('uid');
-    Data.get('myrequests?customer='+customerID).then(function (results) {            
+    
+    Data.get('myrequests?customer='+customerID).then(function (results) {
+        $scope.haveresult=false;        
         if(results.status=='Succcess')
         {
             var requestslist=results.data;
-            $scope.requestslists = angular.copy(requestslist);            
+            $scope.requestslists = angular.copy(requestslist);
+            $scope.haveresult=true;            
         }
                           
     });  
