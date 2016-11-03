@@ -209,6 +209,7 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
       }
     $scope.customer.dateformat= new Date();
     $scope.customer.Pincode=($scope.customer.Pincode*1);
+    
       var originalcountry = country;       
       $scope.countries = angular.copy(originalcountry);
       
