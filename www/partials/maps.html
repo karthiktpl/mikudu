@@ -57,8 +57,8 @@
 		<div class="row">
 			<div class="col-lg-12 text-left">
 				<div class="panel panel-primary" >
-					<div class="panel-heading"><img src="img/hed.png" class="bldbnk">Blood Banks</div>
-					<div class="panel-body">
+					<div class="panel-heading"><img src="img/hed.png" class="bldbnk">Blood Banks <div class="pull-right" ng-show="showresult==true"><a ng-click="goback();" class="btn btn-success"><i class="fa fa-step-backward" aria-hidden="true"></i></a></div></div>
+					<div class="panel-body" data-ng-show="showresult==false">
 						<form role="form" action="" method="post" id="signupForm" name="signupForm">
 						   <div class="row">
 							<div class="col-xs-12">
@@ -86,11 +86,31 @@
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="setmap(mapsval);" data-ng-disabled="signupForm.$invalid">Search</button>
+									<!--<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="setmap(mapsval);" data-ng-disabled="signupForm.$invalid">Search</button>-->
+                                    <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="Getbanks(mapsval);" data-ng-disabled="signupForm.$invalid">Search</button>
 								</div>
 							</div>							
-						</form>
+						</form>                                                
 					</div>
+                    <div class="panel-body" data-ng-show="showresult">
+                        <div class="row" >
+                        	<div class="col-md-12">              
+                        	   <div class="comments-list">
+                        			<div class="media" ng-repeat="banksresult in banksresults" >
+                        				<div id="bankdiv"> 
+                        					<div class="media-body">
+                                              <div class="col-xs-8"><h4 class=" bldr">{{banksresult.Name | uppercase}} </h4>						
+                        					  <h5>{{banksresult.Address}}</h5>
+                                              <h5>{{banksresult.mobile}}</h5></div>                                            
+                        					  
+                                              <div class="col-xs-3 pull-right" data-ng-show="banksresult.Longitude!=''"><a href="http://maps.google.com/?q={{banksresult.Longitude}}" class="btn btn-success pull-right"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></div> 					  					  
+                        					</div>
+                        				</div>
+                        			</div>			
+                        	   </div>					
+                        	</div>
+                        </div>
+                    </div>                    
 				</div>
 			</div>
 		</div>

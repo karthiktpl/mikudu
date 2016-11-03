@@ -641,6 +641,30 @@ app.controller('mapCtrl', function ($scope, $rootScope, $routeParams, $location,
 		storage.setItem('blooddistrict', searchval.District_Id);
 		window.location='maps.html'
 		//$window.location= 'maps.html';
-    };	
+    };
+    $scope.showresult=false;
+    $scope.shownoresult=false;
+    $scope.Getbanks=function(searchval){
+    $scope.showresult=false;
+    $scope.shownoresult=false; 
+    $scope.banksresults='';       
+    	Data.getStates('bloodbanks?district='+searchval.District_Id).then(function (results) {
+    	   if(results.status=='success'){    	       
+    	       $scope.showresult=true;
+                var originalbanks=results.banks;
+                $scope.banksresults = angular.copy(originalbanks);               
+    	   }
+           else{
+                $scope.shownoresult=true;            
+           }
+    		
+    		                 
+    	});        
+    }
+    $scope.goback=function(){
+        $scope.showresult=false;
+        $scope.shownoresult=false;
+        $scope.banksresults='';                
+    }	
  	
 });
