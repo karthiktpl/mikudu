@@ -3,7 +3,25 @@ app.directive('focus', function() {
         element[0].focus();
     }      
 });
+app.directive('ngModel', function() {
+    return {
+        require: 'ngModel',
+        link: function(scope, elem, attr, ngModel) {
+            elem.on('blur', function() {
+                ngModel.$dirty = true;
+                scope.$apply();
+            });
 
+            ngModel.$viewChangeListeners.push(function() {
+                ngModel.$dirty = false;
+            });
+
+            scope.$on('$destroy', function() {
+                elem.off('blur');
+            });
+        }
+    }
+});
 app.directive('passwordMatch', [function () {
     return {
         restrict: 'A',

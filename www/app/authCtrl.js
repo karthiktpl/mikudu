@@ -209,6 +209,7 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
       }
     $scope.customer.dateformat= new Date();
     $scope.customer.Pincode=($scope.customer.Pincode*1);
+    $scope.customer.Mobilenumber=($scope.customer.Mobilenumber*1);
     
       var originalcountry = country;       
       $scope.countries = angular.copy(originalcountry);
@@ -544,8 +545,10 @@ app.controller('notificationsCtrl', function ($scope, $rootScope, $location, $ro
 });
 app.controller('passwordCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data) {
     var storage = window.localStorage; 
+    $scope.changebutton=true;    
     $scope.changepassword = {User_Id:storage.getItem('uid'),password:'',confirmpassword:''};  
-    $scope.PasswordChange = function (customer) {        
+    $scope.PasswordChange = function (customer) {
+        $scope.changebutton=false;
         Data.post('changepassword', {
             customer: customer
         }).then(function (results) {
@@ -556,7 +559,7 @@ app.controller('passwordCtrl', function ($scope, $rootScope, $routeParams, $loca
         });
     }; 
     $scope.forgotpassword = {Email:''};
-    $scope.showbutton=true;
+    $scope.showbutton=true;  
     $scope.sendrequest=function(forgotpassword){
         $scope.showbutton=false;
         Data.post('forgotpassword', {

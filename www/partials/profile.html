@@ -15,7 +15,7 @@
                 <li class="dropdown">                    
                     <a  href="#/notifications/{{uid}}" aria-expanded="false">
                         <i class="fa fa-bell fa-fw"></i> 
-                		<span class="label label-primary">{{notifications}}</span>
+                		<span class="label label-primary" ng-show="notifications>0">{{notifications}}</span>
                     </a>                   
                 </li>
                 <li class="dropdown">                    
@@ -108,7 +108,7 @@
                     			<span class="input-group-addon">
                     				+91
                     			</span>                                
-                                <input type="text" ng-minlength="10" ng-maxlength="10" class="form-control" ng-model="customer.Mobilenumber" name="Mobilenumber" id="mobile" placeholder="Mobile" ng-required="true">                                                    			
+                                <input type="number" ng-minlength="10" ng-maxlength="10" class="form-control" ng-model="customer.Mobilenumber" name="Mobilenumber" id="mobile" placeholder="Mobile" ng-required="true">                                                    			
                     		</div>
                             <small class="errorMessage" data-ng-show="((signupForm.Mobilenumber.$error.minlength || signupForm.Mobilenumber.$error.maxlength) && signupForm.Mobilenumber.$dirty) "> phone number should be 10 digits.</small>
                                                          

@@ -45,6 +45,7 @@
 	  <div class="form-group">
 		<label for="name">Name</label>
 		<input type="text" class="form-control" id="name" name="name" placeholder="Name"  ng-model="signup.name"  required>
+        <small class="errorMessage" data-ng-show="signupForm.name.$dirty && signupForm.name.$error.required"> Enter Name.</small>        
 	  </div> 
 	  <div class="form-group">
 		<label for="mobile">Mobile</label>
@@ -52,16 +53,19 @@
 			<span class="input-group-addon">
 				+91
 			</span>                                
-            <input type="text" class="form-control" ng-minlength="10" ng-maxlength="10"  id="mobile" name="mobile" placeholder="Mobile Number"  ng-model="signup.mobile"  required>                    			
+            <input type="number" class="form-control" ng-minlength="10" ng-maxlength="10"  id="mobile" name="mobile" placeholder="Mobile Number"  ng-model="signup.mobile"  required>                    			
 		</div>                                                        
-        <small class="errorMessage" data-ng-show="((signupForm.mobile.$error.minlength || signupForm.mobile.$error.maxlength) && signupForm.mobile.$dirty) "> phone number should be 10 digits.</small>        
+        <small class="errorMessage" data-ng-show="((signupForm.mobile.$error.minlength || signupForm.mobile.$error.maxlength)) "> phone number should be 10 digits.</small>
+        <small class="errorMessage" data-ng-show="signupForm.mobile.$dirty && signupForm.mobile.$error.required"> Enter Phone number.</small>        
 		
 	  </div>           
 	  <div class="form-group">
 		<label for="bloodgrp">Blood Group</label>
+        
 		<select class="form-control" id="bloodgroup" name="bloodgroup" ng-model="signup.bloodgroup" ng-options="bloodgroup as bloodgroup.label for bloodgroup in bloodgroups" required>
-		  
-		</select>        		
+            <option value="">Select Blood Group</option>                		  
+		</select>
+        <small class="errorMessage" data-ng-show="signupForm.bloodgroup.$dirty && signupForm.bloodgroup.$error.required">Select Blood Group.</small>        		
 	  </div>
         <div class="form-group">
         	<div class="checkbox"> <label> <input ng-model="termscheck" name="termscheck" type="checkbox"  required>I Agree to Mikudu <a href="javascript:void(0);" ng-click="showTerms()">Terms and Conditions</a> </label> </div>       		
