@@ -819,52 +819,6 @@ border-radius: 58%;
 
 
 .bldr{    font-weight: bolder;}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.redspan,.help-inline,.errorMessage{
+    color: #de0e0e;
+}

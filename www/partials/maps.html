@@ -12,14 +12,19 @@
 			<div class="navbar-collapse">         
 				<ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">                    
+                    <a  href="#/dashboard" aria-expanded="false">
+                        <i class="fa fa-home fa-fw fa-2x" aria-hidden="true"></i>                		
+                    </a>                   
+                </li>                
+                <li class="dropdown">                    
                     <a  href="#/notifications/{{uid}}" aria-expanded="false">
-                        <i class="fa fa-bell fa-fw"></i> 
+                        <i class="fa fa-bell fa-fw  fa-2x"></i> 
                 		<span class="label label-primary" ng-show="notifications>0">{{notifications}}</span>
                     </a>                   
                 </li>
 					<li class="dropdown">                    
 						<a  href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-							<i class="fa fa-cog fa-fw"></i> 
+							<i class="fa fa-cog fa-fw  fa-2x"></i> 
 							<span class="label label-primary"></span>
 						</a>
 						<ul class="dropdown-menu dropdown-alerts">
@@ -64,7 +69,7 @@
 							<div class="col-xs-12">
 								<div class="form-group">
 									<label for="name">Select Country</label>
-									<select ng-model="mapsval.Country_Id" class="form-control" ng-change="getCountryStates()" ng-options="obj.Id as obj.Name for obj in countries" ng-required="true">                                  
+									<select ng-model="mapsval.Country_Id" readonly="true"   class="form-control" ng-change="getCountryStates()" ng-options="obj.Id as obj.Name for obj in countries" ng-required="true">                                  
 									<option value="">Select Country</option>
                                     </select>
 								</div>
@@ -92,7 +97,7 @@
 							</div>							
 						</form>                                                
 					</div>
-                    <div class="panel-body" data-ng-show="showresult">
+                    <div class="panel-body"  data-ng-show="banksresults.length > 0">
                         <div class="row" >
                         	<div class="col-md-12">              
                         	   <div class="comments-list">
@@ -110,7 +115,26 @@
                         	   </div>					
                         	</div>
                         </div>
-                    </div>                    
+                    </div>
+                    <div class="panel-body" data-ng-show="shownoresult">
+                        <div class="row" >
+                        	<div class="col-md-12">              
+                        	   <div class="comments-list">                        			
+                        				<div id="bankdiv"> 
+                        					<div class="media-body">
+                                              <div class="col-xs-12">
+                                                <center>No results found. Please search with another district. <br />
+                                                <a class="btn btn-primary btn-sm"  ng-click="goback();">
+                                                    back to search
+                                                </a>
+                                                </center>  
+                                            </div>                                                                    					                                                 					  					  
+                        					</div>
+                        				</div>                        						
+                        	   </div>					
+                        	</div>
+                        </div>
+                    </div>                                         
 				</div>
 			</div>
 		</div>

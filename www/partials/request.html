@@ -13,14 +13,19 @@
         <div class="navbar-collapse">         
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">                    
+                    <a  href="#/dashboard" aria-expanded="false">
+                        <i class="fa fa-home fa-fw fa-2x" aria-hidden="true"></i>                		
+                    </a>                   
+                </li>            
+                <li class="dropdown">                    
                     <a  href="#/notifications/{{uid}}" aria-expanded="false">
-                        <i class="fa fa-bell fa-fw"></i> 
+                        <i class="fa fa-bell fa-fw  fa-2x"></i> 
                 		<span class="label label-primary" ng-show="notifications>0">{{notifications}}</span>
                     </a>                   
                 </li>
                 <li class="dropdown">                    
                     <a  href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-cog fa-fw"></i> 
+                        <i class="fa fa-cog fa-fw  fa-2x"></i> 
 						<span class="label label-primary"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
@@ -70,27 +75,33 @@
 			
 				<div class="col-xs-12 ">
 					  <div class="form-group">
-					  <label for="bloodgroup">Blood Group</label>
+					  <label for="bloodgroup">Blood Group   <span class="redspan">*</span></label>
     				<select id="bloodgroup"  name="bloodgroup" class="form-control" ng-model="request.Bloodgroup_Id" ng-required="true">
     					<span class="btn-select-arrow glyphicon glyphicon-chevron-down"></span>
+                        <option value="">Select Bloof Group</option>
                         <option ng-repeat="x in bloodgroups" value="{{x.Id}}">{{x.Name}}</option>                        					 
     				</select>
                     <small class="errorMessage" data-ng-show="signupForm.bloodgroup.$dirty && signupForm.bloodgroup.$error.required"> Select Blood Group.</small>					  					  
 				  </div>
                 <div class="form-group">
-                    <label for="name">Country</label>
-                    <select ng-model="request.Country_Id" name="country" class="form-control" ng-change="getCountryStates()" ng-options="obj.Id as obj.Name for obj in countries" ng-required="true">                                  
+                    <label for="name">Country <span class="redspan">*</span></label>
+                    <select ng-model="request.Country_Id" readonly="true"  name="country" class="form-control" ng-change="getCountryStates()" ng-options="obj.Id as obj.Name for obj in countries" ng-required="true">                                  
+                    <option value="">Select Country</option>
                     </select>
                     <small class="errorMessage" data-ng-show="signupForm.country.$dirty && signupForm.country.$error.required"> Select Country.</small>
                 </div>
                 <div class="form-group">
-                    <label for="bloodgrp">State</label>
-                    <select class="form-control" name="state" ng-model="request.State_Id" ng-options="x.Id as x.Name for x in states" ng-change="getStatesCities()"  ng-required="true"></select>
+                    <label for="bloodgrp">State <span class="redspan">*</span></label>
+                    <select class="form-control" name="state" ng-model="request.State_Id" ng-options="x.Id as x.Name for x in states" ng-change="getStatesCities()"  ng-required="true">
+                    <option value="">Select State</option>
+                    </select>
                     <small class="errorMessage" data-ng-show="signupForm.state.$dirty && signupForm.state.$error.required"> Select State.</small>
                 </div>
                 <div class="form-group">
-                    <label for="bloodgrp">District</label>
-                    <select class="form-control" name="district" ng-model="request.District_Id"  ng-options="y.Id as y.Name for y in districts" ng-required="true"></select>
+                    <label for="bloodgrp">District <span class="redspan">*</span></label>
+                    <select class="form-control" name="district" ng-model="request.District_Id"  ng-options="y.Id as y.Name for y in districts" ng-required="true">
+                    <option value="">Select District</option>
+                    </select>
                     <small class="errorMessage" data-ng-show="signupForm.district.$dirty && signupForm.district.$error.required"> Select District.</small>
                 </div>
 			  </div>			
@@ -108,12 +119,8 @@
             	<div class="col-xs-12">
             	  <div class="form-group">
                     <label for="dateneeded">Date Needed</label>
-            		<div class='input-group date' id='datetimepicker8'>
-            			<input type='date' class="form-control" name="neededon" ng-model="request.Neededon" ng-required="true" min="{{request.Neededon | date:'yyyy-MM-dd'}}"  placeholder="Date Needed" />
-            			<span class="input-group-addon">
-            				<i class="glyphicon glyphicon-calendar form-control-feedback"></i>
-            			</span>
-            		</div>
+                    <input type='date' class="form-control" name="neededon" ng-model="request.Neededon" ng-required="true" min="{{request.Neededate | date:'yyyy-MM-dd'}}"  placeholder="Date Needed" />
+            		
                     <small class="errorMessage" data-ng-show="signupForm.neededon.$dirty && signupForm.neededon.$error.required"> Enter Date Needed.</small>
             	  </div>
               </div>
@@ -192,6 +199,16 @@
        </div>
        <span class="help-block"><p id="characterLeftLoc" class="help-block ">Standard rates will be applied</p></span>
     </div>
+    <div class="panel-body" ng-show="noresult==true">
+       <div >         
+            <div class="media-body">
+              <center>No results found. Please search with another district. <br />
+                    	 <a class="btn btn-primary btn-sm"  ng-click="goback();">
+                    	  back to search
+                    	</a>    </center>                                      
+            </div>                  
+       </div>       
+    </div>    
     <div class="panel-body" ng-show="smsresultarray.length > 0">
        <div ng-repeat="(key, val) in smsresultarray">         
             <div class="media-body">

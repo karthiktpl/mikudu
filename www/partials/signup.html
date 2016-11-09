@@ -27,23 +27,23 @@
 <div class="row">
    <div class="col-md-12">					   
 	  <div class="form-group">
-		<label for="name">Email</label>
+		<label for="name">Email <span class="redspan">*</span></label>
 		<input type="email" class="form-control" id="email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" name="email" placeholder="Email" ng-model="signup.email" required focus>
         <span ng-show="signupForm.email.$dirty && signupForm.email.$invalid" class="help-inline">Email is not valid</span>
 	  </div>
 	  <div class="form-group">
-		<label for="password">Password</label>
+		<label for="password">Password <span class="redspan">*</span></label>
 		<input type="password" class="form-control" id="password"  name="password" placeholder="Password" ng-model="signup.password" required >
         <small class="errorMessage" data-ng-show="signupForm.password.$dirty && signupForm.password.$invalid"> Enter Password.</small>
 	  </div>
 	  <div class="form-group">
-		<label for="confirmpassword">Confirm Password</label>
+		<label for="confirmpassword">Confirm Password <span class="redspan">*</span></label>
 		<input type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password"  ng-model="signup.confirmpassword" password-match="signup.password" required>
         <small class="errorMessage" data-ng-show="signupForm.confirmpassword.$dirty && signupForm.confirmpassword.$error.required"> Enter password again.</small>
         <small class="errorMessage" data-ng-show="signupForm.confirmpassword.$dirty && signupForm.confirmpassword.$error.passwordNoMatch && !signupForm.confirmpassword.$error.required"> Password do not match.</small>
 	  </div>
 	  <div class="form-group">
-		<label for="name">Name</label>
+		<label for="name">Name <span class="redspan">*</span></label>
 		<input type="text" class="form-control" id="name" name="name" placeholder="Name"  ng-model="signup.name"  required>
         <small class="errorMessage" data-ng-show="signupForm.name.$dirty && signupForm.name.$error.required"> Enter Name.</small>        
 	  </div> 
@@ -53,14 +53,13 @@
 			<span class="input-group-addon">
 				+91
 			</span>                                
-            <input type="number" class="form-control" ng-minlength="10" ng-maxlength="10"  id="mobile" name="mobile" placeholder="Mobile Number"  ng-model="signup.mobile"  required>                    			
+            <input type="number" class="form-control" ng-minlength="10" ng-maxlength="10"  id="mobile" name="mobile" placeholder="Mobile Number"  ng-model="signup.mobile" >                    			
 		</div>                                                        
-        <small class="errorMessage" data-ng-show="((signupForm.mobile.$error.minlength || signupForm.mobile.$error.maxlength)) "> phone number should be 10 digits.</small>
-        <small class="errorMessage" data-ng-show="signupForm.mobile.$dirty && signupForm.mobile.$error.required"> Enter Phone number.</small>        
+        <small class="errorMessage" data-ng-show="((signupForm.mobile.$error.minlength || signupForm.mobile.$error.maxlength)) "> phone number should be 10 digits.</small>                
 		
 	  </div>           
 	  <div class="form-group">
-		<label for="bloodgrp">Blood Group</label>
+		<label for="bloodgrp">Blood Group <span class="redspan">*</span></label>
         
 		<select class="form-control" id="bloodgroup" name="bloodgroup" ng-model="signup.bloodgroup" ng-options="bloodgroup as bloodgroup.label for bloodgroup in bloodgroups" required>
             <option value="">Select Blood Group</option>                		  

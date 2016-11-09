@@ -12,15 +12,21 @@
         </div>
         <div class="navbar-collapse">         
             <ul class="nav navbar-nav navbar-right">
+            
+                <li class="dropdown">                    
+                    <a  href="#/dashboard" aria-expanded="false">
+                        <i class="fa fa-home fa-fw fa-2x" aria-hidden="true"></i>                		
+                    </a>                   
+                </li>
                 <li class="dropdown">                    
                     <a  href="#/notifications/{{uid}}" aria-expanded="false">
-                        <i class="fa fa-bell fa-fw"></i> 
+                        <i class="fa fa-bell fa-fw fa-2x"></i> 
                 		<span class="label label-primary" ng-show="notifications>0">{{notifications}}</span>
                     </a>                   
                 </li>
                 <li class="dropdown">                    
                     <a  href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-cog fa-fw"></i> 
+                        <i class="fa fa-cog fa-fw fa-2x"></i> 
 						<span class="label label-primary"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-alerts"> 
@@ -69,30 +75,27 @@
 					<div class="row">
 					   <div class="col-md-12">					   
 						  <div class="form-group">
-							<label for="name">Name</label>
-							<input type="text" class="form-control" name="name" ng-model="customer.Name" id="name" placeholder="Name" >                            
+							<label for="name">Name <span class="redspan">*</span></label>
+							<input type="text" class="form-control" name="name" ng-model="customer.Name" id="name" placeholder="Name" required>                            
                             <small class="errorMessage" data-ng-show="signupForm.name.$dirty && signupForm.name.$error.required"> Enter Name.</small>                              
 						  </div>
                     	  <div class="form-group">
-                    		<label for="bloodgrp">Blood Group</label>
+                    		<label for="bloodgrp">Blood Group <span class="redspan">*</span></label>
                     		<select class="form-control" id="bloodgroup"   name="bloodgroup" ng-options="bloodgroup.Id as bloodgroup.Name for bloodgroup in bloodgroups" ng-model="customer.Bloodgroup_Id" required>
-                    		  
+                    		<option value="">Select Blood Group</option>    
                     		</select>
                             <small class="errorMessage" data-ng-show="signupForm.bloodgroup.$dirty && signupForm.bloodgroup.$error.required"> Select blood group.</small>                                  		
                     	  </div>
 						  <div class="form-group">
                                 <label for="dateneeded">Date of Birth</label>
-                                <div class='input-group date' id='datetimepicker8'>
-                                	<input type='date' class="form-control" name="dob" ng-model="customer.Dob" max="{{customer.dateformat | date:'yyyy-MM-dd'}}"  placeholder="Date of Birth" />
-                                	<span class="input-group-addon">
-                                		<i class="glyphicon glyphicon-calendar form-control-feedback"></i>
-                                	</span>
-                                </div>                          							
+                                <input type='date' class="form-control" name="dob" ng-model="customer.Dob" max="{{customer.dateformat | date:'yyyy-MM-dd'}}"  placeholder="Date of Birth" />                         							
                             <small class="errorMessage" data-ng-show="signupForm.dob.$dirty && signupForm.dob.$error.required"> Select Date of Birth.</small>
 						  </div>
 						  <div class="form-group">
 							<label for="gender">Gender</label>
-                            <select class="form-control" id="gender"   name="gender" ng-options="gender.Id as gender.Name for gender in genders" ng-model="customer.Gender" required>	</select>
+                            <select class="form-control" id="gender"   name="gender" ng-options="gender.Id as gender.Name for gender in genders" ng-model="customer.Gender">
+                                <option value="">Select Gender</option>    
+                            </select>
                             <small class="errorMessage" data-ng-show="signupForm.gender.$dirty && signupForm.gender.$error.required"> Select Gender.</small>                             							
 						  </div>
 						</div>
@@ -108,7 +111,7 @@
                     			<span class="input-group-addon">
                     				+91
                     			</span>                                
-                                <input type="number" ng-minlength="10" ng-maxlength="10" class="form-control" ng-model="customer.Mobilenumber" name="Mobilenumber" id="mobile" placeholder="Mobile" ng-required="true">                                                    			
+                                <input type="number" ng-minlength="10" ng-maxlength="10" class="form-control" ng-model="customer.Mobilenumber" name="Mobilenumber" id="mobile" placeholder="Mobile">                                                    			
                     		</div>
                             <small class="errorMessage" data-ng-show="((signupForm.Mobilenumber.$error.minlength || signupForm.Mobilenumber.$error.maxlength) && signupForm.Mobilenumber.$dirty) "> phone number should be 10 digits.</small>
                                                          
@@ -130,20 +133,25 @@
 							<input type="email" class="form-control" ng-model="customer.Email" readonly id="email" placeholder="Email" ng-required="true">
 						  </div>
                             <div class="form-group">
-                                <label for="name">Country</label>
-                                <select ng-model="customer.Country_Id" name="country" class="form-control" ng-change="getCountryStates()" ng-options="obj.Id as obj.Name for obj in countries" ng-required="true">                                  
+                                <label for="name">Country  <span class="redspan">*</span></label>
+                                <select ng-model="customer.Country_Id" readonly="true"  name="country" class="form-control" ng-change="getCountryStates()" ng-options="obj.Id as obj.Name for obj in countries" ng-required="true">
+                                    <option value="">Select Country</option>                                   
                                 </select>
                                 
                                 <small class="errorMessage" data-ng-show="signupForm.country.$dirty && signupForm.country.$error.required"> Select Country.</small>
                             </div>
 						  <div class="form-group">
-							<label for="bloodgrp">State</label>
-							<select class="form-control" name="state" ng-model="customer.State_Id" ng-options="x.Id as x.Name for x in states" ng-change="getStatesCities()"  ></select>
+							<label for="bloodgrp">State  <span class="redspan">*</span></label>
+							<select class="form-control" name="state" ng-model="customer.State_Id" ng-options="x.Id as x.Name for x in states" ng-change="getStatesCities()"  ng-required="true">
+                                <option value="">Select State</option>
+                            </select>
                             <small class="errorMessage" data-ng-show="signupForm.state.$dirty && signupForm.state.$error.required"> Select State.</small>
 						  </div>
 						  <div class="form-group">
-							<label for="bloodgrp">District</label>
-							<select class="form-control" name="district" ng-model="customer.District_Id"  ng-options="y.Id as y.Name for y in districts"></select>
+							<label for="bloodgrp">District  <span class="redspan">*</span></label>
+							<select class="form-control" name="district" ng-model="customer.District_Id"  ng-options="y.Id as y.Name for y in districts"   ng-required="true">
+                            <option value="">Select District</option>
+                            </select>
                             <small class="errorMessage" data-ng-show="signupForm.district.$dirty && signupForm.district.$error.required"> Select District.</small>
 						  </div> 
 						  <!--<div class="form-group">
@@ -152,17 +160,12 @@
 						  </div>-->                           
 						  <div class="form-group">
 							<label for="bloodgrp">Pincode</label>
-                            <input type="number" class="form-control" ng-model="customer.Pincode" id="pincode" name="pincode" placeholder="Pincode"  maxlength="2" ng-minlength="6" ng-maxlength="6">
+                            <input type="number" class="form-control" ng-model="customer.Pincode" id="pincode" name="pincode" placeholder="Pincode"  maxlength="2" ng-minlength="0" ng-maxlength="6">
                             <small class="errorMessage" data-ng-show="((signupForm.pincode.$error.minlength || signupForm.pincode.$error.maxlength) && signupForm.pincode.$dirty) " style="width: 25%;"> Pincode should be 6 digits.</small>                            						
 						  </div>
 						  <div class="form-group">
                                 <label for="dateneeded">Last Donated</label>
-                                <div class='input-group date' id='datetimepicker8'>
-                                	<input type='date' class="form-control" name="donated" ng-model="customer.Lastdonated" max="{{customer.dateformat | date:'yyyy-MM-dd'}}"  placeholder="Last Donated" />
-                                	<span class="input-group-addon">
-                                		<i class="glyphicon glyphicon-calendar form-control-feedback"></i>
-                                	</span>
-                                </div>                          							
+                                <input type='date' class="form-control" name="donated" ng-model="customer.Lastdonated" min="{{customer.Dob | date:'yyyy-MM-dd'}}" max="{{customer.dateformat | date:'yyyy-MM-dd'}}"  placeholder="Last Donated" />                          							
                             <small class="errorMessage" data-ng-show="signupForm.dob.$dirty && signupForm.dob.$error.required"> Select Last Donated Date.</small>
 						  </div>                          
     					<div class="form-group">

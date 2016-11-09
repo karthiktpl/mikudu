@@ -210,7 +210,15 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
     $scope.customer.dateformat= new Date();
     $scope.customer.Pincode=($scope.customer.Pincode*1);
     $scope.customer.Mobilenumber=($scope.customer.Mobilenumber*1);
-    
+    if($scope.customer.updatestatus=='0')
+    {
+         $scope.customer.Modeofcontact=['c'];
+        if($scope.customer.Mobilenumber!=''){
+            $scope.customer.Modeofcontact.push('a');
+            $scope.customer.Modeofcontact.push('b');   
+        }
+        
+    }
       var originalcountry = country;       
       $scope.countries = angular.copy(originalcountry);
       
@@ -249,7 +257,7 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
         services.deleteCustomer(customer.customerNumber);
       };
 */
-      $scope.saveCustomer = function(donor) {              
+      $scope.saveCustomer = function(donor) {
             Data.post('updateprofile', {
                 customer: donor
             }).then(function (results) {
@@ -259,7 +267,8 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
                     storage.setItem('updatestatus', '1');                                        
                     $location.path('dashboard');
                 }
-            });        
+            }); 
+       
             //services.updateCustomer(customerID, customer);       
     };
 });
@@ -289,7 +298,7 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
     $scope.request = {Name:$scope.customer.Name,User_Id:customerID,Neededon:'',Bloodgroup_Id:'',Country_Id:$scope.countries[0].Id,State_Id:'',District_Id:'',
                     Location_Address:'',Remarks:'',Cananygroup:'',Directcontact:'1',Mobile1:$scope.customer.Mobilenumber,Mobile2:'',Mobile3:'',
                     Email1:$scope.customer.Email,Email2:'',Email3:''};
-    $scope.request.Neededon= new Date();                          
+    $scope.request.Neededate= new Date();                          
         Data.getStates('states?country='+$scope.request.Country_Id).then(function (results) {
             var originalstates=results;
             $scope.states = angular.copy(originalstates);                  
@@ -327,6 +336,8 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
                 }
                 else
                 {
+                    $scope.noresult=true;
+                    $scope.showsearch=false;
                     Data.toast(results);
                 }
             });        
@@ -383,6 +394,8 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
             }
             else
             {
+                $scope.noresult=true; 
+                $scope.showsearch=false;
                 Data.toast(results);
                              
             }
@@ -403,6 +416,8 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
             }
             else
             {
+                $scope.noresult=true; 
+                $scope.showsearch=false;
                 Data.toast(results);                                                
             }
             $scope.saveRequest(request); 
@@ -421,15 +436,16 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
     };    
     $scope.goback=function()
     {
-        $scope.resultarray='';
-        $scope.smsresultarray='';
-        $scope.emailresultarray='';
+        $scope.resultarray=[];
+        $scope.smsresultarray=[];
+        $scope.emailresultarray=[];
         $scope.showsearch=true;
         $scope.showdetails=false;
         $scope.showsmsproceed=false;
         $scope.showemailproceed=false;
         $scope.showsocialproceed=false;
-        $scope.showsocialshare=false;                
+        $scope.showsocialshare=false;
+        $scope.noresult=false;                
     }                     
                                            
 });
@@ -615,12 +631,14 @@ app.controller('viewRequestCtrl', function ($scope, $rootScope, $routeParams, $l
     $scope.requestview = angular.copy(request);  
 });
 app.controller('mapCtrl', function ($scope, $rootScope, $routeParams, $location,country, $http, Data,$window) {
-	$scope.mapsval = {Country_Id:'',State_Id:'',District_Id:''};	
+	$scope.mapsval = {Country_Id:'',State_Id:'',District_Id:''};
+    	
 	var originalcountry = country;       
 	$scope.countries = angular.copy(originalcountry);           
 	$scope.isClean = function() {
 	return angular.equals(originalcountry, $scope.countries);
 	}
+    $scope.mapsval.Country_Id=$scope.countries[0].Id;
 	Data.getStates('states?country='+$scope.mapsval.Country_Id).then(function (results) {
 		var originalstates=results;
 		$scope.states = angular.copy(originalstates);                  
@@ -663,6 +681,7 @@ app.controller('mapCtrl', function ($scope, $rootScope, $routeParams, $location,
                 $scope.banksresults = angular.copy(originalbanks);               
     	   }
            else{
+                $scope.showresult=true;
                 $scope.shownoresult=true;            
            }
     		
