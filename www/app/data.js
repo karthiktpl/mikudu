@@ -1,7 +1,7 @@
 app.factory("Data", ['$http', 'toaster',
     function ($http, toaster) { // This service connects to our REST API
 
-        var serviceBase = 'http://hosting.solminds.com/dev/mikuduapi/v1';
+        var serviceBase = 'http://hosting.solminds.com/dev/mikuduapi/v1/';
         var obj = {};
         obj.toast = function (data) {
             toaster.pop(data.status, "", data.message, 2000, 'trustedHtml');
