@@ -451,39 +451,26 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
 });
 app.controller('notificationsCtrl', function ($scope, $rootScope, $location, $routeParams, Data, customer,$http) {
     var customerID = ($routeParams.customerID) ? parseInt($routeParams.customerID) : 0;
-    Data.get('notifications?customer='+customerID).then(function (results) {            
-        var notificationlist=results;
-        $scope.notificationlists = angular.copy(notificationlist);                  
-    });  
-    $scope.getIncludeFile = function(lists) {    
-        // Make this more dynamic, but you get the idea
-        if(lists)
-        {
-            switch (lists.type) {
-                case "0": 
-                    $scope.requestdata=lists.data; 
-                    $scope.requestdata.Loggeduser=$routeParams.customerID                                   
-                    return 'partials/_requestview.html';
-                case "1":
-                    $scope.acceptdata=lists.data; 
-                    $scope.acceptdata.Loggeduser=$routeParams.customerID            
-                    return 'partials/_acceptview.html';
-                case "2":
-                    $scope.thankyoudata=lists.data; 
-                    $scope.thankyoudata.Loggeduser=$routeParams.customerID             
-                    return 'partials/_thankyouview.html';
-                case "3":
-                    $scope.enoughdata=lists.data; 
-                    $scope.enoughdata.Loggeduser=$routeParams.customerID             
-                    return 'partials/_enoughview.html'; 
-                default:
-                    return 'partials/nonotifications.html';
-                                           
-            }
-        }else{
-             return 'partials/nonotifications.html';
-        }               
+    $scope.notificationlists=[];
+    $scope.busy = false;
+    $scope.after = 0;  
+    $scope.nextPage=function(){
+        if ($scope.busy==false){
+            $scope.busy = true;  
+            Data.get('notifications?customer='+customerID+'&after='+$scope.after).then(function (results) {            
+                var notificationlist=results;
+                  for (var i = 0; i < notificationlist.length; i++) {
+                    $scope.notificationlists.push(notificationlist[i].items);
+                  }         
+                $scope.after = $scope.after+10 ;
+                $scope.busy = false;                              
+            });            
+        } 
+        
+              
     }
+ 
+    //alert(JSON.stringify($scope.notificationlists))
  $scope.AcceptRequest=function(requestdata){
         requestdata.Loggeduser=$routeParams.customerID; 
             Data.post('acceptrequest', {
@@ -491,6 +478,9 @@ app.controller('notificationsCtrl', function ($scope, $rootScope, $location, $ro
             }).then(function (results) {
                 Data.toast(results);
                 if (results.status == "success") {
+                    $rootScope.notifications = results.notifications;                    
+                    var storage = window.localStorage;                    
+                    storage.setItem('notifications', results.notifications);                    
                     var myEl = angular.element( document.querySelector( '#requestdiv'+requestdata.Notification_Id ) );
                     myEl.remove();                   
                 }
@@ -504,6 +494,9 @@ app.controller('notificationsCtrl', function ($scope, $rootScope, $location, $ro
             }).then(function (results) {
                 Data.toast(results);
                 if (results.status == "success") {
+                    $rootScope.notifications = results.notifications;                    
+                    var storage = window.localStorage;                    
+                    storage.setItem('notifications', results.notifications);                     
                     var myEl = angular.element( document.querySelector( '#requestdiv'+requestdata.Notification_Id ) );
                     myEl.remove(); 
                 }
@@ -517,6 +510,9 @@ app.controller('notificationsCtrl', function ($scope, $rootScope, $location, $ro
             }).then(function (results) {
                 Data.toast(results);
                 if (results.status == "success") {
+                    $rootScope.notifications = results.notifications;                    
+                    var storage = window.localStorage;                    
+                    storage.setItem('notifications', results.notifications);                     
                     var myEl = angular.element( document.querySelector( '#acceptview'+requestdata.Notification_Id ) );
                     myEl.remove();                    
                 }
@@ -530,6 +526,9 @@ app.controller('notificationsCtrl', function ($scope, $rootScope, $location, $ro
             }).then(function (results) {
                 Data.toast(results);
                 if (results.status == "success") {
+                    $rootScope.notifications = results.notifications;                    
+                    var storage = window.localStorage;                    
+                    storage.setItem('notifications', results.notifications);                     
                     var myEl = angular.element( document.querySelector( '#acceptview'+requestdata.Notification_Id ) );
                     myEl.remove(); 
                 }
@@ -540,7 +539,11 @@ app.controller('notificationsCtrl', function ($scope, $rootScope, $location, $ro
                 request: requestdata
             }).then(function (results) {
                 Data.toast(results);
-                if (results.status == "success") {
+                if (results.status == "success") {                    
+                    var notcount=($rootScope.notifications*1)-1;                    
+                    $rootScope.notifications = notcount;
+                     var storage = window.localStorage;                                                           
+                    storage.setItem('notifications', notcount);                     
                     var myEl = angular.element( document.querySelector( '#thankyouview'+requestdata.Notification_Id ) );
                     myEl.remove(); 
                 }
@@ -552,7 +555,11 @@ app.controller('notificationsCtrl', function ($scope, $rootScope, $location, $ro
                 request: requestdata
             }).then(function (results) {
                 Data.toast(results);
-                if (results.status == "success") {
+                if (results.status == "success") {                    
+                    var notcount=($rootScope.notifications*1)-1;                    
+                    $rootScope.notifications = notcount;
+                     var storage = window.localStorage;                                                           
+                    storage.setItem('notifications', notcount);                    
                     var myEl = angular.element( document.querySelector( '#enoughview'+requestdata.Notification_Id ) );
                     myEl.remove(); 
                 }

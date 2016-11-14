@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('MikuduBloodApp', ['ngRoute', 'ngAnimate', 'toaster','checklist-model','angularMoment']);
+var app = angular.module('MikuduBloodApp', ['ngRoute', 'ngAnimate', 'toaster','checklist-model','angularMoment','infinite-scroll']);
 app.config(function ($httpProvider,$compileProvider) {
   $httpProvider.defaults.headers.common = {};
   $httpProvider.defaults.headers.post = {};

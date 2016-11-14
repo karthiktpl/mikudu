@@ -166,7 +166,7 @@
 						  <div class="form-group">
                                 <label for="dateneeded">Last Donated</label>
                                 <input type='date' class="form-control" name="donated" ng-model="customer.Lastdonated" min="{{customer.Dob | date:'yyyy-MM-dd'}}" max="{{customer.dateformat | date:'yyyy-MM-dd'}}"  placeholder="Last Donated" />                          							
-                            <small class="errorMessage" data-ng-show="signupForm.dob.$dirty && signupForm.dob.$error.required"> Select Last Donated Date.</small>
+                            <small class="errorMessage" data-ng-show="signupForm.donated.$dirty && signupForm.donated.$error.required"> Select Last Donated Date.</small>
 						  </div>                          
     					<div class="form-group">
     						<div class="checkbox"> <label> <input ng-model="customer.Availability" type="checkbox" ng-true-value="1" ng-false-value="0"> Please tick if Available to donate blood</label> </div>    						
