@@ -389,7 +389,8 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
         }).then(function (results) {                
             if (results.status == "success") {
                 $scope.smsresultarray=results.users;
-                $scope.smscontent=results.smscontent
+                $scope.smscontent=results.smscontent;
+                $scope.multysms=results.multysms;
                 $scope.showsearch=false;  
             }
             else
@@ -410,8 +411,9 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
         }).then(function (results) {                
             if (results.status == "success") {
                 $scope.emailresultarray=results.users;
-                $scope.emailcontent=results.emailcontent
-                $scope.emailsubject=results.emailsubject
+                $scope.emailcontent=results.emailcontent;
+                $scope.emailsubject=results.emailsubject;
+                $scope.requestremail=results.requestremail;
                 $scope.showsearch=false;  
             }
             else
