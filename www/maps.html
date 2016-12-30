@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Mikudu</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/toaster.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<script type="text/javascript" src="cordova.js"></script>
+    
+</head>
+
+<body >	
+	<div class="navbar navbar-default " role="navigation">
+		<div class="container"> 
+			<div class="navbar-header">
+				<!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span> 
+				</button>-->
+				<a href="index.html#/dashboard"  class="navbar-brand" id="buttonclose"><img src="img/logomain.png" style="margin-bottom: 50px;"></a>
+                <div class="pull-right"><a href="index.html#/maps" class="btn btn-primary" id="buttonback"><i class="fa fa-step-backward" aria-hidden="true"></i></a></div>
+			</div>						
+		</div>
+	</div>
+	<div style="width:100%;height:400px" id="map_canvas"> </div>
+    <div class="alert alert-info"><b>Please zoom and touch on the red pin to see the details.</b>
+		<!--<br><b>Click on the white box to see the directions. ( Please make sure your gps location is on before you login to the app to see google navigation from your location )</b>-->
+	</div>
+			
+</body>
+  <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
+document.addEventListener("deviceready", function() {
+	var mapDiv = document.getElementById("map_canvas");
+	var storage = window.localStorage; 
+	var district=storage.getItem('blooddistrict');
+	var value = Setmarkers(district);    
+	var mylocatrion='';	
+    /*
+		function to get GPS current position
+	navigator.geolocation.getCurrentPosition(onSuccess, onError);
+	*/
+    function Setmarkers(district)
+    {
+    		var markers;
+    		$.ajax({
+    		  type: "GET",
+    		  async: false,
+    		  global: false,
+    		  dataType: "json",
+    		  url: "http://hg.solminds.com/mikuduapi/v1/bloodbanks?district="+district,
+    		  success: function (result){
+    			markers=result;
+    		  }
+    		});
+    		return markers;
+    }
+    /*function onSuccess(position) {
+        mylocatrion=new plugin.google.maps.LatLng(position.coords.latitude,position.coords.longitude);                               
+    }
+    function onError(error) {
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    } */       
+	var map = plugin.google.maps.Map.getMap(mapDiv, {
+	'camera': {
+	  'latLng': {lat:value.districtlat.lat, lng: value.districtlat.lng},
+	  'zoom': 10
+	}
+	});
+  map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
+	  var buttonclose = document.getElementById("buttonclose");
+
+	var data = value.markers;
+   	/*var data = [
+			{'title': 'marker1', 'position': {lat: 8.523241, lng: 76.927842}},
+			{'title': 'marker2', 'position': {lat: 8.523538, lng: 76.925815}}			
+		];*/
+
+	var markers = [];
+	addMarkers(data, function(markers) {
+	  markers[markers.length - 1].showInfoWindow();
+      /*
+	  call to function to set navigation on pin box click
+	  markers.forEach(SetNavigation)*/
+	});		
+	function addMarkers(data, callback) {
+	  var markers = [];
+	  function onMarkerAdded(marker) {
+	  
+		markers.push(marker);
+		if (markers.length === data.length) {
+		  callback(markers);
+		}
+	  }
+	  data.forEach(function(markerOptions) {		
+		map.addMarker(markerOptions, onMarkerAdded);
+	  });
+	}
+    /*
+	function to set navigation on pin box click
+	function SetNavigation(item, index)
+    {
+          item.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {            
+                if(mylocatrion!='')
+				{
+					var loclat=new plugin.google.maps.LatLng(item.get("position").lat,item.get("position").lng);
+					plugin.google.maps.external.launchNavigation({
+					  "from": mylocatrion,
+					  "to":loclat 
+					});                                               				
+				}
+				else
+				{
+					alert('Unable to navigate. Please check your GPS Settings');
+				}
+				
+          });       
+    }*/
+	/*
+  marker.addEventListener(plugin.google.maps.event.MARKER_CLICK, function() {
+    alert("Marker is clicked");
+  });    
+    */
+	  //buttonclose.addEventListener("click", onBtnClose(map));
+  });
+
+});
+/*function onBtnClose(map)
+{
+	map.remove();
+	return true;
+}*/
+
+
+// onError Callback receives a PositionError object
+//
+
+$(function(){
+
+$('#buttonclose').click(function(){
+	div = document.getElementById("map_canvas");
+    var tmpmap = plugin.google.maps.Map.getMap(div);
+    tmpmap.remove();
+	//window.location = 'index.html';
+	return true;
+})
+
+$('#buttonback').click(function(){
+	div = document.getElementById("map_canvas");
+    var tmpmap = plugin.google.maps.Map.getMap(div);
+    tmpmap.remove();
+	//window.location = 'index.html';
+	return true;
+})
+
+});
+</script>  
+</html>

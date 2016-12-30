@@ -1,0 +1,142 @@
+<section  class="main2">
+	<div class="navbar navbar-default " role="navigation">
+		<div class="container"> 
+			<div class="navbar-header">
+				<!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span> 
+				</button>-->
+				<a href="#/dashboard" class="navbar-brand"><img src="img/logomain.png" style="margin-bottom: 50px;"></a>
+			</div>
+			<div class="navbar-collapse">         
+				<ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">                    
+                    <a  href="#/dashboard" aria-expanded="false">
+                        <i class="fa fa-home fa-fw fa-2x" aria-hidden="true"></i>                		
+                    </a>                   
+                </li>                
+                <li class="dropdown">                    
+                    <a  href="#/notifications/{{uid}}" aria-expanded="false">
+                        <i class="fa fa-bell fa-fw  fa-2x"></i> 
+                		<span class="label label-primary" ng-show="notifications>0">{{notifications}}</span>
+                    </a>                   
+                </li>
+					<li class="dropdown">                    
+						<a  href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+							<i class="fa fa-cog fa-fw  fa-2x"></i> 
+							<span class="label label-primary"></span>
+						</a>
+						<ul class="dropdown-menu dropdown-alerts">
+                            <li ng-show="updatestatus==1">
+                                <a href="#/profile/{{uid}}">                                
+                                        <i class="fa fa-user fa-fw"></i>User Profile                                                                   
+                                </a>
+                            </li>                                             
+                            <li  ng-show="updatestatus==1" class="divider"></li>                    
+                            <li>
+                                <a href="#/myrequests">                                
+                                        <i class="fa fa-question fa-fw"></i>My Requests                                                                    
+                                </a>
+                            </li>                                            
+                        <li class="divider"></li>                         														                    
+							<li>
+								<a href="#/changepassword">                                
+										<i class="fa fa-key fa-fw"></i>Change Password                                                                    
+								</a>
+							</li>                                             
+							<li class="divider"></li>
+							 <li>
+								<a href="#/logout">
+								   <i class="fa fa-sign-out fa-fw"></i> Sign Out
+								</a>
+							</li> 
+						</ul>
+						<!-- /.dropdown-alerts -->
+					</li>                
+				</ul>
+			</div>
+		</div>
+	</div> 
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-left">
+				<div class="panel panel-primary" >
+					<div class="panel-heading"><img src="img/hed.png" class="bldbnk">Blood Banks <div class="pull-right" ng-show="showresult==true"><a ng-click="goback();" class="btn btn-success"><i class="fa fa-step-backward" aria-hidden="true"></i></a></div></div>
+					<div class="panel-body" data-ng-show="showresult==false">
+						<form role="form" action="" method="post" id="signupForm" name="signupForm">
+						   <div class="row">
+							<div class="col-xs-12">
+								<div class="form-group">
+									<label for="name">Select Country</label>
+									<select ng-model="mapsval.Country_Id" readonly="true"   class="form-control" ng-change="getCountryStates()" ng-options="obj.Id as obj.Name for obj in countries" ng-required="true">                                  
+									<option value="">Select Country</option>
+                                    </select>
+								</div>
+								<div class="form-group">
+									<label for="bloodgrp">Select State</label>
+									<select class="form-control" ng-model="mapsval.State_Id" name="State_Id" ng-options="x.Id as x.Name for x in states" ng-change="getStatesCities()" ng-required="true" >
+                                        <option value="">Select State</option>
+                                    </select>
+                                    <span data-ng-show="signupForm.State_Id.$dirty && signupForm.State_Id.$error.required">Select service</span>
+								</div>                                
+								<div class="form-group">
+									<label for="bloodgrp">Select District</label>
+									<select class="form-control" ng-model="mapsval.District_Id" name="District_Id" ng-options="y.Id as y.Name for y in districts" ng-required="true">
+                                        <option value="">Select District</option>
+                                    </select>
+                                    <span data-ng-show="signupForm.District_Id.$dirty && signupForm.District_Id.$error.required">Select service</span>
+								</div>
+							</div>						
+							</div>
+							<div class="row">
+								<div class="col-xs-12">
+									<!--<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="setmap(mapsval);" data-ng-disabled="signupForm.$invalid">Search</button>-->
+                                    <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="Getbanks(mapsval);" data-ng-disabled="signupForm.$invalid">Search</button>
+								</div>
+							</div>							
+						</form>                                                
+					</div>
+                    <div class="panel-body"  data-ng-show="banksresults.length > 0">
+                        <div class="row" >
+                        	<div class="col-md-12">              
+                        	   <div class="comments-list">
+                        			<div class="media" ng-repeat="banksresult in banksresults" >
+                        				<div id="bankdiv"> 
+                        					<div class="media-body">
+                                              <div class="col-xs-8"><h4 class=" bldr">{{banksresult.Name | uppercase}} </h4>						
+                        					  <h5>{{banksresult.Address}}</h5>
+                                              <h5>{{banksresult.mobile}}</h5></div>                                            
+                        					  
+                                              <div class="col-xs-3 pull-right" data-ng-show="banksresult.Longitude!=''"><a href="http://maps.google.com/?q={{banksresult.Longitude}}" class="btn btn-success pull-right"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></div> 					  					  
+                        					</div>
+                        				</div>
+                        			</div>			
+                        	   </div>					
+                        	</div>
+                        </div>
+                    </div>
+                    <div class="panel-body" data-ng-show="shownoresult">
+                        <div class="row" >
+                        	<div class="col-md-12">              
+                        	   <div class="comments-list">                        			
+                        				<div id="bankdiv"> 
+                        					<div class="media-body">
+                                              <div class="col-xs-12">
+                                                <center>No results found. Please search with another district. <br />
+                                                <a class="btn btn-primary btn-sm"  ng-click="goback();">
+                                                    back to search
+                                                </a>
+                                                </center>  
+                                            </div>                                                                    					                                                 					  					  
+                        					</div>
+                        				</div>                        						
+                        	   </div>					
+                        	</div>
+                        </div>
+                    </div>                                         
+				</div>
+			</div>
+		</div>
+	</div>
+		</section>

@@ -1,0 +1,114 @@
+<section  class="main2">	
+	<div class="navbar navbar-default " role="navigation">
+        <div class="container"> 
+            <div class="navbar-header">
+                <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> 
+                </button>-->
+                <a  href="#/login" class="navbar-brand"><img src="img/logomain.png" style="margin-bottom: 50px;"></a>
+            </div>        
+        </div>
+    </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-left">
+                    <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="panel-title">Registration</div>
+                    </div> 
+					<div style="padding-top:30px" class="panel-body">
+
+                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                            
+<form name="signupForm" role="form">					
+					
+<div class="row">
+   <div class="col-md-12">					   
+	  <div class="form-group">
+		<label for="name">Email <span class="redspan">*</span></label>
+		<input type="email" class="form-control" id="email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" name="email" placeholder="Email" ng-model="signup.email" required focus>
+        <span ng-show="signupForm.email.$dirty && signupForm.email.$invalid" class="help-inline">Email is not valid</span>
+	  </div>
+	  <div class="form-group">
+		<label for="password">Password <span class="redspan">*</span></label>
+		<input type="password" class="form-control" id="password"  name="password" placeholder="Password" ng-model="signup.password" required >
+        <small class="errorMessage" data-ng-show="signupForm.password.$dirty && signupForm.password.$invalid"> Enter Password.</small>
+	  </div>
+	  <div class="form-group">
+		<label for="confirmpassword">Confirm Password <span class="redspan">*</span></label>
+		<input type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password"  ng-model="signup.confirmpassword" password-match="signup.password" required>
+        <small class="errorMessage" data-ng-show="signupForm.confirmpassword.$dirty && signupForm.confirmpassword.$error.required"> Enter password again.</small>
+        <small class="errorMessage" data-ng-show="signupForm.confirmpassword.$dirty && signupForm.confirmpassword.$error.passwordNoMatch && !signupForm.confirmpassword.$error.required"> Password do not match.</small>
+	  </div>
+	  <div class="form-group">
+		<label for="name">Name <span class="redspan">*</span></label>
+		<input type="text" class="form-control" id="name" name="name" placeholder="Name"  ng-model="signup.name"  required>
+        <small class="errorMessage" data-ng-show="signupForm.name.$dirty && signupForm.name.$error.required"> Enter Name.</small>        
+	  </div> 
+	  <div class="form-group">
+		<label for="mobile">Mobile</label>
+        <div class='input-group date' id='datetimepicker8'>
+			<span class="input-group-addon">
+				+91
+			</span>                                
+            <input type="number" class="form-control" ng-minlength="10" ng-maxlength="10"  id="mobile" name="mobile" placeholder="Mobile Number"  ng-model="signup.mobile" >                    			
+		</div>                                                        
+        <small class="errorMessage" data-ng-show="((signupForm.mobile.$error.minlength || signupForm.mobile.$error.maxlength)) "> phone number should be 10 digits.</small>                
+		
+	  </div>           
+	  <div class="form-group">
+		<label for="bloodgrp">Blood Group <span class="redspan">*</span></label>
+        
+		<select class="form-control" id="bloodgroup" name="bloodgroup" ng-model="signup.bloodgroup" ng-options="bloodgroup as bloodgroup.label for bloodgroup in bloodgroups" required>
+            <option value="">Select Blood Group</option>                		  
+		</select>
+        <small class="errorMessage" data-ng-show="signupForm.bloodgroup.$dirty && signupForm.bloodgroup.$error.required">Select Blood Group.</small>        		
+	  </div>
+        <div class="form-group">Fields with <span class="redspan">*</span> mark are mandatory</div>
+        <div class="form-group">
+        	<div class="checkbox"> <label> <input ng-model="termscheck" name="termscheck" type="checkbox"  required>I Agree to Mikudu <a href="javascript:void(0);" ng-click="showTerms()">Terms and Conditions</a> </label> </div>       		
+        </div>        
+        <div class="form-group" ng-show="showterms">
+        	<textarea class="form-control" id="address" readonly="readonly" rows="7" >
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
+            </textarea>
+        </div>
+              	
+	</div>
+</div>
+						
+						
+<input class="btn btn-lg btn-primary btn-block" type="submit" value="Register" ng-click="signUp(signup)" data-ng-disabled="signupForm.$invalid">						
+</form>    
+
+
+
+                        </div>
+					
+
+
+					
+                    </div>   
+					
+					
+					
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
