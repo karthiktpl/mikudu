@@ -1,8 +1,0 @@
-<div id="acceptview{{acceptdata.Notification_Id}}">
- <p class="pull-right"><small>5 days ago</small></p>
-        <div class="media-body">
-      <h4 class="media-heading bldr">{{acceptdata.sender | uppercase}} <span class="smallfont">has accepted your request for </span><span class="label label-danger">{{acceptdata.Bloodgroup | uppercase}}</span> <span class="smallfont">blood on {{acceptdata.Neededon | date : fullDate}}</span></h4>
-      <h5>Please contact {{acceptdata.sender | uppercase}} on Phone: {{acceptdata.Mobile}} Email: {{acceptdata.Email}}</h5>          
-      <p><button type="button" class="btn btn-primary btn-xs" ng-click="RequestContact(acceptdata);">Thanks will contact</button> <button type="button" class="btn btn-default btn-xs" ng-click="RequestEnough(acceptdata);">Thanks we got enough</button></p>
-    </div>
-</div>    
