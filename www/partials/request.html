@@ -228,7 +228,7 @@
        </div>
        <span class="help-block"><p id="characterLeftLoc" class="help-block ">standard rates apply for SMS charges. <span ng-show="multysms">This message will be send as multiple sms</span></p></span>       
     </div>
-    <div class="panel-body" ng-show="emailresultarray.length > 0">
+    <div class="panel-body" ng-show="emailresultarray">
        <div ng-repeat="(key, val) in emailresultarray">         
             <div class="media-body">
               <div class="col-xs-8"><h4 class="media-heading bldr">{{val.Name}} <span class="label label-danger">{{val.Bloodgroup}}</span></h4></div>  
