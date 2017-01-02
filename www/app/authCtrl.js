@@ -639,6 +639,26 @@ app.controller('requestsCtrl', function ($scope, $rootScope, $routeParams, $loca
 app.controller('viewRequestCtrl', function ($scope, $rootScope, $routeParams, $location,request, $http, Data) {
     $scope.requestview = angular.copy(request);  
 });
+
+app.controller('helpCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data) {
+    var storage = window.localStorage;
+    if(storage.getItem('uid'))
+    {
+       $scope.showmenu=true; 
+    }
+    else
+    {
+       $scope.showmenu=false; 
+    } 
+    $scope.goback=function()
+    {
+        $location.path('login');               
+    }                    
+});
+app.controller('faqCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data) {
+                      
+});
+
 app.controller('mapCtrl', function ($scope, $rootScope, $routeParams, $location,country, $http, Data,$window) {
 	$scope.mapsval = {Country_Id:'',State_Id:'',District_Id:''};
     	

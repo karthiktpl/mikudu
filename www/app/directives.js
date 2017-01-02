@@ -22,6 +22,16 @@ app.directive('ngModel', function() {
         }
     }
 });
+app.directive('showTab', function () {
+    return {
+        link: function (scope, element, attrs) {
+            element.click(function (e) {
+                e.preventDefault();
+                jQuery(element).tab('show');
+            });
+        }
+    };
+});
 app.directive('passwordMatch', [function () {
     return {
         restrict: 'A',

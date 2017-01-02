@@ -9,7 +9,7 @@
             </button>-->
             <a href="#/dashboard" class="navbar-brand"><img src="img/logomain.png" style="margin-bottom: 50px;"></a>
         </div>
-        <div class="navbar-collapse">         
+        <div class="navbar-collapse" data-ng-show="showmenu">         
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">                    
                     <a  href="#/dashboard" aria-expanded="false">
@@ -68,33 +68,13 @@
     <div class="row">
         <div class="col-lg-12 text-left">
             <div class="panel panel-primary" >
-                <div class="panel-heading"><img src="img/hed.png" class="bldbnk">Change Password</div>
+                <div class="panel-heading"><img src="img/hed.png" class="bldbnk">Help <div class="pull-right" ng-show="showmenu==false"><a ng-click="goback();" class="btn btn-success"><i class="fa fa-step-backward" aria-hidden="true"></i></a></div></div>
                 <div class="panel-body">
-                    <form role="form" name="PasswordForm" > 
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="form-group">
-                                    <label for="name">New Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" ng-model="changepassword.password" placeholder="New Password" required focus >
-                                    <small class="errorMessage" data-ng-show="PasswordForm.password.$dirty && PasswordForm.password.$invalid"> Enter Password.</small>
-                                </div>
+                                <span class="help-block">Please email <a href="mailto:ramdaslbs@gmail.com"><b>ramdaslbs@gmail.com</b></a> for any help needed.</span>
                             </div>
-                            <div class="col-xs-12">
-                                <div class="form-group">
-                                    <label for="name">Confirm Password</label>
-                                    <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" ng-model="changepassword.confirmpassword" password-match="changepassword.password" placeholder="Confirm Password" required>
-                                    <small class="errorMessage" data-ng-show="PasswordForm.confirmpassword.$dirty && PasswordForm.confirmpassword.$error.required"> Enter password again.</small>
-                                    <small class="errorMessage" data-ng-show="PasswordForm.confirmpassword.$dirty && PasswordForm.confirmpassword.$error.passwordNoMatch && !PasswordForm.confirmpassword.$error.required"> Password do not match.</small>
-                                </div>
-                            </div>                            
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="PasswordChange(changepassword);" data-ng-disabled="PasswordForm.$invalid || !changebutton">Change Password</button>
-                            </div>
-                        </div>                                                                        
-                    </form>
+                        </div>				
                 </div>            
             </div>
         </div>

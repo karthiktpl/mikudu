@@ -1,0 +1,198 @@
+<section  class="main2">
+<div class="navbar navbar-default " role="navigation">
+    <div class="container"> 
+        <div class="navbar-header">
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span> 
+            </button>-->
+            <a href="#/dashboard" class="navbar-brand"><img src="img/logomain.png" style="margin-bottom: 50px;"></a>
+        </div>
+        <div class="navbar-collapse" >         
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">                    
+                    <a  href="#/dashboard" aria-expanded="false">
+                        <i class="fa fa-home fa-fw fa-2x" aria-hidden="true"></i>                		
+                    </a>                   
+                </li>            
+                <li class="dropdown">                    
+                    <a  href="#/notifications/{{uid}}" aria-expanded="false">
+                        <i class="fa fa-bell fa-fw"></i> 
+                		<span class="label label-primary" ng-show="notifications>0">{{notifications}}</span>
+                    </a>                   
+                </li>
+                <li class="dropdown">                    
+                    <a  href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-cog fa-fw"></i> 
+						<span class="label label-primary"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li ng-show="updatestatus==1">
+                            <a href="#/profile/{{uid}}">                                
+                                    <i class="fa fa-user fa-fw"></i>User Profile                                                                   
+                            </a>
+                        </li>                                             
+                        <li  ng-show="updatestatus==1" class="divider"></li>                    
+                        <li>
+                            <a href="#/myrequests">                                
+                                    <i class="fa fa-question fa-fw"></i>My Requests                                                                    
+                            </a>
+                        </li>                                             
+                        <li class="divider"></li>                     
+                        <li>
+                            <a href="#/changepassword">                                
+                                    <i class="fa fa-key fa-fw"></i>Change Password                                                                    
+                            </a>
+                        </li>
+						<li class="divider"></li> 
+						<li>
+                            <a href="#/help">                                
+                                    <i class="fa fa-info fa-fw"></i>Help                                                                    
+                            </a>
+                        </li>                                             
+                        <li class="divider"></li>
+                         <li>
+                            <a href="#/logout">
+                               <i class="fa fa-sign-out fa-fw"></i> Sign Out
+                            </a>
+                        </li> 
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>                
+            </ul>
+        </div>
+    </div>
+</div>
+ <div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-left">
+            <div class="panel panel-primary" >
+                <div class="panel-heading"><img src="img/hed.png" class="bldbnk">How it works  </div>
+                <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                  <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingOne">
+                                      <h4 class="panel-title">
+                                        <a show-tab role="button" data-toggle="collapse" data-parent="#accordion" href="#download" aria-expanded="true" aria-controls="download">
+                                          Download
+                                        </a>
+                                      </h4>
+                                    </div>
+                                    <div id="download" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                      <div class="panel-body">
+                                            <ul class="list-inline">
+                                              <li>The only way to access the mikudu blood donor network is to download the app from Google Play store (We will introduce the iOS version soon).  Search for mikudu and download! It is free!</li>
+                                            </ul>                                                                              
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingTwo">
+                                      <h4 class="panel-title">
+                                        <a show-tab class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#registration" aria-expanded="false" aria-controls="registration">
+                                          Registration
+                                        </a>
+                                      </h4>
+                                    </div>
+                                    <div id="registration" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                      <div class="panel-body">
+                                        <ol >
+                                            <li class="listpadding">You need to register to request for blood or be a donor - one can register in the mobile app after downloading it from <a href="https://goo.gl/ZiZVhF">Google Play store </a></li>
+                                            <li class="listpadding">Please enter as much information as possible in the user profile section - it will help us to select the best possible options for those who need blood. You can see this section right under the <img src="img/set.png" class="small-image"/> icon.</li>
+                                            <li class="listpadding">Please uncheck the 'Please tick if available to donate blood' if you would not like to donate blood- but please consider being a donor , there are many people who are struggling to get blood when needed</li>
+                                            <li class="listpadding">4. You can choose how you want to be contacted. You can choose to be contacted by call, SMS or email - You will always receive in-app messages, please uncheck the option you are not comfortable to be contacted by.</li>
+                                        </ol>                                                                             
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingThree">
+                                      <h4 class="panel-title">
+                                        <a show-tab class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#needblood" aria-expanded="false" aria-controls="needblood">
+                                          Need blood?
+                                        </a>
+                                      </h4>
+                                    </div>
+                                    <div id="needblood" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                      <div class="panel-body">
+                                        <ol>
+                                            <li class="listpadding">1. Please download the app - it is easy, go to Google Play store in your mobile and search for 'mikudu'. Click on install and the app will be installed.</li>
+                                            <li class="listpadding">2. Once installed, please sign up using your email address and choose a password you can remember.  You can also login through your Google and Facebook ids. Please complete your user profile - it is right under the <img src="img/set.png" class="small-image"/> icon.</li>
+                                            <li class="listpadding">3. Tap on <img src="img/dicon.png" class="small-image"/> icon (Need blood?) in the home screen of the app and fill in blood group, state and district details.   Please check 'Search for all blood groups' if you are looking for a replacement donor with any blood group.</li>
+                                            <li class="listpadding">4. You have four options to proceed once you enter the details- Call, SMS, email or share in social media</li>
+                                            <li style="list-style: none;">
+                                                <h4 class="list-group-item-heading">Call</h4>
+                                                <ol>
+                                                    <li class="listpadding">Please tap on <img src="img/ph.png" class="small-image"/> icon and app will search for all potential donors in the district.</li>
+                                                    <li class="listpadding">A maximum of 20 donor names will be displayed, tap on  icon to the right of the names to call donors. You will be taken to your phone's dial pad to make the call. You can contact donors one by one until you get sufficient quantity of blood.</li>
+                                                    <li class="listpadding">Please remember donor is helping you to get blood and provide all the details to help him, including blood group required, purpose, time and place of the blood donation etc.</li>
+                                                    <li class="listpadding">This is a voluntary service and donor should not be demanding money, It is against law - please don't offer money and please report to us if the registered donor demands money so that we can take appropriate action. </li>
+                                                    <li class="listpadding">It is possible you would encounter 'No results found' message after search.  This happens due to variety of reasons including when no one has registered to be donor in this district or those who have registered have already donated recently-search for neighbouring districts in that case. Also please encourage your friends and family to register with us. It will be helpful when you need blood next time or for other users.</li>
+                                                </ol>
+                                            </li>
+                                            <li style="list-style: none;">
+                                                <h4 class="list-group-item-heading">SMS/email</h4>
+                                                <ol>
+                                                    <li class="listpadding">Please tap on <img src="img/tk.png" class="small-image"/> or <img src="img/ml.png" class="small-image"/> to choose SMs or email. Enter additional details required in the app (Please enter the exact location e.g. Blood bank / hospital address etc and time for blood donation) -  and search by tapping 'Insert image'. Your search results will include only those who have agreed to be contacted by SMS and/or email</li>
+                                                    <li class="listpadding">You can change the contact number in the relevant section if there is a more suitable number e.g. that of bystander in the hospital etc. You can change the name too in the relevant section if someone else will be point of contact.</li>
+                                                    <li class="listpadding">SMS/ email will use your mobile number/ registered email id and you can see a copy of your request in mobile phone/ email.</li>
+                                                    <li class="listpadding">Donor can accept or reject your request. You will get an acceptance message in email if donor has accepted your request (message will be visible in notification section of the app too).  Please contact him and schedule the next steps. Donor can also choose to ignore the request and in that case you will not receive any messages.</li>
+                                                    <li class="listpadding">There are times you receive more acceptance than required!  Please tap on 'Thanks we got enough' in the in app-notification and let donor know that you have got enough blood already. Please do this as soon as possible as a willing donor can be helpful to someone else who needs blood urgently.</li>
+                                                    <li class="listpadding">As always please don't pay the donor- it is against law of the land and report to us any demand for money.</li>
+                                                </ol>
+                                            </li> 
+                                            <li style="list-style: none;">
+                                                <h4 class="list-group-item-heading">Share</h4>
+                                                <ol>
+                                                    <li class="listpadding">We will strongly suggest you share your blood request with wider audience so that it reaches more people.  You can do this by tapping <img src="img/sre.png" class="small-image"/> icon and then choosing the social media ( e.g. Facebook, WhatsApp etc) you would like to use to share the request.</li>                                                    
+                                                </ol>
+                                            </li>                                                                                       
+                                        </ol> 
+                                      </div>
+                                    </div>
+                                  </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingFour">
+                                          <h4 class="panel-title">
+                                            <a show-tab class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#searchblood" aria-expanded="false" aria-controls="searchblood">
+                                              Search for blood banks
+                                            </a>
+                                          </h4>
+                                        </div>
+                                        <div id="searchblood" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                                          <div class="panel-body">
+                                            <ol >
+                                                <li class="listpadding">Please download the app - it is easy, go to Google Play store in your mobile and search for 'mikudu'. Click on install and the app will be installed. </li>
+                                                <li class="listpadding">Once installed, please sign up using your email address and choose a password you can remember.  You can also login through your Google and Facebook ids. Please complete your user profile - it is right under the <img src="img/set.png" class="small-image"/> icon. It is not mandatory but helps you to access other services in the app.</li>
+                                                <li class="listpadding">Tap on <img src="img/nbld.png" class="small-image"/>   icon and enter state and district in which you want to locate a blood bank and search.</li>
+                                                <li class="listpadding">You will see list of options of the available blood banks. You can see contact details of most blood bank and if you tap on <img src="img/mp.png" class="small-image"/> icon, you can see the location of the blood bank in a map. (Please note you need to have a map application to see this, one can install Google maps, Microsoft Bing etc to use this)</li>
+                                            </ol>                                                                             
+                                          </div>
+                                        </div>
+                                    </div>                                  
+                                </div>                               
+                            </div>
+                        </div>				
+                </div>            
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.collapse').on('show.bs.collapse', function() {
+        var id = $(this).attr('id');
+        $('a[href="#' + id + '"]').closest('.panel-heading').addClass('active-faq');
+        $('a[href="#' + id + '"] .panel-title span').html('<i class="glyphicon glyphicon-minus"></i>');
+    });
+    $('.collapse').on('hide.bs.collapse', function() {
+        var id = $(this).attr('id');
+        $('a[href="#' + id + '"]').closest('.panel-heading').removeClass('active-faq');
+        $('a[href="#' + id + '"] .panel-title span').html('<i class="glyphicon glyphicon-plus"></i>');
+    });
+});
+</script>

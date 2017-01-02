@@ -21,11 +21,22 @@ app.config(['$routeProvider',
                 templateUrl: 'partials/forgotpassword.html',
                 controller: 'passwordCtrl'
             })
+            .when('/help', {
+                title: 'help',
+                templateUrl: 'partials/help.html',
+                controller: 'helpCtrl'				
+            })
+            .when('/faq', {
+                title: 'How It Works',
+                templateUrl: 'partials/faq.html',
+                controller: 'faqCtrl'				
+            })			
             .when('/logout', {
                 title: 'Logout',
                 templateUrl: 'partials/login.html',
                 controller: 'logoutCtrl'
             })
+
             .when('/signup', {
                 title: 'Signup',
                 templateUrl: 'partials/signup.html',
@@ -163,7 +174,7 @@ app.config(['$routeProvider',
             else
             {
                     var nextUrl = next.$$route.originalPath;
-                    if (nextUrl == '/signup' || nextUrl == '/login' || nextUrl == '/forgotpassword') {
+                    if (nextUrl == '/signup' || nextUrl == '/login' || nextUrl == '/forgotpassword' || nextUrl =='/help') {
 
                     } else {
                         $location.path("/login");

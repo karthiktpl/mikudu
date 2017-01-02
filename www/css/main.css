@@ -822,3 +822,11 @@ border-radius: 58%;
 .redspan,.help-inline,.errorMessage{
     color: #de0e0e;
 }
+.small-image
+{
+    width: 25px;    
+}
+.listpadding
+{
+    padding: 5px;
+}
