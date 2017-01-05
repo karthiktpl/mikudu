@@ -366,8 +366,8 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
         var index = $scope.bloodgroups.indexOf(foundItem);
 		//        $scope.socialmessage= 'Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Note:'+request.Remarks ;
 		var options = {
-		  /*message: 'share this', // not supported on some apps (Facebook, Instagram)
-		  subject: 'the subject', // fi. for email*/
+		  message: 'share this', // not supported on some apps (Facebook, Instagram)
+		  //subject: 'the subject', // fi. for email
 		  files: ['http://hosting.solminds.com/dev/mikuduadmin/web/img/logomain.png'], // an array of filenames either locally or remotely
 		  //url: 'https://www.website.com/foo/#bar?a=b',
 		  chooserTitle: 'Pick an app' // Android only, you can override the default share sheet title
