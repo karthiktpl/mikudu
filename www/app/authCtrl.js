@@ -365,29 +365,29 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
         var foundItem = $filter('filter')($scope.bloodgroups, { Id: request.Bloodgroup_Id  }, true)[0];
         var index = $scope.bloodgroups.indexOf(foundItem);
 		//        $scope.socialmessage= 'Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Note:'+request.Remarks ;
-		var options = {
-		  message: 'share this', // not supported on some apps (Facebook, Instagram)
-		  //subject: 'the subject', // fi. for email
-		  files: ['http://hosting.solminds.com/dev/mikuduadmin/web/img/logomain.png'], // an array of filenames either locally or remotely
-		  //url: 'https://www.website.com/foo/#bar?a=b',
-		  chooserTitle: 'Pick an app' // Android only, you can override the default share sheet title
-		}
 
-		var onSuccess = function(result) {
-		  console.log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
-		  console.log("Shared to app: " + result.app); // On Android result.app is currently empty. On iOS it's empty when sharing is cancelled (result.completed=false)
-		}
-
-		var onError = function(msg) {
-		  console.log("Sharing failed with message: " + msg);
-		}
-
-		window.plugins.socialsharing.shareViaFacebook('test it',['http://hosting.solminds.com/dev/mikuduadmin/web/img/logomain.png']);        
+		window.plugins.socialsharing.shareViaFacebook('Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with Mikudu App. Visit www.mikudu.com',['http://hosting.solminds.com/dev/mikuduadmin/web/img/logomain.png']);        
         /*$scope.showsocialshare=true;
         $scope.showsocialproceed=false;*/
         $scope.saveRequest(request);        
                
     } 
+    $scope.FaccebookShare=function(request)
+    {
+        var foundItem = $filter('filter')($scope.bloodgroups, { Id: request.Bloodgroup_Id  }, true)[0];
+        var index = $scope.bloodgroups.indexOf(foundItem);		
+		window.plugins.socialsharing.shareViaFacebook('Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with Mikudu App. Visit www.mikudu.com');        
+        $scope.saveRequest(request);        
+               
+    }
+    $scope.WhatsappShare=function(request)
+    {
+        var foundItem = $filter('filter')($scope.bloodgroups, { Id: request.Bloodgroup_Id  }, true)[0];
+        var index = $scope.bloodgroups.indexOf(foundItem);		
+		window.plugins.socialsharing.shareViaFacebook('test it',['http://hosting.solminds.com/dev/mikuduadmin/web/img/logomain.png']);        
+        $scope.saveRequest(request);        
+               
+    }	
     $scope.ShareIt=function(socialmessage){
         window.plugins.socialsharing.share(socialmessage)
     }
