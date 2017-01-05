@@ -375,8 +375,13 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
     $scope.FaccebookShare=function(request)
     {
         var foundItem = $filter('filter')($scope.bloodgroups, { Id: request.Bloodgroup_Id  }, true)[0];
-        var index = $scope.bloodgroups.indexOf(foundItem);		
-		window.plugins.socialsharing.shareViaFacebook('Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with Mikudu App. Visit www.mikudu.com',['http://hosting.solminds.com/dev/mikuduadmin/web/img/logomain.png']);        
+        var index = $scope.bloodgroups.indexOf(foundItem);	
+		$scope.shareimage='';
+		Data.get('shareimage?blood='+encodeURIComponent($scope.bloodgroups[index].Name)+'&date='+request.Neededon+'&location='+request.Location_Address+'&name='+request.Name+'&phone='+request.Mobile1).then(function (results) {
+			var originalimage=results;
+			$scope.shareimage = angular.copy(originalimage);			
+			window.plugins.socialsharing.shareViaFacebook('Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with Mikudu App. Visit www.mikudu.com',['http://hosting.solminds.com/dev/mikuduapi/v1/img/'+$scope.shareimage.data]);        
+		});				
         $scope.saveRequest(request);        
                
     }
