@@ -382,7 +382,7 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
 		  console.log("Sharing failed with message: " + msg);
 		}
 
-		window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);        
+		window.plugins.socialsharing.shareViaFacebook(options, onSuccess, onError);        
         /*$scope.showsocialshare=true;
         $scope.showsocialproceed=false;*/
         $scope.saveRequest(request);        
