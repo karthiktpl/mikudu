@@ -382,7 +382,7 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
 		  console.log("Sharing failed with message: " + msg);
 		}
 
-		window.plugins.socialsharing.shareViaFacebook('http://hosting.solminds.com/dev/mikuduadmin/web/img/logomain.png');        
+		window.plugins.socialsharing.shareViaFacebook('test it',['http://hosting.solminds.com/dev/mikuduadmin/web/img/logomain.png']);        
         /*$scope.showsocialshare=true;
         $scope.showsocialproceed=false;*/
         $scope.saveRequest(request);        
