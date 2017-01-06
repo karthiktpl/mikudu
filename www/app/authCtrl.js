@@ -366,7 +366,7 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
         var index = $scope.bloodgroups.indexOf(foundItem);
 		//        $scope.socialmessage= 'Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Note:'+request.Remarks ;
 
-		window.plugins.socialsharing.shareViaFacebook('Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with Mikudu App. Visit www.mikudu.com',['http://hosting.solminds.com/dev/mikuduadmin/web/img/logomain.png'],' https://goo.gl/ZiZVhF');        
+		window.plugins.socialsharing.shareViaFacebook('Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with Mikudu App. Visit www.mikudu.com',['http://hosting.solminds.com/dev/mikuduadmin/web/img/logomain.png'],'https://goo.gl/ZiZVhF');        
         /*$scope.showsocialshare=true;
         $scope.showsocialproceed=false;*/
         $scope.saveRequest(request);        
@@ -380,7 +380,7 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
 		Data.get('shareimage?blood='+encodeURIComponent($scope.bloodgroups[index].Name)+'&date='+request.Neededon+'&location='+request.Location_Address+'&name='+request.Name+'&phone='+request.Mobile1).then(function (results) {
 			var originalimage=results;
 			$scope.shareimage = angular.copy(originalimage);			
-			window.plugins.socialsharing.shareViaFacebook('Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with Mikudu App. Visit www.mikudu.com',['http://hosting.solminds.com/dev/mikuduapi/v1/img/'+$scope.shareimage.data]);        
+			window.plugins.socialsharing.shareViaFacebook('Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with Mikudu App. Visit www.mikudu.com',['http://hosting.solminds.com/dev/mikuduapi/v1/img/'+$scope.shareimage.data],'https://goo.gl/ZiZVhF');        
 		});				
         $scope.saveRequest(request);        
                
