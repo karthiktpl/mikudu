@@ -366,7 +366,7 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
         var index = $scope.bloodgroups.indexOf(foundItem);
 		//        $scope.socialmessage= 'Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Note:'+request.Remarks ;
 
-		window.plugins.socialsharing.shareViaFacebook('Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with Mikudu App. Visit www.mikudu.com',['http://hosting.solminds.com/dev/mikuduadmin/web/img/logomain.png']);        
+		window.plugins.socialsharing.shareViaFacebook('Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with Mikudu App. Visit www.mikudu.com',['http://hosting.solminds.com/dev/mikuduadmin/web/img/logomain.png'],' https://goo.gl/ZiZVhF');        
         /*$scope.showsocialshare=true;
         $scope.showsocialproceed=false;*/
         $scope.saveRequest(request);        
