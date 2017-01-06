@@ -380,7 +380,7 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
 		Data.get('shareimage?blood='+encodeURIComponent($scope.bloodgroups[index].Name)+'&date='+request.Neededon+'&location='+request.Location_Address+'&name='+request.Name+'&phone='+request.Mobile1).then(function (results) {
 			var originalimage=results;
 			$scope.shareimage = angular.copy(originalimage);			
-			window.plugins.socialsharing.shareViaFacebook('Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with Mikudu App. Visit www.mikudu.com',['http://hosting.solminds.com/dev/mikuduapi/v1/img/'+$scope.shareimage.data],'https://goo.gl/ZiZVhF');        
+			window.plugins.socialsharing.shareViaFacebook('Need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with Mikudu App. Visit www.mikudu.com',['http://hosting.solminds.com/dev/mikuduapi/v1/img/'+$scope.shareimage.data],'https://play.google.com/store/apps/details?id=com.solminds.mikudu&hl=en');        
 		});				
         $scope.saveRequest(request);        
                
