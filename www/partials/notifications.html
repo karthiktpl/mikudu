@@ -87,18 +87,22 @@
                             <div id="requestdiv{{notificationlist.data.Notification_Id}}" ng-show="notificationlist.type==0">
                              <p class="pull-right"><small><small><time am-time-ago="notificationlist.data.Requestedon" title="{{ notificationlist.data.Requestedon | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}"></time></small></small></p>
                                     <div class="media-body">
-                                  <h4 class="media-heading bldr">{{notificationlist.data.Name | uppercase}} <span class="smallfont">would like to get </span><span class="label label-danger">{{notificationlist.data.Bloodgroup | uppercase}}</span> <span class="smallfont">on {{notificationlist.data.Neededon | date : fullDate}}</span> <span class="smallfont">At</span></h4>
-                                  <h5>{{notificationlist.data.Location_Address}}, {{notificationlist.data.District}}</h5>
-                                  <h5>{{notificationlist.data.Remarks}}</h5>      
-                                  <p><button type="button" class="btn btn-primary btn-xs" ng-click="AcceptRequest(notificationlist.data);">Accept</button> <button type="button" class="btn btn-default btn-xs" ng-click="IgnoreRequest(notificationlist.data);">Ignore</button></p>
+                                  <h4 class="media-heading bldr">{{notificationlist.data.Name | uppercase}} <span class="smallfont">would like to get </span><span class="label label-danger">{{notificationlist.data.Bloodgroup | uppercase}}</span><span class="smallfont"> blood</span>
+                                  <br /> <span class="smallfont">on {{notificationlist.data.Neededon | date : fullDate}}</span></h4>
+                                  <h5><span class="smallfont">At</span> {{notificationlist.data.Location_Address}}, {{notificationlist.data.District}}</h5>
+                                  <h5 ng-show="notificationlist.data.Remarks!=''">{{notificationlist.data.Remarks}}</h5>      
+                                  <button type="button" class="btn btn-primary btn-xs" ng-click="AcceptRequest(notificationlist.data);">Accept</button> <button type="button" class="btn btn-default btn-xs" ng-click="IgnoreRequest(notificationlist.data);">Ignore</button>
                                 </div>
                             </div>  
                         
                             <div id="acceptview{{notificationlist.data.Notification_Id}}" ng-show="notificationlist.type==1">
                              <p class="pull-right"><small><time am-time-ago="notificationlist.data.Requestedon" title="{{ notificationlist.data.Requestedon | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}"></time></small></p>
-                                    <div class="media-body">
-                                  <h4 class="media-heading bldr">{{notificationlist.data.sender | uppercase}} <span class="smallfont">has accepted your request for </span><span class="label label-danger">{{notificationlist.data.Bloodgroup | uppercase}}</span> <span class="smallfont">blood on {{notificationlist.data.Neededon | date : fullDate}}</span></h4>
-                                  <h5>Please contact {{notificationlist.data.sender | uppercase}} on Phone: {{notificationlist.data.Mobile}} Email: {{notificationlist.data.Email}}</h5>          
+                                <div class="media-body">
+                                  <h4 class="media-heading bldr">{{notificationlist.data.sender | uppercase}} <span class="smallfont">has accepted your request for </span><span class="label label-danger">{{notificationlist.data.Bloodgroup | uppercase}}</span> <span class="smallfont">blood <br/>
+                                  on {{notificationlist.data.Neededon | date : fullDate}}</span><br />
+                                  <span class="smallfont">Please contact {{notificationlist.data.sender | uppercase}} on <br /> Phone: {{notificationlist.data.Mobile}} <br/>Email: {{notificationlist.data.Email}}</span><br />                                
+                                  <a href="#/viewrequest/{{notificationlist.data.Id}}" class="btn btn-primary btn-xs" >view request</a>
+                                  </h4>                                            
                                   <p><button type="button" class="btn btn-primary btn-xs" ng-click="RequestContact(notificationlist.data);">Thanks will contact</button> <button type="button" class="btn btn-default btn-xs" ng-click="RequestEnough(notificationlist.data);">Thanks we got enough</button></p>
                                 </div>
                             </div>
