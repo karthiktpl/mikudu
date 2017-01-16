@@ -6,15 +6,18 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
     $scope.profiledetails = {};    
     $scope.getdetails = {};
     $scope.bloodgroups = '';
+    $scope.loading = false;     
     Data.get('bloodgroups').then(function (results) {            
         var originalbloods=results;
         $scope.bloodgroups = angular.copy(originalbloods);                  
     });                        
     $scope.doLogin = function (customer) {
+        $scope.loading = true;
         Data.post('login', {
             customer: customer
         }).then(function (results) {
             Data.toast(results);
+            
             if (results.status == "success") {
                     $rootScope.authenticated = true;
                     $rootScope.uid = results.uid;
@@ -30,6 +33,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                     storage.setItem('district', results.district);
                     storage.setItem('notifications', results.notifications);
                     storage.setItem('updatestatus', results.updatestatus); 
+                   
                     if(results.forgotpassword=='1')
                     {
                        $location.path('changepassword');         
@@ -40,6 +44,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                     }                                                                       
                 
             }
+             $scope.loading = false;
         });
     };
     $scope.signup = {email:'',password:'',name:'',bloodgroup:'',mobile:''};
@@ -120,7 +125,8 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
 			 });
 	}	
     $scope.socialLogin = function ()
-    {               
+    {   
+        $scope.loading = true;
         Data.post('sociallogin', {
             customer: {Email:$scope.values.Email,Name:$scope.values.Name}
         }).then(function (results) {
@@ -139,9 +145,11 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                         $location.path('dashboard');       
                     }else{
                         $location.path('profile/'+results.uid);
-                    }                                                                             
+                    } 
+                                                                                              
                 
             }
+            $scope.loading = false;               
         });        
         
     }   
@@ -157,7 +165,7 @@ app.controller('dashboardCtrl', function ($scope, $rootScope, $location, $routeP
             });         
       };
       $scope.ShareApp=function(){
-        window.plugins.socialsharing.share('Download mikudu blood donor network app in Google Playstore and be a part of growing blood donor community. mikudu helps people get blood when required and this possibly is your best chance to save a life!. visit www.mikudu.com')                         
+        window.plugins.socialsharing.share('Download mikudu blood donor network app in Google Playstore and be a part of growing blood donor community. mikudu helps people get blood when required and this possibly is your best chance to save a life!. visit http://hg.solminds.com/mikudu-wp/')                         
       };                                    
 });
 app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams, Data, customer,country,$http) {
@@ -254,6 +262,7 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
 app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $routeParams, Data, customer,country,$http) {
     $scope.showsearch=true;
     $scope.showdetails=false;
+    $scope.loading = false; 
     var customerID = ($routeParams.customerID) ? parseInt($routeParams.customerID) : 0;
      $scope.maxLength = 140;
      $scope.maxLengthLoc = 30;
@@ -356,10 +365,12 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
         var foundItem = $filter('filter')($scope.bloodgroups, { Id: request.Bloodgroup_Id  }, true)[0];
         var index = $scope.bloodgroups.indexOf(foundItem);	
 		$scope.shareimage='';
+        $scope.loading = true; 
 		Data.get('shareimage?blood='+encodeURIComponent($scope.bloodgroups[index].Name)+'&date='+request.Neededon+'&location='+request.Location_Address+'&name='+request.Name+'&phone='+request.Mobile1).then(function (results) {
 			var originalimage=results;
 			$scope.shareimage = angular.copy(originalimage);			
-			window.plugins.socialsharing.shareViaFacebook('need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with Mikudu App. Visit www.mikudu.com',['http://hosting.solminds.com/dev/mikuduapi/v1/img/'+$scope.shareimage.data],'https://play.google.com/store/apps/details?id=com.solminds.mikudu&hl=en');        
+			window.plugins.socialsharing.shareViaFacebook('need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with Mikudu App. Visit www.mikudu.com',['http://hosting.solminds.com/dev/mikuduapi/v1/img/'+$scope.shareimage.data],'https://play.google.com/store/apps/details?id=com.solminds.mikudu&hl=en');
+            $scope.loading = false;        
 		});				
         $scope.saveRequest(request);        
                
@@ -369,7 +380,7 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
         var foundItem = $filter('filter')($scope.bloodgroups, { Id: request.Bloodgroup_Id  }, true)[0];
         var index = $scope.bloodgroups.indexOf(foundItem);
         var sharedate =$filter('date')(request.Neededon, "dd-MM-yyyy");        
-		window.plugins.socialsharing.shareViaWhatsApp('need '+$scope.bloodgroups[index].Name+' blood on '+sharedate+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with Mikudu App. Visit www.mikudu.com');        
+		window.plugins.socialsharing.shareViaWhatsApp('Need '+$scope.bloodgroups[index].Name+' blood on '+sharedate+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with Mikudu App. Visit www.mikudu.com');        
         $scope.saveRequest(request);        
                
     }	
