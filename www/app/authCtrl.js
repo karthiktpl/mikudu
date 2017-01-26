@@ -579,7 +579,23 @@ app.controller('notificationsCtrl', function ($scope, $rootScope, $location, $ro
                     myEl.remove(); 
                 }
             });         
-    };               
+    }; 
+    $scope.RemoveDonation=function(requestdata){
+            Data.post('removedonation', {
+                request: requestdata
+            }).then(function (results) {
+                Data.toast(results);
+                if (results.status == "success") {                    
+                    var notcount=($rootScope.notifications*1)-1;                    
+                    $rootScope.notifications = notcount;
+                     var storage = window.localStorage;                                                           
+                    storage.setItem('notifications', notcount);                    
+                    var myEl = angular.element( document.querySelector( '#donorview'+requestdata.Notification_Id ) );
+                    myEl.remove(); 
+                }
+            });         
+    }; 	
+	
 });
 app.controller('passwordCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data) {
     var storage = window.localStorage; 
