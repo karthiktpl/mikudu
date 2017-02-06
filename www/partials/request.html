@@ -81,19 +81,20 @@
 			
 				<div class="col-xs-12 ">
 				  <div class="form-group">
-					  <label for="bloodgroup">Blood Group   <span class="redspan">*</span></label>
+					  <label for="bloodgroup">Blood Group  Required’ <span class="redspan">*</span></label>
     				<select id="bloodgroup"  name="bloodgroup" class="form-control" ng-model="request.Bloodgroup_Id" ng-required="true">
     					<span class="btn-select-arrow glyphicon glyphicon-chevron-down"></span>
                         <option value="">Select Blood Group</option>
+						<option value="0">Any Blood Group</option>
                         <option ng-repeat="x in bloodgroups" value="{{x.Id}}">{{x.Name}}</option>                        					 
     				</select>
                     <small class="errorMessage" data-ng-show="signupForm.bloodgroup.$dirty && signupForm.bloodgroup.$error.required"> Select Blood Group.</small>					  					  
 				  </div>
-				<div class="form-group">
+				<!--<div class="form-group">
 					<div class="form-group">
 						<div class="checkbox"> <label> <input ng-model="request.Cananygroup" type="checkbox" ng-true-value="1" ng-false-value="0"> Search for all blood groups  </label> </div>					
 					</div>				  
-				</div>				  					
+				</div>				  					-->
                 <div class="form-group">
                     <label for="name">Country <span class="redspan">*</span></label> 
                     <select ng-model="request.Country_Id" readonly="true"  name="country" class="form-control" ng-change="getCountryStates()" ng-options="obj.Id as obj.Name for obj in countries" ng-required="true">                                  
