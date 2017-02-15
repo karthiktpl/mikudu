@@ -3983,7 +3983,7 @@ to {
 }
 .media-body, .media-left, .media-right {
     display: table-cell;
-    vertical-align: top;border-bottom: 1px solid #f1f1f1;
+    vertical-align: top;border-bottom: 2px solid #e2e2e2;
 }
 .media-middle {
     vertical-align: middle;
@@ -5251,4 +5251,13 @@ td.visible-print, th.visible-print {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+.nopadding
+{
+	padding:0px;
+	margin:5px;
+}
+.topmargin
+{
+	margin-top:10px;
 }

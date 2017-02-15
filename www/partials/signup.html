@@ -33,8 +33,9 @@
 	  </div>
 	  <div class="form-group">
 		<label for="password">Password <span class="redspan">*</span></label>
-		<input type="password" class="form-control" id="password"  name="password" placeholder="Password" ng-model="signup.password" required >
+		<input type="password" class="form-control" id="password" ng-minlength="10" name="password" placeholder="Password" ng-model="signup.password" required >
         <small class="errorMessage" data-ng-show="signupForm.password.$dirty && signupForm.password.$invalid"> Enter Password.</small>
+		<small class="errorMessage" data-ng-show="signupForm.password.$error.minlength"> Password should be 8 charcters.</small>                	
 	  </div>
 	  <div class="form-group">
 		<label for="confirmpassword">Confirm Password <span class="redspan">*</span></label>

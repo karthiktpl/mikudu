@@ -362,28 +362,47 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
     } 
     $scope.FaccebookShare=function(request)
     {
-        var foundItem = $filter('filter')($scope.bloodgroups, { Id: request.Bloodgroup_Id  }, true)[0];
-        var index = $scope.bloodgroups.indexOf(foundItem);	
-		$scope.shareimage='';
-        $scope.loading = true; 
-		Data.get('shareimage?blood='+encodeURIComponent($scope.bloodgroups[index].Name)+'&date='+request.Neededon+'&location='+request.Location_Address+'&name='+request.Name+'&phone='+request.Mobile1).then(function (results) {
-			var originalimage=results;
-			$scope.shareimage = angular.copy(originalimage);			
-			window.plugins.socialsharing.shareViaFacebook('need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with Mikudu App. Visit www.mikudu.com',['http://hosting.solminds.com/dev/mikuduapi/v1/img/'+$scope.shareimage.data],'https://play.google.com/store/apps/details?id=com.solminds.mikudu&hl=en');
-            $scope.loading = false;        
-		});				
+        
+        if(request.Bloodgroup_Id=='0'){			
+			$scope.shareimage='';
+			$scope.loading = true; 
+			Data.get('shareimage?blood='+encodeURIComponent('any group of blood')+'&date='+request.Neededon+'&location='+request.Location_Address+'&name='+request.Name+'&phone='+request.Mobile1).then(function (results) {
+				var originalimage=results;
+				$scope.shareimage = angular.copy(originalimage);			
+				window.plugins.socialsharing.shareViaFacebook('need any group of blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with mikudu App. Visit www.mikudu.com',['http://hosting.solminds.com/dev/mikuduapi/v1/img/'+$scope.shareimage.data],'https://play.google.com/store/apps/details?id=com.solminds.mikudu&hl=en');
+				$scope.loading = false;        
+			});				
+		}
+		else{
+			var foundItem = $filter('filter')($scope.bloodgroups, { Id: request.Bloodgroup_Id  }, true)[0];
+			var index = $scope.bloodgroups.indexOf(foundItem);	
+			$scope.shareimage='';
+			$scope.loading = true; 
+			Data.get('shareimage?blood='+encodeURIComponent($scope.bloodgroups[index].Name)+'&date='+request.Neededon+'&location='+request.Location_Address+'&name='+request.Name+'&phone='+request.Mobile1).then(function (results) {
+				var originalimage=results;
+				$scope.shareimage = angular.copy(originalimage);			
+				window.plugins.socialsharing.shareViaFacebook('need '+$scope.bloodgroups[index].Name+' blood on '+request.Neededon+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with mikudu App. Visit www.mikudu.com',['http://hosting.solminds.com/dev/mikuduapi/v1/img/'+$scope.shareimage.data],'https://play.google.com/store/apps/details?id=com.solminds.mikudu&hl=en');
+				$scope.loading = false;        
+			});				
+		}				
         $scope.saveRequest(request);        
                
     }
     $scope.WhatsappShare=function(request)
     {
-        var foundItem = $filter('filter')($scope.bloodgroups, { Id: request.Bloodgroup_Id  }, true)[0];
-        var index = $scope.bloodgroups.indexOf(foundItem);
-        var sharedate =$filter('date')(request.Neededon, "dd-MM-yyyy");        
-		window.plugins.socialsharing.shareViaWhatsApp('Need '+$scope.bloodgroups[index].Name+' blood on '+sharedate+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with Mikudu App. Visit www.mikudu.com');        
-        $scope.saveRequest(request);        
-               
-    }	
+        if(request.Bloodgroup_Id=='0'){
+			var sharedate =$filter('date')(request.Neededon, "dd-MM-yyyy");   		
+			window.plugins.socialsharing.shareViaWhatsApp('Need any group of blood on '+sharedate+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with mikudu App. Visit www.mikudu.com');        
+			$scope.saveRequest(request);			
+		}
+		else{
+			var foundItem = $filter('filter')($scope.bloodgroups, { Id: request.Bloodgroup_Id  }, true)[0];		
+			var index = $scope.bloodgroups.indexOf(foundItem);
+			var sharedate =$filter('date')(request.Neededon, "dd-MM-yyyy");   		
+			window.plugins.socialsharing.shareViaWhatsApp('Need '+$scope.bloodgroups[index].Name+' blood on '+sharedate+' at '+request.Location_Address+' Name - '+request.Name+'  Phone - '+request.Mobile1+' Message Shared with mikudu App. Visit www.mikudu.com');        
+			$scope.saveRequest(request); 			
+		}		                      
+    }		
     $scope.ShareIt=function(socialmessage){
         window.plugins.socialsharing.share(socialmessage)
     }
