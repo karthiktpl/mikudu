@@ -7,7 +7,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span> 
                 </button>-->
-                <a  href="#/login" class="navbar-brand"><img src="img/logomain.png" style="margin-bottom: 50px;"></a>
+                <a  href="#/index" class="navbar-brand"><img src="img/logomain.png" style="margin-bottom: 50px;"></a>
             </div>        
         </div>
     </div>
@@ -33,9 +33,9 @@
 	  </div>
 	  <div class="form-group">
 		<label for="password">Password <span class="redspan">*</span></label>
-		<input type="password" class="form-control" id="password" ng-minlength="6" name="password" placeholder="Password" ng-model="signup.password" required >
+		<input type="password" class="form-control" id="password" ng-minlength="10" name="password" placeholder="Password" ng-model="signup.password" required >
         <small class="errorMessage" data-ng-show="signupForm.password.$dirty && signupForm.password.$invalid"> Enter Password.</small>
-		<small class="errorMessage" data-ng-show="signupForm.password.$error.minlength"> Password should be 6 charcters.</small>                	
+		<small class="errorMessage" data-ng-show="signupForm.password.$error.minlength"> Password should be 8 charcters.</small>                	
 	  </div>
 	  <div class="form-group">
 		<label for="confirmpassword">Confirm Password <span class="redspan">*</span></label>
@@ -69,23 +69,84 @@
         <div class="form-group">Fields with <span class="redspan">*</span> mark are mandatory</div>
         <div class="form-group">
         	<div class="checkbox"> <label> <input ng-model="termscheck" name="termscheck" type="checkbox"  required>I Agree to Mikudu <a href="javascript:void(0);" ng-click="showTerms()">Terms and Conditions</a> </label> </div>       		
-        </div>        
+        </div>      
         <div class="form-group" ng-show="showterms">
-        	<textarea class="form-control" id="address" readonly="readonly" rows="7" >
-            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \n lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
-            </textarea>
+			<div class="termsdiv">
+				<center><h3>TERMS OF USE</h3></center>
+				<p class="headtext">
+					PLEASE READ THESE TERMS OF USE BEFORE USING THE WEBSITE OR THE MOBILE APP. USER AGREES TO BE BOUND BY THE TERMS DESCRIBED HEREIN AND ALL/ANY TERMS INCORPORATED BY REFERENCE, AS REVISED FROM TIME TO TIME. IF THE USER DOES NOT AGREE TO ANY/ALL OF THESE TERMS, DO NOT USE THE WEBSITE.					
+				</p>
+				<p>
+					<b>What is mikudu</b> - ASM Healthcare Private Limited, a company duly incorporated under the Companies Act, 2013, is licensed to and operates the domain name <a href="www.mikudu.com">www.mikudu.com</a>, an internet based portal, and mikudu blood, a mobile application (hereinafter, referred to as <b>“mikudu”</b> or <b>“We”</b> or <b>“Our”</b> or <b>“Us”</b> or <b>“Company”</b>). The domain name and the mobile applications are collectively referred to as <b>“Website”</b>. 				
+				</p>
+				<p>
+					<b>Who is a User</b>- ‘User’ for the purpose of these Terms of Use include persons, natural and legal, competent to contract under Indian law, who have registered for availing the services on the website, the beneficiaries of such services and casual visitors. 
+				</p>
+				<ol>
+					<li>User’s access to and/or use of the Website, transactions on the Website and use of services hosted or managed remotely through the Website, are governed by the following terms and conditions (“referred to as Terms of Use”), including the applicable policies which are incorporated herein by way of reference. These Terms of Use constitute a legal and binding contract between the User on one part and mikudu on the other part.  By accessing, browsing or in any way transacting on the Website, or availing any services, User signifies to be bound by the Terms of Use. Further, by impliedly or expressly accepting these Terms of Use, User also accepts and agrees to be bound by mikudu’s policies, including its Privacy Policy, and such other guidelines, policies, terms and conditions as are applicable for the purposes of accessing, browsing or transacting on the Website, or availing any of the services, and such, guidelines, policies, terms and conditions shall be deemed to be incorporated into, and considered as part and parcel of these Terms of Use. However, if User navigates away from the Website to a third party site, User may be subject to such terms and conditions of use, as may be specified on such site. In such event, the terms and conditions of use applicable to that site will govern User’s use of that site.</li>
+					<li>The Website is a platform to connect those who need blood to those who are willing to donate blood, including individuals and organisations. </li>
+					<li>User agrees and acknowledges that the Website is only a platform that Users utilize to provide and gather information. mikudu is not and cannot be treated as a party to any interaction or transaction between individuals and/or organisations.</li>	
+					<li>The Company reserves the right to change or modify these Terms of Use or any policy or guideline of the Website including the Privacy Policy, at any time and at its sole discretion. Any changes or modifications will be effective immediately upon posting the revisions on the Website, and User waives any right User may have to receive specific notice of such changes or modifications. User’s continued use of the Website will confirm User’s acceptance of such changes or modifications; therefore, User should frequently review these Terms of Use and applicable policies to understand the terms and conditions that apply to User’s use of the Website.</li>	
+					<li>These Terms of Use is published in compliance with, and is governed by the provisions of Indian law, including, but not limited to:
+						<ol style="list-style: lower-roman;">
+							<li>the Indian Contract Act, 1872 (“Contract Act”);</li>
+							<li>the (Indian) Information Technology Act, 2000 and the rules, regulations, guidelines and clarifications framed there under, including the (Indian) Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Information) Rules, 2011, and the (Indian) Information Technology (Intermediaries Guidelines) Rules, 2011;</li>
+						</ol>
+					</li>	
+					<li>mikudu authorizes the visitor to view and access the content available on the Website solely for the purposes of availing the services, subject to the Terms of Use. The contents on the Website information, text, graphics, images, logos, button icons, software code, design, and the collection, arrangement and assembly of content, contains third party content as well as in-house content provided by of mikudu (<b>“mikudu Content”</b>) (collectively, <b>“Content”</b>). The mikudu Content is the property of mikudu and is protected under copyright, trademark and other laws. Visitor shall not modify the mikudu Content or reproduce, display, publicly perform, distribute, store or otherwise use the mikudu content in any way for any public or commercial purpose or for personal gain.</li>	
+					<li>Compliance with the Terms of Use would facilitate the User to a personal, non-exclusive, non-transferable, limited privilege to access and transact on the Website.</li>	
+					<li>These Terms of Use constitute an electronic record in terms of the Information Technology Act, 2000 and rules framed there under, as applicable and amended from time to time. This electronic record is generated by a computer system and does not require any physical or digital signatures.</li>	
+					<li>For the purposes of transacting with individuals and/or organisations through the Website, the visitors are required to obtain registration, in accordance with the procedure established by mikudu in this regard. As part of the registration process, mikudu may collect the following information from the Users:
+						<ol style="list-style: lower-roman;">
+							<li>Name</li>
+							<li>User ID</li>
+							<li>Email address</li>
+							<li>Address (including country and ZIP/ postal code)</li>
+							<li>Gender</li>
+							<li>Age</li>
+							<li>Phone number</li>
+							<li>Password chosen by the User</li>
+							<li>Other details as the User may volunteer</li>
+						</ol>					
+					</li>	
+					<li>By registering, accessing or using the Website, the user accepts the terms of this Terms of Use and represents and warrants to mikudu that the user is ‘competent to contract’ under the Contract Act and has the right, authority and capacity to use the Website and agrees to and abide by its Terms of Use.</li>	
+					<li>A registered id can only be utilized by the persons whose details have been provided.  mikudu does not permit multiple persons to share a single log in/ registration id.</li>	
+					<li>The user agrees and acknowledges that user would (a) create only one account; (b) provide accurate, truthful, current and complete information when creating account and in all their dealings through the Website; (c) maintain and promptly update User’s account information; (d) maintain the security of account by not sharing password with others and restricting access to the user’s account and devices; (e) promptly notify mikudu if it is discovered or otherwise suspected that any security breaches relating to the Website has occurred; and (f) take responsibility for all activities that occur under user’s account and accept all risk of unauthorized access.</li>	
+					<li><b>Privacy Policy</b> -mikudu has duly formulated a policy on how the company collects, uses and discloses personally identifiable information from its users (“Privacy Policy”). <b>The Privacy Policy forms an integral part of these Terms of Use and the Users are requested to carefully read the same.</b></li>	
+					<li><b>Services and use of Website</b>- mikudu provides Services through the Website, which is a platform that facilitates interaction between those who need blood to those who are willing to donate blood. The user understands and agrees that mikudu and the Website merely provide hosting services to its Users and persons browsing / visiting the Website. mikudu does not charge any fee for its services and suggests to users not to give/accept any sort of consideration. mikudu is only a provider of information and donors who have shared their details here may refuse to donate blood at their discretion. The information we provide is from users who have registered on the website, from public domain or from third party agencies and mikudu will not be responsible for correctness of information. There are third party user generated contents on the website and mikudu has no control over such third party user generated contents and does not - originate or initiate the transmission, or select the sender/recipient of the transmission, or the information contained in such transmission.</li>	
+					<li><p><b>Publication of Content/ Information on the Website</b>- THE CONTENT, WHETHER SUCH CONTENT IS PROVIDED BY OR THROUGH THE USE OF THE SERVICES OR THROUGH ANY OTHER COMMUNICATIONS FROM US, IS NOT INTENDED AS A SUBSTITUTE FOR, NOR DOES IT REPLACE, PROFESSIONAL MEDICAL ADVICE, DIAGNOSIS, OR TREATMENT. DO NOT DISREGARD, AVOID OR DELAY OBTAINING MEDICAL ADVICE FROM A QUALIFIED HEALTHCARE PROVIDER BECAUSE OF SOMETHING THE USER MAY HAVE READ ON THE SITE. DO NOT USE THE SERVICES FOR EMERGENCY MEDICAL NEEDS. IF YOU EXPERIENCE A MEDICAL EMERGENCY, IMMEDIATELY CALL A HEALTH CARE PROFESSIONAL. THE USE OF THE CONTENT IS SOLELY AT YOUR OWN RISK. NOTHING STATED OR POSTED ON THE SITE OR AVAILABLE THROUGH ANY SERVICES IS INTENDED TO BE, AND MUST NOT BE TAKEN TO BE, THE PRACTICE OF MEDICINE, DENTISTRY, NURSING, OR OTHER PROFESSIONAL HEALTH CARE ADVICE, OR THE PROVISION OF MEDICAL CARE.</p>
+						<p>mikudu allows third party organizations and servers, ad agencies, ad technology vendors and research firms (“Advertisers”), to serve advertisements to the Users (“Advertised Content”), which may include third party banners, badges, contextual advertising and content created or provided by an Advertiser (collectively referred to as "Advertisements" or "Advertising"). The Advertised Content shall be clearly demarcated and differentiated from mikudu Content. mikudu does NOT use personally identifiable information to target ads.</p>
+						<p>The mikudu Content is available on the Website, including without limitation, text, copy, audio, video, photographs, illustrations, graphics and other visuals, is for targeted at general public for informational purposes only and does not constitute professional medical advice, diagnosis, treatment or recommendations of any kind.</p>
+						<p>The Website uses temporary cookies to store certain data (that is not sensitive personal data or information) that is used by mikudu for the technical administration of the Website, research and development, and for visitor administration. In the course of serving advertisements or optimizing services, mikudu may allow authorized third parties to place or recognize a unique cookie on the visitors’ browser. mikudu does not store personally identifiable information in the cookies.</p>
+						<p>The Website may be linked to web pages and content of third parties, affiliates and business partners (collectively, “Third Party Content”). mikudu does not control, endorse or adopt any Third Party Content and can make no guarantee as to its accuracy or completeness.</p>
+						<p>mikudu assumes no responsibility, and shall not be liable for, any damages to, or viruses that may infect User's device on account of User's access to, use of, or browsing the Website or the downloading of any material, data, text, images, video content, or audio content from the Website. If a User is dissatisfied with the Website, User's sole remedy is to discontinue using the Website.</p>
+						<p>mikudu, its affiliates, independent contractors, service providers, consultants, licensors, agents, and representatives, and each of their respective directors, officers or employees (“Protected Entities”), shall not be liable for any direct, indirect, special, incidental, punitive, exemplary or consequential damages, or any other damages of any kind, arising from, or directly or indirectly related to, (i) the use of, or the inability to use, the Website or the content, materials and functions related thereto; (ii) User's provision of information via the Website; even if such protected entity has been advised of the possibility of such damages.</p>
+						<p>In no event shall the Protected Entities be liable for, or in connection with, (i) the provision of, or failure to provide, all or any products or service by an individual and/or organisation to any User; or (ii) any comments or feedback given by any of the Users in relation to the goods or services provided by any individual and/or organisation; or (ii) any content posted, transmitted, exchanged or received by or on behalf of any User or other person on or through the Website</p>						
+					</li>	
+					<li><p><b>Indemnity</b>-User agrees to defend, indemnify and hold harmless mikudu, its affiliates, independent contractors, service providers, consultants, licensors, agents, and representatives, and each of their respective directors, officers and employees, from and against any and all claims, losses, liability, damages, and/or costs (including, but not limited to, reasonable attorney fees and costs) arising from or related to (a) The user’s access to or use of Website; (b) The user’s violation of the Terms of Use; (c) The user’s violation of any rights of another person/ entity, including infringement of their intellectual property rights; or (d) The user’s conduct in connection with the Website.</p>
+						<p><b>Modification</b> of website- mikudu reserves the right to modify or discontinue, temporarily or permanently, the Website or any features or portions thereof without prior notice. The user agrees that mikudu will not be liable for any modification, suspension or discontinuance of the Website or any other part thereof</p></li>	
+					<li><p><b>Termination </b>- The provisions of this Agreement shall continue to apply until terminated by either the user or mikudu as set for below:</p>
+						<p>If the user wants to terminate this agreement with mikudu , the user may do so by not accessing the Website; or closing user accounts; or closing user accounts for all of the services that are in use. </p>
+						<p>mikudu reserves the right to, at any time, and with or without notice, terminate this Agreement with the user if:</p>
+						<ol style="list-style: lower-roman;">
+							<li>The user breaches any of applicable law including, but not limited to,  the provisions of this Agreement or the terms of the Privacy Policy or any other terms, conditions, or policies that may be applicable to the user from time to time (or have acted in a manner that clearly shows that the user does not intend to, or are unable to, comply with the same); or</li>
+							<li>mikudu is unable to verify or authenticate any information provided to mikudu by the user; or</li>
+							<li>mikudu believes, in its sole discretion, that the user’s actions may cause liability for mikudu (or any of its affiliates, independent contractors, service providers, consultants, licensors, agents, and representatives) or are contrary to the interests of the Website; or</li>
+							<li>mikudu is required to do so by law; or</li>
+							<li>if the user fails to provide (or after providing such consent, later revokes) the consent necessary or desirable for mikudu to provide the Services to the user; or</li>
+							<li>The provision of the Services to the user, or to the general public, is in mikudu’s opinion, no longer viable; or</li>
+							<li>mikudu has elected to discontinue, with or without reason, access to the Website or the Services (or any part thereof).</li>							
+						</ol>
+						<p>mikudu may also terminate or suspend (temporarily or permanently) all or a portion of user account or access to the Services, with or without reason. Except as may be set forth in any of the terms applicable to a particular Service, termination of user account may include: (i) removal of access to all offerings within the Website or with respect to the Services; and (ii) barring the user from further use or access of the Website or of any of the Services.  Once terminated or suspended (temporarily or permanently), the user may not continue to use the Website under the same account, a different account or re-register under a new account.</p>
+						<p>Upon termination of this Agreement, mikudu shall have no obligation to maintain or provide any of user data and may thereafter, unless legally prohibited, delete all user data in its systems or otherwise in its possession or under its control, including but not limited to user personal information, log-in ID and password, and all related information, files and materials associated with or inside user account (or any part thereof).</p>
+						<p>The right to terminate/ suspend the account is in addition to, and without prejudice to, mikudu’s right to initiate action against the visitor, in accordance with applicable law.</p>
+					</li>	
+					<li><b>Force Majeure</b>- The User accepts and acknowledges that mikudu or  any individual and/or organization associated with mikudu shall not be liable for any loss or damage caused to the User as a result of delay or default or deficiency or failure in the Services as a result of any natural disasters, fire, riots, civil disturbances, actions or decrees of governmental bodies, communication line failures, or any other delay or default or deficiency or failure which arises from causes beyond mikudu or the any individual and/or organization associated with mikudu’s reasonable control (<b>"Force Majeure"</b>).</li>	
+					<li><p>Governing Law and Dispute Resolution</p> -This Agreement and any contractual obligation between mikudu and User will be governed by the laws of India, without reference to the conflict of laws principles. Any legal action or proceeding related to user’s access to, or use of, the Website or these Terms of Use shall be subject to the exclusive jurisdiction of the courts at Bangalore, India.</li>	
+					<li><p>Survival</p>-Even after termination, certain obligations mentioned under Covenants, Liability, Indemnity, Intellectual Property, and Dispute Resolution will continue and survive termination.</li>	
+					<li>If any User has any grievance, comment, clarification, question or suggestion regarding any of our Services, please contact our customer service at <a href="mailto:care@mikudu.com">care@mikudu.com</a> If a User has any questions concerning mikudu, the Website, this Agreement, or anything related to any of the foregoing, mikudu can be reached at the following email address- <a href="mailto:care@mikudu.com">care@mikudu.com</a></li>						
+				</ol>
+			</div>        	            
         </div>
               	
 	</div>

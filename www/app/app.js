@@ -11,12 +11,21 @@ app.config(function ($httpProvider,$compileProvider) {
 app.config(['$routeProvider',
   function ($routeProvider) {
         $routeProvider.
-        when('/login', {
+        when('/index', {
+            title: 'mikudu',
+            templateUrl: 'partials/index.html',
+            controller: 'authCtrl'
+        })
+		.when('/login', {
             title: 'Login',
             templateUrl: 'partials/login.html',
             controller: 'authCtrl'
         })
-            .when('/forgotpassword', {
+		.when('/privacy', {
+            title: 'Privacy',
+            templateUrl: 'partials/privacy.html',
+            controller: 'authCtrl'
+        }).when('/forgotpassword', {
                 title: 'Forgot Password',
                 templateUrl: 'partials/forgotpassword.html',
                 controller: 'passwordCtrl'
@@ -151,7 +160,7 @@ app.config(['$routeProvider',
                 
             })
             .otherwise({
-                redirectTo: '/login'
+                redirectTo: '/index'
             });
   }])
     .run(function ($rootScope, $location, Data) {
@@ -168,16 +177,25 @@ app.config(['$routeProvider',
                 $rootScope.updatestatus = storage.getItem('updatestatus');
                 Data.get('notificationcount?customer='+$rootScope.uid).then(function (results) {
                         //$rootScope.notifications = storage.getItem('notifications');
-                        $rootScope.notifications = results.notifications;                     
+                        if(results.status=='success')
+                        {
+                            $rootScope.notifications = results.notifications;    
+                        }
+                        else                        
+                        {
+                            Data.toast(results);   
+                            $location.path("/logout");
+                        }
+                                             
                 });                                                 
             }
-            else
+			else
             {
                     var nextUrl = next.$$route.originalPath;
-                    if (nextUrl == '/signup' || nextUrl == '/login' || nextUrl == '/forgotpassword' || nextUrl =='/help') {
+                    if (nextUrl == '/signup' || nextUrl == '/login' || nextUrl == '/privacy' || nextUrl == '/forgotpassword' || nextUrl =='/help'|| nextUrl =='/index') {
 
                     } else {
-                        $location.path("/login");
+                        $location.path("/index");
                     }                
             }          
 

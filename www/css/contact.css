@@ -1,0 +1,104 @@
+/*
+/* Created by Filipe Pina
+ * Specific styles of signin, register, component
+ */
+/*
+ * General styles
+ */
+
+body, html{
+     height: 100%;
+ 	background-repeat: no-repeat;
+ 	background-color: #327ab5;
+ 	font-family: 'roboto', sans-serif;
+}
+
+h1.title { 
+	
+	font-family: 'Passion One', cursive; 
+	font-weight: 400; 
+}
+
+hr{
+	width: 10%;
+	color: #fff;
+}
+
+.form-group{
+	margin-bottom: 15px;
+}
+
+label{
+	margin-bottom: 15px;
+}
+
+input,
+input::-webkit-input-placeholder {
+    font-size: 11px;
+    padding-top: 3px;
+}
+
+.main-login{
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
+}
+
+.main-center{
+ 	margin-top: 30px;
+ 	margin: 0 auto;
+ 	max-width: 330px;
+    padding: 40px 40px;
+
+}
+
+.login-button{
+	    margin-top: 10px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    color: #327ab5;
+    background-color: #fff;
+	    text-decoration: none;
+}
+
+.login-register{
+	font-size: 14px;
+	
+}
+.container{
+padding-left:30px;
+
+    padding-right: 30px;
+}
+.wtom{
+color:#fff;
+}
+.wtom1{
+color:#fff;
+margin-bottom: 90px;
+}
+.padd{
+    margin-bottom: 90px;
+	}
+	.mylog{
+	    color: #fff;    
+    padding-top: 10px;
+	}
+	.mylog1{
+	color: #fff;
+	 text-decoration: none;
+	}
+.col-center-block {
+    float: none;
+    display: block;
+    margin: 0 auto;
+    /* margin-left: auto; margin-right: auto; */
+}
