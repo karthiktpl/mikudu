@@ -37,7 +37,10 @@ input::-webkit-input-placeholder {
     font-size: 11px;
     padding-top: 3px;
 }
-
+.navbar
+{
+	background-color:#222f31;
+}
 .main-login{
     /* shadows and rounded borders */
     -moz-border-radius: 2px;
@@ -77,6 +80,7 @@ input::-webkit-input-placeholder {
 padding-left:30px;
 
     padding-right: 30px;
+
 }
 .wtom{
 color:#fff;
@@ -101,4 +105,8 @@ margin-bottom: 90px;
     display: block;
     margin: 0 auto;
     /* margin-left: auto; margin-right: auto; */
+}
+.paddleft
+{
+	padding-left: 12%;
 }
