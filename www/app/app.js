@@ -24,7 +24,7 @@ app.config(['$routeProvider',
 		.when('/privacy', {
             title: 'Privacy',
             templateUrl: 'partials/privacy.html',
-            controller: 'authCtrl'
+            controller: 'privacyCtrl'
         }).when('/forgotpassword', {
                 title: 'Forgot Password',
                 templateUrl: 'partials/forgotpassword.html',
