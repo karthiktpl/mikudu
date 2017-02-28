@@ -50,6 +50,12 @@
                             <a href="#/help">                                
                                     <i class="fa fa-info fa-fw"></i>Help                                                                    
                             </a>
+                        </li>                   
+						<li class="divider"></li>
+						<li>
+							<a href="#/privacy" >
+								<i class="fa fa-user-secret fa-fw"></i>Privacy Policy
+							</a>
                         </li>                                             
 							<li class="divider"></li>
 							 <li>
@@ -112,8 +118,7 @@
                         					<div class="media-body">
                                               <div class="col-xs-8"><h4 class=" bldr">{{banksresult.Name | uppercase}} </h4>						
                         					  <h5>{{banksresult.Address}}</h5>
-                                              <h5>{{banksresult.mobile}}</h5></div>                                            
-                        					  
+                                              <h5><i class="fa fa-phone" aria-hidden="true"></i> {{banksresult.mobile}}</h5></div>                                                                    					  
                                               <div class="col-xs-3 pull-right" data-ng-show="banksresult.Longitude!=''"><a href="http://maps.google.com/?q={{banksresult.Longitude}}" class="btn btn-success pull-right"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></div> 					  					  
                         					</div>
                         				</div>

@@ -443,7 +443,7 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
         }).then(function (results) {                
             if (results.status == "success") {
                 $scope.emailresultarray=results.users;
-                $scope.emailcontent=results.emailcontent;
+                $scope.emailcontent=encodeURIComponent(results.emailcontent);
                 $scope.emailsubject=results.emailsubject;
                 $scope.requestremail=results.requestremail;
                 $scope.showsearch=false;  
