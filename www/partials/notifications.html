@@ -58,6 +58,12 @@
 							</a>
                         </li>                                              
                         <li class="divider"></li>
+						<li>
+							<a href="#/deleteme" ng-confirm-click="Press OK if you want to delete your account.">
+								<i class="fa fa-ban fa-fw"></i>Delete Me
+							</a>
+                        </li>                                              
+                        <li class="divider"></li>
                          <li>
                             <a href="#/logout">
                                <i class="fa fa-sign-out fa-fw"></i> Sign Out
@@ -92,7 +98,7 @@
                         <div class="media" ng-repeat="notificationlist in notificationlists" >
                             <div id="requestdiv{{notificationlist.data.Notification_Id}}" ng-show="notificationlist.type==0">
                              <p class="pull-right"><small><small><time am-time-ago="notificationlist.data.Requestedon" title="{{ notificationlist.data.Requestedon | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}"></time></small></small></p>
-                                    <div class="media-body">
+                                    <div class="media-body" style="border-bottom:0px;">
                                   <h4 class="media-heading bldr">{{notificationlist.data.Name | uppercase}} <span class="smallfont">would like to get </span><span class="label label-danger">{{notificationlist.data.Bloodgroup | uppercase}}</span><span class="smallfont"> blood</span>
                                   <br /> <span class="smallfont">on {{notificationlist.data.Neededon | date : fullDate}}</span></h4>
                                   <h5><span class="smallfont">At</span> {{notificationlist.data.Location_Address}}, {{notificationlist.data.District}}</h5>
@@ -103,7 +109,7 @@
                         
                             <div id="acceptview{{notificationlist.data.Notification_Id}}" ng-show="notificationlist.type==1">
                              <p class="pull-right"><small><time am-time-ago="notificationlist.data.Requestedon" title="{{ notificationlist.data.Requestedon | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}"></time></small></p>
-                                <div class="media-body">
+                                <div class="media-body" style="border-bottom:0px;">
                                   <h4 class="media-heading bldr">{{notificationlist.data.sender | uppercase}} <span class="smallfont">has accepted your request for </span><span class="label label-danger">{{notificationlist.data.Bloodgroup | uppercase}}</span> <span class="smallfont">blood <br/>
                                   on {{notificationlist.data.Neededon | date : fullDate}}</span><br />
                                   <span class="smallfont">Please contact {{notificationlist.data.sender | uppercase}} on <br /> Phone: {{notificationlist.data.Mobile}} <br/>Email: {{notificationlist.data.Email}}</span><br />                                
@@ -129,7 +135,13 @@
                             	<span class="glyphicon glyphicon-info-sign"></span> <strong>You can donate again. </strong>
                             	<hr class="message-inner-separator">
                             	<p>You can donate again. It has been 3 months since you last donated. </p>	
-                            </div>                                                           
+                            </div>
+                            <div class="alert alert-info" id="cancelview{{notificationlist.data.Notification_Id}}" ng-show="notificationlist.type==5">
+                            	<button type="button" class="close" ng-click="RemoveCancel(notificationlist.data);">x</button>
+                            	<span class="glyphicon glyphicon-info-sign"></span> <strong>Request Cancelled. </strong>
+                            	<hr class="message-inner-separator">
+                            	<p>Thank you for having accepted our blood request. However under changed circumstance, we are canceling the blood request. Thank you once again. </p>	
+                            </div> 							
                         </div>                                                   
                         <div ng-show='busy'>Loading data...</div>
                    </div>

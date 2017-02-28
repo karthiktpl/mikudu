@@ -58,6 +58,12 @@
 							</a>
                         </li>                                            
                         <li class="divider"></li>
+						<li>
+							<a href="#/deleteme" ng-confirm-click="Press OK if you want to delete your account.">
+								<i class="fa fa-ban fa-fw"></i>Delete Me
+							</a>
+                        </li>                                              
+                        <li class="divider"></li>
                          <li>
                             <a href="#/logout">
                                <i class="fa fa-sign-out fa-fw"></i> Sign Out
@@ -95,7 +101,7 @@
           <h4 class="media-heading bldr"><span class="smallfont">Need </span> <span class="label label-danger">{{requestslist.Bloodgroup | uppercase}}</span> <span class="smallfont">on {{requestslist.Neededon | date : fullDate}}</span> <span class="smallfont">At</span></h4>
           <h5>{{requestslist.Location_Address}}, {{requestslist.District}}</h5>
           <h5>{{requestslist.Remarks}}</h5>      
-          <p><a href="#/viewrequest/{{requestslist.Id}}" class="btn btn-primary btn-xs" >View</a> <button type="button" class="btn btn-default btn-xs" ng-click="cancelRequest(requestslist.Id);" ng-confirm-click="You are about to cancel your Request!! Are you SURE you want to cancel?">Cancel</button></p>
+          <p><a href="#/viewrequest/{{requestslist.Id}}" class="btn btn-primary btn-xs" >View</a> <button type="button" class="btn btn-default btn-xs" ng-click="cancelRequest(requestslist.Id);" ng-confirm-click="Press OK if you want to cancel your blood request.">Cancel</button></p>
         </div>
     </div>
 </div>

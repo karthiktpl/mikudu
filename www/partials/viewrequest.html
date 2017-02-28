@@ -59,6 +59,12 @@
 							</a>
                         </li>                                           
                         <li class="divider"></li>
+						<li>
+							<a href="#/deleteme" ng-confirm-click="Press OK if you want to delete your account.">
+								<i class="fa fa-ban fa-fw"></i>Delete Me
+							</a>
+                        </li>                                              
+                        <li class="divider"></li>
                          <li>
                             <a href="#/logout">
                                <i class="fa fa-sign-out fa-fw"></i> Sign Out
@@ -128,7 +134,7 @@
 					
 					<div class="form-group">						
                         <h5  ng-show="requestview.Cananygroup=='1'"> Any blood group will be sufficient  </label> </h5>
-						<h5 ng-show="requestview.Directcontact=='1'"> Can call you directly  </label> </h5>
+						<h5 ng-show="requestview.Directcontact=='1'"> Please feel free to contact the user directly  </label> </h5>
                     </div>
 					</div>			
 				</div>

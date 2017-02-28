@@ -106,6 +106,10 @@ app.config(['$routeProvider',
                 templateUrl: 'partials/changepassword.html',
                 controller: 'passwordCtrl',                
             })
+            .when('/deleteme', {
+                title: 'Delete',                
+                controller: 'deleteCtrl',                
+            })
             .when('/viewrequest/:requestID', {
                 title: 'viewrequest',
                 templateUrl: 'partials/viewrequest.html',
@@ -170,24 +174,40 @@ app.config(['$routeProvider',
 
             if(storage.getItem('uid'))
             {
-                $rootScope.uid = storage.getItem('uid');
-                $rootScope.name = storage.getItem('name');
-                $rootScope.email = storage.getItem('email');
-                $rootScope.district = storage.getItem('district');
-                $rootScope.updatestatus = storage.getItem('updatestatus');
-                Data.get('notificationcount?customer='+$rootScope.uid).then(function (results) {
-                        //$rootScope.notifications = storage.getItem('notifications');
-                        if(results.status=='success')
-                        {
-                            $rootScope.notifications = results.notifications;    
-                        }
-                        else                        
-                        {
-                            Data.toast(results);   
-                            $location.path("/logout");
-                        }
-                                             
-                });                                                 
+                var nextUrl = next.$$route.originalPath;
+				
+				if(nextUrl=='/deleteme')
+				{					
+					Data.get('deleteaccount?user='+storage.getItem('uid')).then(function (results) {
+								Data.toast(results);
+								if (results.status == "success") {
+									storage.setItem('uid', '');
+									storage.setItem('name', '');
+									storage.setItem('email', '');										
+									$location.path('logout');             
+								}
+					});					
+				}
+				else{
+					$rootScope.uid = storage.getItem('uid');
+					$rootScope.name = storage.getItem('name');
+					$rootScope.email = storage.getItem('email');
+					$rootScope.district = storage.getItem('district');
+					$rootScope.updatestatus = storage.getItem('updatestatus');
+					Data.get('notificationcount?customer='+$rootScope.uid).then(function (results) {
+							//$rootScope.notifications = storage.getItem('notifications');
+							if(results.status=='success')
+							{
+								$rootScope.notifications = results.notifications;    
+							}
+							else                        
+							{
+								Data.toast(results);   
+								$location.path("/logout");
+							}
+												 
+					});
+				}				
             }
 			else
             {

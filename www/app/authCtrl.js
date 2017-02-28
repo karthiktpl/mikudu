@@ -558,7 +558,7 @@ app.controller('notificationsCtrl', function ($scope, $rootScope, $location, $ro
             Data.post('requestenough', {
                 request: requestdata
             }).then(function (results) {
-                Data.toast(results);
+                //Data.toast(results);
                 if (results.status == "success") {
                     $rootScope.notifications = results.notifications;                    
                     var storage = window.localStorage;                    
@@ -610,6 +610,21 @@ app.controller('notificationsCtrl', function ($scope, $rootScope, $location, $ro
                      var storage = window.localStorage;                                                           
                     storage.setItem('notifications', notcount);                    
                     var myEl = angular.element( document.querySelector( '#donorview'+requestdata.Notification_Id ) );
+                    myEl.remove(); 
+                }
+            });         
+    };
+    $scope.RemoveCancel=function(requestdata){
+            Data.post('removecancel', {
+                request: requestdata
+            }).then(function (results) {
+                Data.toast(results);
+                if (results.status == "success") {                    
+                    var notcount=($rootScope.notifications*1)-1;                    
+                    $rootScope.notifications = notcount;
+                     var storage = window.localStorage;                                                           
+                    storage.setItem('notifications', notcount);                    
+                    var myEl = angular.element( document.querySelector( '#cancelview'+requestdata.Notification_Id ) );
                     myEl.remove(); 
                 }
             });         
@@ -721,7 +736,16 @@ app.controller('privacyCtrl', function ($scope, $rootScope, $routeParams, $locat
 app.controller('faqCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data) {
                       
 });
-
+app.controller('deleteCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data) {
+	var storage = window.localStorage;
+    var userid=storage.getItem('uid');
+	Data.get('deleteaccount?user='+userid).then(function (results) {
+				Data.toast(results);
+				if (results.status == "success") {
+					$location.path('logout');             
+				}
+	});     
+});
 app.controller('mapCtrl', function ($scope, $rootScope, $routeParams, $location,country, $http, Data,$window) {
 	$scope.mapsval = {Country_Id:'',State_Id:'',District_Id:''};
     	
