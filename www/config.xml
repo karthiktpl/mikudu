@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.solminds.mikudu" versionCode = "192" version="1.3.2" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.mikuduteam.mikudu" versionCode = "101" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>mikudu</name>
     <description>
        mikudu Blood Donation
     </description>
-    <author email="support@solminds.com" href="http://solminds.com/">
-        Solminds Team
+    <author email="help@mikudu.com" href="http://solminds.com/">
+        Team mikudu
     </author>
     <content src="index.html" />
 	<preference name="phonegap-version"  value="cli-6.3.0" />

@@ -542,7 +542,7 @@ app.controller('notificationsCtrl', function ($scope, $rootScope, $location, $ro
             Data.post('requestcontact', {
                 request: requestdata
             }).then(function (results) {
-                Data.toast(results);
+                //Data.toast(results);
                 if (results.status == "success") {
                     $rootScope.notifications = results.notifications;                    
                     var storage = window.localStorage;                    
