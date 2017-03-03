@@ -165,7 +165,7 @@ app.controller('dashboardCtrl', function ($scope, $rootScope, $location, $routeP
             });         
       };
       $scope.ShareApp=function(){
-        window.plugins.socialsharing.share('Download mikudu blood donor network app in Google Playstore and be a part of growing blood donor community. mikudu helps people get blood when required and this possibly is your best chance to save a life!. visit http://hg.solminds.com/mikudu-wp/')                         
+        window.plugins.socialsharing.share('Download mikudu blood donor network app in Google Playstore and be a part of growing blood donor community. mikudu helps people get blood when required and this possibly is your best chance to save a life!. visit http://www.mikudu.com/')                         
       };                                    
 });
 app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams, Data, customer,country,$http) {
