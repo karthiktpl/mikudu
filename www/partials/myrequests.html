@@ -98,7 +98,7 @@
 <div class="media" ng-repeat="requestslist in requestslists"  ng-show="haveresult==true" >
     <div id="requestdiv{{requestslist.Id}}"> 
             <div class="media-body">
-          <h4 class="media-heading bldr"><span class="smallfont">Need </span> <span class="label label-danger">{{requestslist.Bloodgroup | uppercase}}</span> <span class="smallfont">on {{requestslist.Neededon | date : fullDate}}</span> <span class="smallfont">At</span></h4>
+          <h4 class="media-heading bldr"><span class="smallfont">Need </span> <span class="label label-danger" ng-show="requestslist.Bloodgroup!=NULL">{{requestslist.Bloodgroup | uppercase}}</span> <span class="label label-danger" ng-show="requestslist.Bloodgroup==NULL">any group of blood</span> <span class="smallfont">on {{requestslist.Neededon | date : fullDate}}</span> <span class="smallfont">At</span></h4>
           <h5>{{requestslist.Location_Address}}, {{requestslist.District}}</h5>
           <h5>{{requestslist.Remarks}}</h5>      
           <p><a href="#/viewrequest/{{requestslist.Id}}" class="btn btn-primary btn-xs" >View</a> <button type="button" class="btn btn-default btn-xs" ng-click="cancelRequest(requestslist.Id);" ng-confirm-click="Press OK if you want to cancel your blood request.">Cancel</button></p>

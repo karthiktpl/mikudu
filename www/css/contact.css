@@ -37,10 +37,7 @@ input::-webkit-input-placeholder {
     font-size: 11px;
     padding-top: 3px;
 }
-.navbar
-{
-	background-color:#222f31;
-}
+
 .main-login{
     /* shadows and rounded borders */
     -moz-border-radius: 2px;

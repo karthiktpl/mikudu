@@ -4,7 +4,7 @@ app.factory("Data", ['$http', 'toaster',
         var serviceBase = 'http://hosting.solminds.com/dev/mikuduapi/v1/';
         var obj = {};
         obj.toast = function (data) {
-            toaster.pop(data.status, "", data.message, 2000, 'trustedHtml');
+            toaster.pop(data.status, "", data.message, 7000, 'trustedHtml');
         }
         obj.get = function (q) {
             return $http.get(serviceBase + q).then(function (results) {
