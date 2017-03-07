@@ -40,7 +40,14 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                     }   
                     else
                     {
-                        $location.path('dashboard');
+                        if(results.updatestatus=='1')
+						{
+							$location.path('dashboard');
+						}
+						else{
+							$location.path('profile/'+results.uid);
+						}
+						
                     }                                                                       
                 
             }
@@ -737,14 +744,30 @@ app.controller('faqCtrl', function ($scope, $rootScope, $routeParams, $location,
                       
 });
 app.controller('deleteCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data) {
-	var storage = window.localStorage;
-    var userid=storage.getItem('uid');
-	Data.get('deleteaccount?user='+userid).then(function (results) {
+	
+    $scope.Deleteme= function(){        
+		var storage = window.localStorage;
+		var userid=storage.getItem('uid');
+		Data.get('deleteaccount?user='+storage.getItem('uid')).then(function (results) {
+					Data.toast(results);
+					if (results.status == "success") {
+						storage.setItem('uid', '');
+						storage.setItem('name', '');
+						storage.setItem('email', '');										
+						$location.path('logout');             
+					}
+		});       
+    }
+    $scope.Letremain= function(){        
+		$location.path('dashboard');       
+    }	
+		
+	/*Data.get('deleteaccount?user='+userid).then(function (results) {
 				Data.toast(results);
 				if (results.status == "success") {
 					$location.path('logout');             
 				}
-	});     
+	}); */    
 });
 app.controller('mapCtrl', function ($scope, $rootScope, $routeParams, $location,country, $http, Data,$window) {
 	$scope.mapsval = {Country_Id:'',State_Id:'',District_Id:''};

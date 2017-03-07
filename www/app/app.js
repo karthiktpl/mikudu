@@ -108,7 +108,8 @@ app.config(['$routeProvider',
             })
             .when('/deleteme', {
                 title: 'Delete',                
-                controller: 'deleteCtrl',                
+                controller: 'deleteCtrl',
+				templateUrl: 'partials/deleteme.html',	
             })
             .when('/viewrequest/:requestID', {
                 title: 'viewrequest',
@@ -174,21 +175,6 @@ app.config(['$routeProvider',
 
             if(storage.getItem('uid'))
             {
-                var nextUrl = next.$$route.originalPath;
-				
-				if(nextUrl=='/deleteme')
-				{					
-					Data.get('deleteaccount?user='+storage.getItem('uid')).then(function (results) {
-								Data.toast(results);
-								if (results.status == "success") {
-									storage.setItem('uid', '');
-									storage.setItem('name', '');
-									storage.setItem('email', '');										
-									$location.path('logout');             
-								}
-					});					
-				}
-				else{
 					$rootScope.uid = storage.getItem('uid');
 					$rootScope.name = storage.getItem('name');
 					$rootScope.email = storage.getItem('email');
@@ -206,8 +192,7 @@ app.config(['$routeProvider',
 								$location.path("/logout");
 							}
 												 
-					});
-				}				
+					});						
             }
 			else
             {

@@ -59,7 +59,7 @@
                         </li>                                              
                         <li class="divider"></li>
 						<li>
-							<a href="#/deleteme" ng-confirm-click="Press OK if you want to delete your account.">
+							<a href="#/deleteme" >
 								<i class="fa fa-ban fa-fw"></i>Delete Me
 							</a>
                         </li>                                              
@@ -140,7 +140,7 @@
                             	<button type="button" class="close" ng-click="RemoveCancel(notificationlist.data);">x</button>
                             	<span class="glyphicon glyphicon-info-sign"></span> <strong>Request Cancelled. </strong>
                             	<hr class="message-inner-separator">
-                            	<p>Thank you for having accepted our blood request. However under changed circumstance, we are canceling the blood request. Thank you once again. </p>	
+                            	<p>Thank you for accepting the blood request. {{notificationlist.data.sender | uppercase}} has cancelled the request –probably because she got blood from elsewhere.  Please do volunteer next time when someone requests blood. Thanks again.</p>	
                             </div> 							
                         </div>                                                   
                         <div ng-show='busy'>Loading data...</div>

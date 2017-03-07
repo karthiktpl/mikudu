@@ -9,7 +9,7 @@
             </button>-->
             <a href="#/dashboard" class="navbar-brand"><img src="img/logomain.png" style="margin-bottom: 50px;"></a>
         </div>
-        <div class="navbar-collapse" data-ng-show="showmenu">         
+        <div class="navbar-collapse">         
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">                    
                     <a  href="#/dashboard" aria-expanded="false">
@@ -50,13 +50,13 @@
                             <a href="#/help">                                
                                     <i class="fa fa-info fa-fw"></i>Help                                                                    
                             </a>
-                        </li>                   
+                        </li>                    
 						<li class="divider"></li>
 						<li>
 							<a href="#/privacy" >
 								<i class="fa fa-user-secret fa-fw"></i>Privacy Policy
 							</a>
-                        </li>                                             
+                        </li>						
                         <li class="divider"></li>
 						<li>
 							<a href="#/deleteme" >
@@ -80,14 +80,26 @@
     <div class="row">
         <div class="col-lg-12 text-left">
             <div class="panel panel-primary" >
-                <div class="panel-heading"><img src="img/hed.png" class="bldbnk">Help <div class="pull-right" ng-show="showmenu==false"><a ng-click="goback();" class="btn btn-success"><i class="fa fa-step-backward" aria-hidden="true"></i></a></div></div>
+                <div class="panel-heading"><img src="img/hed.png" class="bldbnk">Delete Account</div>
                 <div class="panel-body">
+                    <form role="form" name="PasswordForm" > 
                         <div class="row">
                             <div class="col-xs-12">
-                                <p  data-ng-show="!showmenu"><span class="help-block" >mikudu blood donor network helps people get blood when required. Please register as user using your email id and there is a detailed section 'How it works' to explain how the app works</span></p>
-                                <span class="help-block">Please contact <a href="mailto:help@mikudu.com"><b>help@mikudu.com</b></a> if you need to contact us for any reason.</span>
+                                <div class="form-group">
+                                    <label for="name"> This will remove you from the system forever. You will need create a new account to use the app. If you are deleting since you will not be able to donate blood in near future , you can update your user profile by unchecking the  ' Please tick if available to donate blood'. This will remove all the calls and messages you get for blood.We would like you to remain in the network even if you can not donate blood!</label>
+								 </div>
+                            </div>                           
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="Deleteme();">Delete me</button>
                             </div>
-                        </div>				
+                            <div class="col-xs-6">
+                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="Letremain();">Let me remain</button>
+                            </div>							
+                        </div>                                                                        
+                    </form>
                 </div>            
             </div>
         </div>
