@@ -107,7 +107,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
             $location.path('index');
         });
     }
-    $scope.call_google = function(){
+    /*$scope.call_google = function(){
               googleapi.authorize({
                 client_id: '640582960337-bn7j1apasl53bmcf2iiho41np6e9vgea.apps.googleusercontent.com',
                 //client_secret: 'CLIENT_SECRET',
@@ -121,7 +121,21 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                 $scope.getDataProfile();
             });
 
-    };    
+    };*/
+$scope.call_google = function(){
+		window.plugins.googleplus.login(
+		{
+		  'scopes': 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email', // optional space-separated list of scopes, the default is sufficient for login and basic profile info 
+		  // there is no API key for Android; you app is wired to the Google+ API by listing your package name in the google dev console and signing your apk (which you have done in chapter 4) 
+		},
+		function (obj) {
+		  alert(JSON.stringify(obj)); // do something useful instead of alerting 
+		},
+		function (msg) {
+		  alert('error: ' + msg);
+		}
+	)  
+}  
     $scope.getDataProfile = function(){
         var storage = window.localStorage;  
         var accessToken=storage.getItem('goosbumps')

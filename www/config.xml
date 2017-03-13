@@ -22,6 +22,9 @@
     <preference name="android-installLocation" value="auto" />
     
     <gap:plugin name="org.apache.cordova.geolocation" source="npm"/>
+	<gap:plugin name="cordova-plugin-googleplus" source="npm">
+	  <param name="REVERSED_CLIENT_ID" value="640582960337-bn7j1apasl53bmcf2iiho41np6e9vgea.apps.googleusercontent.com" />
+	</gap:plugin>	
     <!--<gap:plugin name="org.apache.cordova.inappbrowser" source="npm"/>-->
 	<gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
     <gap:plugin name="org.apache.cordova.network-information" source="npm" />
