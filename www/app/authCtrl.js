@@ -129,7 +129,9 @@ $scope.call_google = function(){
 		  // there is no API key for Android; you app is wired to the Google+ API by listing your package name in the google dev console and signing your apk (which you have done in chapter 4) 
 		},
 		function (obj) {
-		  alert(JSON.stringify(obj)); // do something useful instead of alerting 
+			$scope.values = {Email:obj.email,Name:obj.displayName};                
+			$scope.socialLogin();			
+		  //alert(JSON.stringify(obj)); // do something useful instead of alerting 
 		},
 		function (msg) {
 		  alert('error: ' + msg);
