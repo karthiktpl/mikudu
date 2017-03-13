@@ -86,7 +86,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
         }).then(function (results) {
             Data.toast(results);
             if (results.status == "success") {
-                //$location.path('login');
+                $location.path('login');
             }
         });
     };
