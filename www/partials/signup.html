@@ -28,7 +28,7 @@
    <div class="col-md-12">					   
 	  <div class="form-group">
 		<label for="name">Email <span class="redspan">*</span></label>
-		<input type="email" class="form-control" id="email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" name="email" placeholder="Email" ng-model="signup.email" required focus>
+		<input type="email" class="form-control" id="email" ng-pattern="/^[_A-Za-z0-9]+(\.[_A-Za-z0-9]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,4})$/" name="email" placeholder="Email" ng-model="signup.email" required focus>
         <span ng-show="signupForm.email.$dirty && signupForm.email.$invalid" class="help-inline">Email is not valid</span>
 	  </div>
 	  <div class="form-group">
@@ -66,6 +66,46 @@
         </select>        
         <small class="errorMessage" data-ng-show="signupForm.bloodgroup.$dirty && signupForm.bloodgroup.$error.required">Select Blood Group.</small>        		
 	  </div>
+	  <div class="form-group">
+		<label for="dateofbirth">Date of Birth <span class="redspan">*</span></label>        
+		<input type='date' class="form-control" name="dob" ng-model="signup.Dob" max="{{signup.dateformat | date:'yyyy-MM-dd'}}"  placeholder="Date of Birth" />                         							
+		<small class="errorMessage" data-ng-show="signupForm.dob.$dirty && signupForm.dob.$error.required"> Select Date of Birth.</small>
+	  </div>
+	<div class="form-group">
+		<label for="gender">Gender <span class="redspan">*</span></label>
+		<select class="form-control" id="gender"   name="gender" ng-options="gender.Id as gender.Name for gender in genders" ng-model="signup.Gender">
+			<option value="">Select Gender</option>    
+		</select>
+		<small class="errorMessage" data-ng-show="signupForm.gender.$dirty && signupForm.gender.$error.required"> Select Gender.</small>                             									
+	</div>
+	<div class="form-group">
+		<label for="name">Country  <span class="redspan">*</span></label>
+		<select ng-model="signup.Country_Id"  name="country" class="form-control" ng-change="getCountryStates()" ng-options="obj.Id as obj.Name for obj in countries" ng-required="true">
+			<option value="">Select Country</option>                                   
+		</select>
+		
+		<small class="errorMessage" data-ng-show="signupForm.country.$dirty && signupForm.country.$error.required"> Select Country.</small>
+	</div>
+
+	<div class="form-group">
+		<label for="bloodgrp">State  <span class="redspan">*</span></label>
+		<select class="form-control" name="state" ng-model="signup.State_Id" ng-options="x.Id as x.Name for x in states" ng-change="getStatesCities()"  ng-required="true">
+			<option value="">Select State/Union Territory</option>
+		</select>
+		<small class="errorMessage" data-ng-show="signupForm.state.$dirty && signupForm.state.$error.required"> Select State.</small>
+	</div>
+	<div class="form-group">
+		<label for="bloodgrp">District  <span class="redspan">*</span></label>
+		<select class="form-control" name="district" ng-model="signup.District_Id"  ng-options="y.Id as y.Name for y in districts"   ng-required="true">
+		<option value="">Select District</option>
+		</select>
+		<small class="errorMessage" data-ng-show="signupForm.district.$dirty && signupForm.district.$error.required"> Select District.</small>
+	</div>
+	<div class="form-group">
+		<label for="bloodgrp">Pincode</label>
+		<input type="number" class="form-control" ng-model="signup.Pincode" id="pincode" name="pincode" placeholder="Pincode"  maxlength="2" ng-minlength="0" ng-maxlength="6">
+		<small class="errorMessage" data-ng-show="((signupForm.pincode.$error.minlength || signupForm.pincode.$error.maxlength) && signupForm.pincode.$dirty) " style="width: 25%;"> Pincode should be 6 digits.</small>                            						
+	</div> 	
         <div class="form-group">Fields with <span class="redspan">*</span> mark are mandatory</div>
         <div class="form-group">
         	<div class="checkbox"> <label> <input ng-model="termscheck" name="termscheck" type="checkbox"  required>I Agree to Mikudu <a href="javascript:void(0);" ng-click="showTerms()">Terms of use</a> </label> </div>       		

@@ -6,7 +6,14 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
     $scope.profiledetails = {};    
     $scope.getdetails = {};
     $scope.bloodgroups = '';
-    $scope.loading = false;     
+    $scope.loading = false;  
+        $scope.genders = [{
+            Id: '0',
+            Name: 'Female'
+          }, {
+            Id: '1',
+            Name: 'Male'
+          }];	
     Data.get('bloodgroups').then(function (results) {            
         var originalbloods=results;
         $scope.bloodgroups = angular.copy(originalbloods);                  
@@ -53,16 +60,33 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
             }
              $scope.loading = false;
         });
-    };
-    $scope.signup = {email:'',password:'',name:'',bloodgroup:'',mobile:''};
-  
+    }; 
+	$scope.signup = {email:'',password:'',name:'',bloodgroup:'',mobile:'',Dob:'',Gender:'',Country_Id:'',State_Id:'',District_Id:'',Pincode:''};		
+	$scope.countries='';	
+	Data.get('countries').then(function (results) {
+		var originalcountry=results;
+		$scope.countries = angular.copy(originalcountry);                  
+	}); 	
+                    
+	$scope.getCountryStates=function(){ 
+		Data.getStates('states?country='+$scope.signup.Country_Id).then(function (results) {
+			var originalstates=results;
+			$scope.states = angular.copy(originalstates);                  
+		});                                     
+	};
+	$scope.getStatesCities=function(){ 
+		Data.get('districts?state='+$scope.signup.State_Id).then(function (results) {            
+			var originaldistricts=results;
+			$scope.districts = angular.copy(originaldistricts);                  
+		});        
+	};  
     $scope.signUp = function (customer) {        
         Data.post('signUp', {
             customer: customer
         }).then(function (results) {
             Data.toast(results);
             if (results.status == "success") {
-                $location.path('login');
+                //$location.path('login');
             }
         });
     };
