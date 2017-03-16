@@ -491,7 +491,7 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
             if (results.status == "success") {
                 $scope.emailresultarray=results.users;
                 $scope.emailcontent=encodeURIComponent(results.emailcontent);
-                $scope.emailsubject=results.emailsubject;
+                $scope.emailsubject=encodeURIComponent(results.emailsubject);
                 $scope.requestremail=results.requestremail;
                 $scope.showsearch=false;  
             }
