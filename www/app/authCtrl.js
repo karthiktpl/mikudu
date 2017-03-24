@@ -291,6 +291,21 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
         services.deleteCustomer(customer.customerNumber);
       };
 */
+	$scope.oldnumber=$scope.customer.Mobilenumber;
+			$scope.checknumber= function(donor){				
+					Data.getStates('checknumber?number='+donor.Mobilenumber+'&user='+donor.Id).then(function (results) {
+					   if(results.status=='success'){    	       
+							$scope.showerrornumber=false;
+							
+					   }
+					   else{
+							$scope.customer.Mobilenumber=$scope.oldnumber;
+							$scope.showerrornumber=true;							          
+					   }
+						
+										 
+					}); 
+			};
       $scope.saveCustomer = function(donor) {
             Data.post('updateprofile', {
                 customer: donor
@@ -491,7 +506,7 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
             if (results.status == "success") {
                 $scope.emailresultarray=results.users;
                 $scope.emailcontent=encodeURIComponent(results.emailcontent);
-                $scope.emailsubject=encodeURIComponent(results.emailsubject);
+                $scope.emailsubject=results.emailsubject;
                 $scope.requestremail=results.requestremail;
                 $scope.showsearch=false;  
             }

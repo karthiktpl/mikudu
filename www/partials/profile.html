@@ -129,9 +129,10 @@
                     			<span class="input-group-addon">
                     				+91
                     			</span>                                
-                                <input type="number" ng-minlength="10" ng-maxlength="10" class="form-control" ng-model="customer.Mobilenumber" name="Mobilenumber" id="mobile" placeholder="Mobile">                                                    			
+                                <input type="number" ng-minlength="10" ng-blur="checknumber(customer)" ng-maxlength="10" class="form-control" ng-model="customer.Mobilenumber" name="Mobilenumber" id="mobile" placeholder="Mobile">                                                    			
                     		</div>
                             <small class="errorMessage" data-ng-show="((signupForm.Mobilenumber.$error.minlength || signupForm.Mobilenumber.$error.maxlength) && signupForm.Mobilenumber.$dirty) "> phone number should be 10 digits.</small>
+                            <small class="errorMessage" data-ng-show="((showerrornumber)) "> The mobile number you are trying to enter is already in use. Please enter a new number or mail us at help@mikudu.com with your email address and mobile number</small>
                                                          
 							
 						  </div>                         
