@@ -373,7 +373,7 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
     };
         
     $scope.emaildiv='';
-                       
+
 
 
     $scope.CallSearch=function(request){
@@ -382,7 +382,7 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
             }).then(function (results) {                
                 if (results.status == "success") {
                     $scope.resultarray=results.users
-                    $scope.showsearch=false;  
+                    $scope.showsearch=false;
                 }
                 else
                 {
@@ -391,6 +391,21 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
                     Data.toast(results);
                 }
             });        
+    };
+    $scope.datalists = $scope.resultarray;
+    var pagesShown = 1;
+
+    var pageSize = 3;
+    $scope.paginationLimit = function(data) {
+        return pageSize * pagesShown;
+    };
+
+    $scope.hasMoreItemsToShow = function() {
+        return pagesShown < ($scope.datalists.length / pageSize);
+    };
+
+    $scope.showMoreItems = function() {
+        pagesShown = pagesShown + 1;
     };
     $scope.showsmsproceed=false;
     $scope.showemailproceed=false;

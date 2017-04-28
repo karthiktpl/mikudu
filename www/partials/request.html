@@ -215,18 +215,26 @@
 				</div>
         </form>
     <div class="panel-body" ng-show="resultarray.length > 0">
-       <div ng-repeat="(key, val) in resultarray">         
+       <div ng-repeat="(key, val) in resultarray | limitTo: paginationLimit()">
 			<div class="media-body">
 				  <div class="col-xs-7 nopadding">
 					<h5 class="media-heading bldr topmargin">{{val.Name}}</h5>
 				</div> 
-				<div class="col-xs-2 pull-right nopadding"><a href="tel:{{val.Mobilenumber}}" class="btn btn-success btn-sm pull-right"><i class="fa fa-phone fa-2x" aria-hidden="true"></i></a></div>                            
+				<div class="col-xs-2 pull-right nopadding"><a href="tel:{{val.Mobilenumber}}" class="btn btn-success btn-sm pull-right"><i class="fa fa-phone fa-2x" aria-hidden="true"></i></a></div>
 				<div class="col-xs-1 pull-right nopadding">
-					<h5 class="media-heading bldr topmargin"><span class="label label-danger">{{val.Bloodgroup}}</span><h5>
+					<h5 class="media-heading bldr topmargin"><span class="label label-danger">{{val.Bloodgroup}}</span></h5>
 				</div>	
 			</div>                  
        </div>
        <span class="help-block"><p id="characterLeftLoc" class="help-block ">standard rates apply for call charges</p></span>
+	   <div class="panel-footer">
+			<div class="pull-right">
+				<!--<button class="btn btn-success">Next <i class="fa fa-step-forward" aria-hidden="true"></i></button>-->
+                <button ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()">
+                    Load more
+                </button>
+			</div>
+		</div>
     </div>
     <div class="panel-body" ng-show="noresult==true">
        <div >         

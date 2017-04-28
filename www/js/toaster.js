@@ -38,8 +38,8 @@ angular.module('toaster', ['ngAnimate'])
     //'on-fade-in': undefined,    // not implemented
     //'fade-out': 1000,           // done in css
     // 'on-fade-out': undefined,  // not implemented
-    //'extended-time-out': 1000,    // not implemented
-    'time-out': 900, // Set timeOut and extendedTimeout to 0 to make it sticky
+    //'extended-time-out': 0,    // not implemented
+    'time-out': 0, // Set timeOut and extendedTimeout to 0 to make it sticky
     'icon-classes': {
         error: 'toast-error',
         info: 'toast-info',
@@ -161,7 +161,7 @@ function ($compile, $timeout, $sce, toasterConfig, toaster) {
         template:
         '<div  id="toast-container" ng-class="config.position">' +
             '<div ng-repeat="toaster in toasters" class="toast" ng-class="toaster.type" ng-click="remove(toaster.id)" ng-mouseover="stopTimer(toaster)"  ng-mouseout="restartTimer(toaster)">' +
-              '<div ng-class="config.title">{{toaster.title}}</div>' +
+              '<div ng-class="config.title">{{toaster.title}}</div><button type="button" class="close" aria-label="close"><span aria-hidden="true">&times;</span></button>' +
               '<div ng-class="config.message" ng-switch on="toaster.bodyOutputType">' +
                 '<div ng-switch-when="trustedHtml" ng-bind-html="toaster.html"></div>' +
                 '<div ng-switch-when="template"><div ng-include="toaster.bodyTemplate"></div></div>' +
