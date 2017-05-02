@@ -381,8 +381,24 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
                 customer: request
             }).then(function (results) {                
                 if (results.status == "success") {
-                    $scope.resultarray=results.users
+                    $scope.resultarray=results.users;
                     $scope.showsearch=false;
+                    $scope.datalists = $scope.resultarray;
+                    var pagesShown = 1;
+
+                    var pageSize = 20;
+                    $scope.paginationLimit = function(data) {
+                        return pageSize * pagesShown;
+                    };
+
+                    $scope.hasMoreItemsToShow = function() {
+                        var length=$scope.resultarray.length;
+                        return pagesShown < ( length / pageSize);
+                    };
+
+                    $scope.showMoreItems = function() {
+                        pagesShown = pagesShown + 1;
+                    };
                 }
                 else
                 {
@@ -392,21 +408,7 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
                 }
             });        
     };
-    $scope.datalists = $scope.resultarray;
-    var pagesShown = 1;
 
-    var pageSize = 3;
-    $scope.paginationLimit = function(data) {
-        return pageSize * pagesShown;
-    };
-
-    $scope.hasMoreItemsToShow = function() {
-        return pagesShown < ($scope.datalists.length / pageSize);
-    };
-
-    $scope.showMoreItems = function() {
-        pagesShown = pagesShown + 1;
-    };
     $scope.showsmsproceed=false;
     $scope.showemailproceed=false;
     $scope.showsocialproceed=false;
@@ -500,7 +502,23 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
                 $scope.smsresultarray=results.users;
                 $scope.smscontent=results.smscontent;
                 $scope.multysms=results.multysms;
-                $scope.showsearch=false;  
+                $scope.showsearch=false;
+                $scope.datalists = $scope.smsresultarray;
+                var pagesShown = 1;
+
+                var pageSize = 20;
+                $scope.paginationLimit = function(data) {
+                    return pageSize * pagesShown;
+                };
+
+                $scope.hasMoreItemsToShow = function() {
+                    var length=$scope.datalists.length;
+                    return pagesShown < ( length / pageSize);
+                };
+
+                $scope.showMoreItems = function() {
+                    pagesShown = pagesShown + 1;
+                };
             }
             else
             {
@@ -523,7 +541,23 @@ app.controller('requestCtrl', function ($scope,$filter, $rootScope, $location, $
                 $scope.emailcontent=encodeURIComponent(results.emailcontent);
                 $scope.emailsubject=results.emailsubject;
                 $scope.requestremail=results.requestremail;
-                $scope.showsearch=false;  
+                $scope.showsearch=false;
+                $scope.datalists = $scope.emailresultarray;
+                var pagesShown = 1;
+
+                var pageSize = 20;
+                $scope.paginationLimit = function(data) {
+                    return pageSize * pagesShown;
+                };
+
+                $scope.hasMoreItemsToShow = function() {
+                    var length=$scope.datalists.length;
+                    return pagesShown < ( length / pageSize);
+                };
+
+                $scope.showMoreItems = function() {
+                    pagesShown = pagesShown + 1;
+                };
             }
             else
             {

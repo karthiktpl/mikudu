@@ -227,14 +227,17 @@
 			</div>                  
        </div>
        <span class="help-block"><p id="characterLeftLoc" class="help-block ">standard rates apply for call charges</p></span>
-	   <div class="panel-footer">
-			<div class="pull-right">
-				<!--<button class="btn btn-success">Next <i class="fa fa-step-forward" aria-hidden="true"></i></button>-->
-                <button ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()">
+        <div class="">
+
+            <div class="col-xs-2 pull-right nopadding">
+
+            </div>
+            <div class="col-xs-5 pull-right nopadding">
+                <button ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()" class="btn btn-primary">
                     Load more
                 </button>
-			</div>
-		</div>
+            </div>
+        </div>
     </div>
     <div class="panel-body" ng-show="noresult==true">
        <div >         
@@ -247,31 +250,51 @@
        </div>       
     </div>    
     <div class="panel-body" ng-show="smsresultarray.length > 0">
-       <div ng-repeat="(key, val) in smsresultarray"> 	   
+       <div ng-repeat="(key, val) in smsresultarray | limitTo: paginationLimit()">
             <div class="media-body">
 				<div class="col-xs-7 nopadding">
 					<h5 class="media-heading bldr topmargin">{{val.Name}} </h5>
 				</div>
 				<div class="col-xs-2 pull-right nopadding"><a href="sms:{{val.Mobilenumber}}?body={{smscontent}}" class="btn btn-success btn-sm pull-right"><i class="fa fa-comments fa-2x" aria-hidden="true"></i></a></div>                            				
 				<div class="col-xs-1 pull-right nopadding">
-					<h5 class="media-heading bldr topmargin"><span class="label label-danger">{{val.Bloodgroup}}</span></h4><h5>
+					<h5 class="media-heading bldr topmargin"><span class="label label-danger">{{val.Bloodgroup}}</span></h5>
 				</div>								               
             </div>                  
        </div>
-       <span class="help-block"><p id="characterLeftLoc" class="help-block ">standard rates apply for SMS charges. <span ng-show="multysms">This message will be send as multiple sms</span></p></span>       
+       <span class="help-block"><p id="characterLeftLoc" class="help-block ">standard rates apply for SMS charges. <span ng-show="multysms">This message will be send as multiple sms</span></p></span>
+        <div>
+            <div class="col-xs-2 pull-right nopadding">
+
+            </div>
+            <div class="col-xs-5 pull-right nopadding">
+                <button ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()" class="btn btn-primary">
+                    Load more
+                </button>
+            </div>
+        </div>
     </div>
     <div class="panel-body" ng-show="emailresultarray">
-       <div ng-repeat="(key, val) in emailresultarray">
+       <div ng-repeat="(key, val) in emailresultarray | limitTo: paginationLimit()">
             <div class="media-body">
 				<div class="col-xs-7 nopadding">
 					<h5 class="media-heading bldr topmargin">{{val.Name}} </h5>
 				</div>
 				<div class="col-xs-2 pull-right nopadding"><a href="mailto:{{val.Email}},{{requestremail}}?subject={{emailsubject}}&body={{emailcontent}}" class="btn btn-success btn-sm pull-right"><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></a></div>                            				
 				<div class="col-xs-1 pull-right nopadding">
-					<h5 class="media-heading bldr topmargin"><span class="label label-danger">{{val.Bloodgroup}}</span><h5>
+					<h5 class="media-heading bldr topmargin"><span class="label label-danger">{{val.Bloodgroup}}</span></h5>
 				</div>								               
-            </div>                  
+            </div>
        </div>
+        <div>
+            <div class="col-xs-2 pull-right nopadding">
+
+            </div>
+            <div class="col-xs-5 pull-right nopadding">
+                <button ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()" class="btn btn-primary">
+                    Load more
+                </button>
+            </div>
+        </div>
     </div>      
 		    </div>
 	</div>
