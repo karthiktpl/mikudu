@@ -68,7 +68,7 @@
 	  </div>
 	  <div class="form-group">
 		<label for="dateofbirth">Date of Birth <span class="redspan">*</span></label>        
-		<input type='date' class="form-control" name="dob" ng-model="signup.Dob" max="{{signup.dateformat | date:'yyyy-MM-dd'}}"  placeholder="Date of Birth" />                         							
+		<input type='date' class="form-control" name="dob" required ng-model="signup.Dob" max="{{signup.dateformat | date:'yyyy-MM-dd'}}"  placeholder="Date of Birth" />
 		<small class="errorMessage" data-ng-show="signupForm.dob.$dirty && signupForm.dob.$error.required"> Select Date of Birth.</small>
 	  </div>
 	<div class="form-group">

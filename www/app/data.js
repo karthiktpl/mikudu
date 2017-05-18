@@ -1,10 +1,10 @@
 app.factory("Data", ['$http', 'toaster',
     function ($http, toaster) { // This service connects to our REST API
 
-        var serviceBase = 'http://api.mikudu.com/v1/';
+        var serviceBase = 'http://localhost/mikuduapi/v1/';
         var obj = {};
         obj.toast = function (data) {
-            toaster.pop(data.status, "", data.message, 7000, 'trustedHtml');
+            toaster.pop(data.status, "", data.message, 0, 'trustedHtml');
         }
         obj.get = function (q) {
             return $http.get(serviceBase + q).then(function (results) {
